@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/final_aag_logo.png') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/association_login.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/main_header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.css') }}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+
+  <title>Log In | College</title>
+  <style>
+    .google-login-container {
+      position: relative;
+      width: 80%;
+      left: 100px;
+      margin: 20px auto 10px auto;
+      display: flex;
+      text-align: center;
+    }
+    .g-signin2 {
+      border: none;
+      outline: none;
+      
+    }
+    .g-signin2:hover {
+      box-shadow: none;
+    }
+    a {
+      color: #0088ff;
+      text-decoration: none;
+    }
+  
+    /* Loader CSS */
+#loader_container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: auto;
+  background-color: rgba(255,255,255, 0.5);
+  z-index: 9999 !important;
+  display: none;
+}
+
+#loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+
+  </style>
+</head>
+<body>
+  {% extends "main_header.html" %}
+  {% block content %}
+
+  <div id="loader_container" style="display: none;">
+    <div id="loader">
+    <img src="{{url_for('static',filename='assets/loading.gif')}}">
+    </div>
+  </div>
+
+  <div style="position: fixed;bottom:10px;left:10px;padding:10px 0;margin:10px auto;width:300px;height:auto;z-index:1000;">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        
+        {% for message in messages %}
+        <div style="font-size:18px;background-color: #fff;color: black;padding: 15px 30px;margin:5px 0;box-shadow:1px 1px 3px grey,-1px -1px 3px grey;border-radius:30px;" id="div_{{loop.index}}"> 
+        <p style="float: right;"><i style="cursor:pointer" class="fas fa-times" onclick="document.getElementById('div_{{loop.index}}').style.display='none';"></i></p>
+        <p>{{ message }}</p>
+        </div>
+      
+        {% endfor %}
+    
+    {% endif %}
+
+    {% endwith %}
+  </div>
+  
+
+
+  <div class="login-container">
+    <div class="left-login">
+      <img src="{{url_for('static',filename='assets/college_spoc_signup.svg')}}" alt="" style="width: 100%;object-fit: cover;">
+    </div>
+    <div class="right-login">
+      <form>
+        <h4>College Log In</h4>
+       
+         <div class="floating-input">
+          <input required id='email' type="text" />
+          <label for="email">Email</label>
+        </div>
+      
+        <div class="floating-input">
+          <input required id='password' type="password" />
+          <label for="password">Password</label>
+        </div>
+        <div class="floating-input" style="display: flex;">
+            <span id="captcha" style="width:60%;"> </span>
+           <div class="floating-input" style="float: left;width:40%;overflow:hidden;margin: 8px 0 0 0;">
+              <input required id='cpatchaTextBox' type="text" style="margin:0;padding:0;letter-spacing: 3px;" maxlength="6" />
+              <label for="cpatchaTextBox" id="cpatchaTextBox-label" style="">Captcha</label>
+            </div>
+        </div>
+        <div class="input-button">
+          <button class="button ripple" type="button" onclick="validateCaptcha();">LOG IN</button>
+        </div>
+        <br/>
+        <p><a href="#">Forgot Password ?</a></p>
+        <br>
+        <p>Not Account Yet ? <a href="#">Sign Up Here</a></p>
+      </form>
+      
+      <div id="facebook-response" style="display: none;">
+        <h1>Facebook Profile</h1>
+          <h3 id="heading"></h3>
+          <div id="profile"></div>
+          
+      </div>
+      <div id="google-response" style="display: none;">
+        <h1>Google Profile</h1>
+          <h3 id="heading"></h3>
+          <div id="profile-g"></div>
+          
+      </div>
+    </div>
+  </div>
+<script>
+  
+  window.location.replace ="http://localhost:5000/college/login";
+ 
+</script>
+<script src="{{url_for('static',filename='js/college_login.js')}}"></script>
+<script src="{{url_for('static',filename='js/sweetalert2.all.min.js')}}"></script>
+
+  {% endblock %}
+</body>
+</html>

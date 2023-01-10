@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/final_aag_logo.png') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/alumni_signup.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/main_header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/about.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.css') }}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/sweetalert2.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/association_college_applications.css')}}">
+  <title>Map Directory | Alumni Association Of Goa </title>
+  <style>
+    #map { 
+        position: relative;
+        width: 100%;
+        height: 800px;
+       }
+  </style>
+</head>
+<body>
+  {% extends "main_header.html" %}
+  {% block content %}
+  <div id="loader_container">
+    <div id="loader">
+    <img src="{{url_for('static',filename='assets/loading.gif')}}">
+    </div>
+  </div>
+
+  <div class="main-container">
+  
+        <div id="map"></div>
+	</div>
+
+    
+    
+  
+  
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnLxRX_-6gZtde1HNsXQwn2Wr2_hIXBnM&libraries=places&callback=initMap" async defer></script>
+    <script src="../static/js/jquery-3.4.1.min.js"></script>
+    <script src="{{url_for('static',filename='js/sweetalert2.all.min.js')}}"></script>
+    
+    <!-- <script src="../static/js/jquery.min.js"></script> -->
+    <!-- <script src="../static/js/font-awesome.js"></script> -->
+
+    <script>
+
+       
+
+        var map;
+          var service;
+          var infowindow;
+    
+          var desc = [];
+    
+    
+          function initMap() {
+          
+            infowindow = new google.maps.InfoWindow();
+    
+            map = new google.maps.Map(
+                document.getElementById('map'), {zoom: 12});
+            {% for k in places %}
+          
+            var request = {
+              query: "{{k[0]}}",
+              fields: ['name', 'geometry'],
+            };
+    
+            service = new google.maps.places.PlacesService(map);
+    
+            service.findPlaceFromQuery(request, function(results, status) {
+              if (status === google.maps.places.PlacesServiceStatus.OK) {
+                for (var i = 0; i < results.length; i++) {
+                  createMarker(results[0],"{{k[0]}}","{{k[1]}}","{{k[2]}}");
+                  
+                }
+                map.setCenter(results[0].geometry.location);
+                desc.push("{{k[1]}}");
+              }
+            });
+            
+            
+              
+        {% endfor %}
+          }
+          
+          
+          function createMarker(place,chapter_name,total_students,total_events) {
+            var infowindow = new google.maps.InfoWindow({
+                content: "<div style='padding:15px;margin:5px;font-family: \'GoogleSans-Regular\';><h1 style='text-align:center;'>"+chapter_name+"</h1><br><table border='0' align='center' style='position:relative;margin:0 auto;'><tr><td><b>Total Students</b><br><span style='padding:10px;font-size:40px;'>"+total_students+"</span></td><td><b>Total Events</b><br><span style='padding:10px;font-size:40px;'>"+total_events+"</span></td></tr></table><br><center><button class='button ripple' id='123' type='button'>VIEW CHAPTER</button></center></div>",
+                maxWidth: 500 
+              });
+            var marker = new google.maps.Marker({
+                position: place.geometry.location,
+                map: map,
+              });
+              marker.addListener('click', function() {
+                infowindow.open(map, marker);
+              });
+             
+          }
+    </script>
+
+  {% endblock %}
+</body>
+</html>

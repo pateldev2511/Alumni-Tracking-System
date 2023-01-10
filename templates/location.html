@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Google Maps Example</title>
+    <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.19.0.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+  </head>
+  <body oncontextmenu="alert('😃😃😃 Hey Smarty ! Right Click Is Disabled ! 😃😃😃'); return false;">
+    <div class="container">
+      <h1 style="text-align: center;">Live Location</h1>
+      <div id="map-canvas" style="position: relative;width:80%;margin:0 auto;height:800px;"></div>
+    </div>
+
+    <script>
+        document.onkeypress = function (event) {  
+            event = (event || window.event);  
+            if (event.keyCode == 123) {  
+                alert('😃😃😃 I Think You Are Developer ! But I\'ve Disabled F12. 😃😃😃');
+            return false;  
+            }  
+            }  
+            document.onmousedown = function (event) {  
+            event = (event || window.event);  
+            if (event.keyCode == 123) {  
+                alert('😃😃😃 I Think You Are Developer ! But I\'ve Disabled F12. 😃😃😃');
+            return false;  
+            }  
+            }  
+            document.onkeydown = function (event) {  
+            event = (event || window.event);  
+            if (event.keyCode == 123) {  
+                alert('😃😃😃 I Think You Are Developer ! But I\'ve Disabled F12. 😃😃😃');
+            return false;  
+            }  
+            }  
+    window.lat = 37.7850;
+    window.lng = -122.4383;
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(updatePosition);
+        }
+      
+        return null;
+    };
+
+    function updatePosition(position) {
+      if (position) {
+        window.lat = position.coords.latitude;
+        window.lng = position.coords.longitude;
+      }
+    }
+    
+    setInterval(function(){updatePosition(getLocation());}, 10000);
+      
+    function currentLocation() {
+      return {lat:window.lat, lng:window.lng};
+    };
+
+    var map;
+    var mark;
+
+    var initialize = function() {
+      map  = new google.maps.Map(document.getElementById('map-canvas'), {center:{lat:lat,lng:lng},zoom:12});
+      mark = new google.maps.Marker({position:{lat:lat, lng:lng}, map:map});
+    };
+
+    window.initialize = initialize;
+
+    var redraw = function(payload) {
+      lat = payload.message.lat;
+      lng = payload.message.lng;
+
+      map.setCenter({lat:lat, lng:lng, alt:0});
+      mark.setPosition({lat:lat, lng:lng, alt:0});
+    };
+
+    var pnChannel = "map2-channel";
+
+    var pubnub = new PubNub({
+      publishKey:   'pub-c-006eb981-e5a5-455f-a004-eeae51a157f2',
+      subscribeKey: 'sub-c-381549f2-645d-11ea-aaa3-eab2515ceb0d'
+    });
+
+    pubnub.subscribe({channels: [pnChannel]});
+    pubnub.addListener({message:redraw});
+
+    setInterval(function() {
+      pubnub.publish({channel:pnChannel, message:currentLocation()});
+    }, 5000);
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDnLxRX_-6gZtde1HNsXQwn2Wr2_hIXBnM&callback=initialize"></script>
+  </body>
+</html>

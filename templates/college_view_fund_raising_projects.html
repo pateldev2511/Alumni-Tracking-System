@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/final_aag_logo.png') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/alumni_signup.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/main_header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/about.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.css') }}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/sweetalert2.min.css')}}">
+  <script src="https://kit.fontawesome.com/a25e25945a.js" crossorigin="anonymous"></script>
+
+  <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-flat.css" />
+
+  <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css" />
+
+  <title> {{project_details[0][4]}} - Fund Raising Project | Alumni Association Of Goa. </title>
+  <style>
+     
+      .main-container {
+          position: relative;
+          min-height: 500px;
+        margin: 0 auto;
+        width: 80%;
+      }
+  </style>
+
+</head>
+<body>
+    <!-- javascript:alert(grecaptcha.getResponse(widgetId1)); -->
+  {% extends "main_header.html" %}
+  {% block content %}
+
+
+  <div id="loader_container">
+    <div id="loader">
+    <img src="{{url_for('static',filename='assets/loading.gif')}}">
+    </div>
+  </div>
+
+  <div style="position: fixed;bottom:10px;left:10px;padding:10px 0;margin:10px auto;width:300px;height:auto;z-index:1000;">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        
+        {% for message in messages %}
+        <div style="font-size:18px;background-color: #fff;color: black;padding: 15px 30px;margin:5px 0;box-shadow:1px 1px 3px grey,-1px -1px 3px grey;border-radius:30px;" id="div_{{loop.index}}"> 
+        <p style="float: right;"><i style="cursor:pointer" class="fas fa-times" onclick="document.getElementById('div_{{loop.index}}').style.display='none';"></i></p>
+        <p>{{ message }}</p>
+        </div>
+      
+        {% endfor %}
+    
+    
+    {% endif %}
+
+    {% endwith %}
+  </div>
+
+  <div class="main-container">
+
+      <div class="main-header-portion" style="position:relative;width: 100%;border-top-left-radius:8px;border-top-right-radius: 8px;margin:10px 0 0 0;">
+          <img src="../../../{{project_details[0][6]}}" style="width:100%;height:450px;margin:0 auto;border-top-left-radius:8px;border-top-right-radius: 8px;" alt="">
+
+          <div style="position: absolute;bottom:2px;left:0px;z-index:1000;color:white;background-color: rgba(0, 0, 0, 0.5);width:100%;">
+              <div>
+                  <h1 style="padding: 20px;font-size:50px;line-height: 60px;">{{project_details[0][4]}}</h1>
+              </div>
+          </div>
+      </div>
+      <div id="project_statics_container" style="width:100%;background-color: #fff;box-shadow: 1px 1px 3px gray;border-bottom-left-radius:8px;border-bottom-right-radius: 8px;">
+          <div style="padding: 10px;" style="width: 100%;">            
+              <table style="width:100%;">
+                <tr >
+                    <td style="width: 33.33%;">
+                          <div style="padding: 10px;">
+                            <p id="percentage-raised" style="font-weight: bold;padding:10px;font-size: 20px;">{{percent_collected}} %</p>
+                            <p style="padding: 10px;color: gray;font-weight: 400;">Reached of ₹ <span>{{project_details[0][8]}}</span> Goal.</p>
+                    </td>
+                    <td style="width: 33.33%;">
+                           
+                              <table style="margin: 0 10px;">
+                                <tr>
+                                  <td>
+                                    <i class="fas fa-gift" style="color: gray;padding-bottom: 5px;"></i>&nbsp;&nbsp;{{l_gifts}} Gifts
+                                    <br>
+                                  </td>
+                                  <td style="float: right;">
+                                      <p style="padding-bottom: 5px;">₹ <span>{{project_details[0][9]}}</span> Raised.</p>
+                                    
+                                  </td>
+                                </tr>
+                                <tr>
+                                      <td colspan="2">
+                                        <div style="width: 400px;background-color: #bdc8d1;height:10px;box-shadow: 1px 1px 1px white,-1px -1px 1px white;border-radius: 30px;">
+                                          <div style="width: {{bar_percent}}px;background-color: #0088ff;height:10px;border-radius: 30px;"></div>
+                                      </div>
+                                      </td>
+                                </tr>
+                              </table>
+                              
+                           
+                       
+                          </div>
+                    </td>
+                    <td style="width: 33.33%;justify-content: center;text-align: center;">
+
+                      <!-- {{isAllowedForCollege}}
+                      {{isAllowedForAssociation}}
+                      {{isPersonDonate}}
+                      {{my_college}}
+                      {{d_e}}
+                      {{d_m_n}}
+                      {{logged_in_type}} -->
+                  
+                      {% if isPersonDonate == "YES" %}
+                            {% if isRejected == 1 %}
+                            <p style="color: gray;">This Project Is Not Active.</p>
+                            {% else %}
+                                <button class="button ripple" type="button" id="mv-form-2-btn" style="padding: 10px 20px;border-radius: 30px;font-size:20px;height: auto;" onclick="makeAGift();">Make A Gift</button>
+                            {% endif %}
+                      {% else %}
+                        
+                            <p style="color: gray;">You Are Not Allowed To Make A Gift.</p>
+                          
+                      {% endif %}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+    <div class="bottom-desc-container" style="width:100%;margin:20px 0;position: relative;display: flex;">
+      <div style="width: 71%;margin-right: 1%;">
+      
+      
+      <div style="background-color: #fff;box-shadow: 1px 1px 3px gray;border-radius: 8px;padding:10px;margin: 10px 0;" id="f_r_c_content">
+       
+      
+      
+
+      </div>
+
+      </div>
+      <div style="width: 25%;">
+        
+                {% if project_docs | length > 0 %}
+                <div style="margin-left:20px;background-color: #fff;box-shadow: 1px 1px 3px gray;border-radius: 8px;padding:20px;width:100%;margin:10px 0;">
+                  <h3>Documents</h3>
+                  <br>
+                  <div style="  position: relative;
+                  width: 80%;
+                  margin: 0 auto;
+                  display: grid;
+                  grid-template-columns: auto auto auto;">
+                  {% for i in project_docs %}
+                  <div>                     
+                    <a href="../../../{{i}}" target="_blank"><img src="../../../{{i}}" style="height: 100px;width:80px;" alt=""></a>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+                {% endif%}
+           
+               
+
+          
+
+          <div style="margin-left:20px;background-color: #fff;box-shadow: 1px 1px 3px gray;border-radius: 8px;padding:20px;width:100%;margin:10px 0;">
+            <h3>{{l_gifts}} Gifts</h3>
+            <br>
+            <div>
+              {% if l_gifts == 0 %}
+                      <center><h3>No Gifters Found.</h3></center>
+              {% else %}
+
+                  {% for i in gifts %}
+                    <table>
+                      <tr>
+                        <td style="padding: 10px;">
+                          {% if i[4] == "NO" %}
+                          <img src="https://ui-avatars.com/api/?size=128&name={{i[0] | title}}+{{i[1] | title}}&background={{i[5]}}&color=fff" style="width:50px;height:50px;border-radius: 50%;" alt="">
+
+                          {% else %}
+                              <img src="../../../{{i[4]}}" style="width:50px;height:50px;border-radius: 50%;" alt="">
+                          {% endif %}
+                        </td>
+                  
+                        <td>
+                          <p style="font-weight: bold;padding-bottom:8px;">{{i[0] | title}} {{i[1] | title}}</p>
+                          <p style="color: gray;">₹ {{i[3]}}</p>
+                        </td>
+                        
+                      </tr>
+                    </table>
+                  {% endfor %}
+              {% endif %}
+            </div>
+          </div>
+
+          <div style="margin-left:20px;background-color: #fff;box-shadow: 1px 1px 3px gray;border-radius: 8px;padding:20px;width:100%;margin:10px 0;">
+            <h3>Sharing is Caring !</h3> <br>
+                <p style="color: gray;">Spreading the word around helps us reach more people that inch us closer to reaching our goals.</p>
+                <p style="padding-top: 10px;">
+                  <div id="share"></div>
+
+                </p>
+          </div>
+      </div>
+  </div>
+  </div>
+
+ <input type="hidden" id="f_r_p_c_value" value="{{project_details[0][5]}}">
+ <input type="hidden" name="amount_remaining_to_collect" id="amount_remaining_to_collect" value="{{amount_remaining_to_collect}}">
+  <script src="{{url_for('static',filename='js/jquery-3.4.1.min.js') }}"></script>
+<script>
+  var remaining_amount = document.getElementById('amount_remaining_to_collect').value;
+  var total_goal_amount = 0;
+  var gift_amount = 0;
+  document.getElementById('f_r_c_content').innerHTML = document.getElementById('f_r_p_c_value').value;
+  async function makeAGift()
+  {
+    const { value: gift_amt } = await Swal.fire({
+      title: 'Enter Amount',
+      input: 'number',
+      inputPlaceholder: 'Enter Amount...'
+    })
+    
+    if (gift_amt) {
+ 
+     
+        var xmlhttp = new XMLHttpRequest();
+                          xmlhttp.open("GET", "?mode=1&amount="+gift_amt, false);
+                          xmlhttp.send(null);
+                          var res = xmlhttp.responseText;
+                          var obj = JSON.parse(res);
+                        
+                          if(obj.res == 1)
+                          {
+                            window.location = "/college/view/fund-raising-project/payment";
+                          }
+                          else {
+                            Swal.fire({
+                              icon: 'error',
+                              title: obj.msg,
+                            });
+                          }
+      }
+      else {
+       
+        Swal.fire({
+          title: "Please Enter Amount.",
+        })
+      }
+}
+  
+</script>
+  <script src="{{url_for('static',filename='js/sweetalert2.all.min.js')}}"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js"></script>
+<script>
+  $("#share").jsSocials({
+    shares: ["email", "twitter", "facebook", "linkedin", "pinterest", "whatsapp"]
+});
+</script>
+
+  {% endblock %}
+</body>
+</html>

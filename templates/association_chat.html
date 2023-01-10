@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/final_aag_logo.png') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/alumni_signup.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/main_header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/about.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.css') }}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/sweetalert2.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/association_college_applications.css')}}">
+  <script src="https://kit.fontawesome.com/a25e25945a.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+  <link href="//cdn.syncfusion.com/ej2/ej2-base/styles/material.css" rel="stylesheet">
+  <link href="//cdn.syncfusion.com/ej2/ej2-inputs/styles/material.css" rel="stylesheet">
+  <link href="//cdn.syncfusion.com/ej2/ej2-dropdowns/styles/material.css" rel="stylesheet">
+  <link href="//cdn.syncfusion.com/ej2/ej2-buttons/styles/material.css" rel="stylesheet">
+  
+  
+<script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js" type="text/javascript"></script>
+
+  <title>Chat | Alumni Association Of Goa </title>
+ 
+  <style>
+
+       .page-title {
+        text-align: center;
+        font-size: 50px;
+        margin-bottom: 10px;
+    }
+
+  
+/*button */
+
+.button {
+  position: relative;
+  display: inline-block;
+  height: 36px;
+  padding: 0 16px;
+  background-color: #3f51b5;
+  color: #fff;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 36px;
+  vertical-align: middle;
+  overflow: hidden;
+  cursor: pointer;
+  outline: 0;
+  z-index: 1;
+  transition: all 0.15s ease-in;
+}
+.button:hover, .button:focus {
+  opacity: 0.9;
+}
+@keyframes ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.5;
+ }
+  100% {
+    width: 150px;
+    height: 150px;
+    opacity: 0;
+ }
+}
+.ripple:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: currentColor;
+  visibility: hidden;
+  z-index: 2;
+}
+.ripple:not(:active):before {
+  animation: ripple 0.4s cubic-bezier(0, 0, 0.2, 1);
+  transition: visibility 0.4s step-end;
+}
+.ripple:active:before {
+  visibility: visible;
+}
+
+
+/* Chat */
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+:root {
+    --white: #fff;
+    --black: #000;
+    --bg: #f8f8f8;
+    --grey: #999;
+    --dark: #1a1a1a;
+    --light: #e6e6e6;
+    --wrapper: 1000px;
+    --blue: #00b0ff;
+}
+
+.wrapper {
+    position: relative;
+    width: 100%;
+    height: 800px;
+    margin: 0 auto;
+
+}
+.container {
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+    height: 75%;
+    background-color: var(--white);
+}
+.container .left {
+    float: left;
+    width: 37.6%;
+    height: 100%;
+    border: 1px solid var(--light);
+    background-color: var(--white);
+    overflow: auto;
+    overflow-x: hidden;
+}
+.container .left .top {
+    position: relative;
+    width: 100%;
+    height: 96px;
+    padding: 29px;
+    margin: 0 auto;
+}
+.container .left .top:after {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    display: block;
+    width: 100%;
+    height: 1px;
+    content: '';
+    background-color: var(--light);
+    transform: translate(-50%, 0);
+}
+.container .left input {
+    float: left;
+    width: 80%;
+    height: 42px;
+    padding: 0 15px;
+    border: 1px solid var(--light);
+    background-color: #eceff1;
+    border-radius: 21px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+}
+.container .left input:focus {
+    outline: none;
+}
+.container .left a.search {
+    display: block;
+    float: left;
+    width: 42px;
+    height: 42px;
+    margin-left: 10px;
+    border: 1px solid var(--light);
+    background-color: var(--blue);
+    background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/name-type.png');
+    background-repeat: no-repeat;
+    background-position: top 12px left 14px;
+    border-radius: 50%;
+}
+.container .left .people {
+    margin-left: -1px;
+    border-right: 1px solid var(--light);
+    border-left: 1px solid var(--light);
+    width: calc(100% + 2px);
+}
+.container .left .people .person {
+    position: relative;
+    width: 100%;
+    padding: 12px 10% 16px;
+    cursor: pointer;
+    background-color: var(--white);
+    list-style: none;
+}
+.container .left .people .person:after {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    display: block;
+    width: 80%;
+    height: 1px;
+    content: '';
+    background-color: var(--light);
+    transform: translate(-50%, 0);
+}
+.container .left .people .person img {
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin-right: 12px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.container .left .people .person .name {
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--dark);
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+}
+.container .left .people .person .time {
+    font-size: 14px;
+    position: absolute;
+    top: 16px;
+    right: 10%;
+    padding: 0 0 5px 5px;
+    color: var(--grey);
+    background-color: var(--white);
+}
+.container .left .people .person .preview {
+    font-size: 14px;
+    display: inline-block;
+    overflow: hidden !important;
+    width: 70%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--grey);
+}
+.container .left .people .person.active, .container .left .people .person:hover {
+    margin-top: -1px;
+    margin-left: -1px;
+    padding-top: 13px;
+    border: 0;
+    background-color: var(--blue);
+    width: calc(100% + 2px);
+    padding-left: calc(10% + 1px);
+}
+.container .left .people .person.active span, .container .left .people .person:hover span {
+    color: var(--white);
+    background: transparent;
+}
+.container .left .people .person.active:after, .container .left .people .person:hover:after {
+    display: none;
+}
+.container .right {
+    position: relative;
+    float: left;
+    width: 62.4%;
+    height: 100%;
+}
+.container .right .top {
+    width: 100%;
+    height: auto;
+    padding: 5px 20px;
+    background-color: #eceff1;
+}
+.container .right .top span {
+    font-size: 15px;
+    color: var(--grey);
+}
+.container .right .top span .name {
+    color: var(--dark);
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+
+}
+.container .right .chat {
+    position: relative;
+    display: none;
+    overflow: hidden;
+    padding: 0 35px 10px;
+    height: 75%;
+    justify-content: flex-end;
+    flex-direction: column;
+    margin-top: 5px;
+    overflow: auto;
+}
+.container .right .chat.active-chat {
+    display: block;
+    display: flex;
+}
+.container .right .chat.active-chat .bubble {
+    transition-timing-function: cubic-bezier(0.4, -0.04, 1, 1);
+}
+.container .right .chat.active-chat .bubble:nth-of-type(1) {
+    animation-duration: 0.15s;
+}
+.container .right .chat.active-chat .bubble:nth-of-type(2) {
+    animation-duration: 0.3s;
+}
+.container .right .chat.active-chat .bubble:nth-of-type(3) {
+    animation-duration: 0.45s;
+}
+.container .right .chat.active-chat .bubble:nth-of-type(4) {
+    animation-duration: 0.6s;
+}
+.container .right .chat.active-chat .bubble:nth-of-type(5) {
+    animation-duration: 0.75s;
+}
+.container .right .chat.active-chat .bubble:nth-of-type(6) {
+    animation-duration: 0.9s;
+}
+.container .right .chat.active-chat .bubble:nth-of-type(7) {
+    animation-duration: 1.05s;
+}
+.container .right .chat.active-chat .bubble:nth-of-type(8) {
+    animation-duration: 1.2s;
+}
+.container .right .chat.active-chat .bubble:nth-of-type(9) {
+    animation-duration: 1.35s;
+}
+.container .right .chat.active-chat .bubble:nth-of-type(10) {
+    animation-duration: 1.5s;
+}
+.container .right .write {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 42px;
+    padding-left: 8px;
+    border: 1px solid var(--light);
+    background-color: #eceff1;
+    width: 100%;
+    border-radius: 5px;
+}
+.container .right .write input {
+    font-size: 16px;
+    float: left;
+    width: 90%;
+    height: 40px;
+    padding: 0 10px;
+    color: var(--dark);
+    border: 0;
+    outline: none;
+    background-color: #eceff1;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+}
+
+
+.container .right .write .write-link.send:before {
+    display: inline-block;
+    
+    
+    width: 20px;
+    height: 42px;
+    margin-left: 30px;
+    content: '';
+    background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/send.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.container .right .bubble {
+    font-size: 16px;
+    position: relative;
+    display: inline-block;
+    clear: both;
+    margin-bottom: 8px;
+    padding: 13px 14px;
+    vertical-align: top;
+    border-radius: 5px;
+}
+.container .right .bubble:before {
+    position: absolute;
+    top: 19px;
+    display: block;
+    width: 8px;
+    height: 6px;
+    content: '\00a0';
+    transform: rotate(29deg) skew(-35deg);
+}
+.container .right .bubble.you {
+    float: left;
+    color: var(--white);
+    background-color: var(--blue);
+    align-self: flex-start;
+    animation-name: slideFromLeft;
+    max-width: 500px;
+    text-align: left;
+}
+.container .right .bubble.you:before {
+    left: -3px;
+    background-color: var(--blue);
+}
+.container .right .bubble.me {
+    float: right;
+    color: var(--dark);
+    background-color: #eceff1;
+    align-self: flex-end;
+    animation-name: slideFromRight;
+    max-width: 500px;
+    text-align: left;
+}
+.container .right .bubble.me:before {
+    right: -3px;
+    background-color: #eceff1;
+}
+.container .right .conversation-start {
+    position: relative;
+    width: 100%;
+    margin-bottom: 27px;
+    text-align: center;
+}
+.container .right .conversation-start span {
+    font-size: 14px;
+    display: inline-block;
+    color: var(--grey);
+}
+.container .right .conversation-start span:before, .container .right .conversation-start span:after {
+    position: absolute;
+    top: 10px;
+    display: inline-block;
+    width: 30%;
+    height: 1px;
+    content: '';
+    background-color: var(--light);
+}
+.container .right .conversation-start span:before {
+    left: 0;
+}
+.container .right .conversation-start span:after {
+    right: 0;
+}
+@keyframes slideFromLeft {
+    0% {
+        margin-left: -200px;
+        opacity: 0;
+   }
+    100% {
+        margin-left: 0;
+        opacity: 1;
+   }
+}
+@-webkit-keyframes slideFromLeft {
+    0% {
+        margin-left: -200px;
+        opacity: 0;
+   }
+    100% {
+        margin-left: 0;
+        opacity: 1;
+   }
+}
+@keyframes slideFromRight {
+    0% {
+        margin-right: -200px;
+        opacity: 0;
+   }
+    100% {
+        margin-right: 0;
+        opacity: 1;
+   }
+}
+@-webkit-keyframes slideFromRight {
+    0% {
+        margin-right: -200px;
+        opacity: 0;
+   }
+    100% {
+        margin-right: 0;
+        opacity: 1;
+   }
+}
+
+ .ajs-message.ajs-custom { color: #31708f;  background-color: #d9edf7;  border-color: #31708f; }
+
+
+ .active_tab_chat {
+     background-color: #0088ff;
+     color: white;
+ }
+
+ input 
+ {
+     border-bottom-left-radius: 0px !important;
+     border-bottom-right-radius: 0px !important;
+ }
+ #right {
+    border: 1px solid var(--light);
+ }
+
+ @media only screen and (min-width: 768px) {
+
+ .container {
+      width:95%;
+      margin: 0 auto;
+    }
+    .menu {
+        display: none;
+    }
+    #search_p {
+        width:180px !important;
+    }
+  }
+
+  @media only screen and (min-width: 968px) {
+
+    .container {
+         width:60%;
+         margin: 0 auto;
+       }
+       .menu {
+           display: block;
+       }
+       #search_p {
+        width:250px !important;
+    }
+     }
+
+  </style>
+
+  
+  
+</head>
+<body>
+  {% extends "main_header.html" %}
+  {% block content %}
+<br>
+  <p class="page-title">Chat</p>
+<br>
+
+ 
+    <div style="position: fixed;bottom:10px;left:10px;padding:10px 0;margin:10px auto;width:300px;height:auto;z-index:1000;">
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          
+          {% for message in messages %}
+          <div style="font-size:18px;background-color: #fff;color: black;padding: 15px 30px;margin:5px 0;box-shadow:1px 1px 3px grey,-1px -1px 3px grey;border-radius:30px;" id="div_{{loop.index}}"> 
+          <p style="float: right;"><i style="cursor:pointer" class="fas fa-times" onclick="document.getElementById('div_{{loop.index}}').style.display='none';"></i></p>
+          <p>{{ message }}</p>
+          </div>
+        
+          {% endfor %}
+      
+      
+      {% endif %}
+  
+      {% endwith %}
+    </div>
+        
+        
+    
+    <div class="main-container" style="width: 100%;">
+        <div class="wrapper">
+            <div class="container">
+                <div class="left">
+                    <div class="top">
+                        <input type="text" placeholder="Search" id="search_p"  style="all:unset;width:250px;background-color:#f3f3f3;padding:20px;"/> &nbsp;&nbsp;&nbsp;
+                        <div style="position: absolute;top:90px;width:300px;max-height:500px;background-color: white;z-index:100;box-shadow:1px 1px 3px -3px gray;display:none;" id="search_con">
+                            <div style="padding: 10px;">        
+                                    <div style="font-weight: bold;">Persons</div>
+                                    <br>
+                                    <hr>
+                                    <div id="person_search_results">
+                                           
+
+                                           
+                                                       
+                                     
+                                    </div>                             
+
+                            </div>
+
+                            <div style="padding: 10px;">        
+                                <div style="font-weight: bold;">Groups</div>
+                                <br>
+                                <hr>
+                                <div id="group_search_results">
+                                    <div class="person" data-chat="person" data-personname="Dev Patel" data-personabout="Association Member" data-usertype="ASSOCIATION MEMBER" data-userid="2" data-personimage="../../static/uploads/association_profile_images/profile_img_association_e745117a-d1be-11ea-aac2-80000bda9a1b_email_verify (2).png" onclick="openChat(this);" style="cursor: pointer;box-shadow:1px 1px 3px gray,-1px -1px 3px gray;border-radius:10px;padding:0;margin:5px 0;">
+                                        <table style="width: 100%;">
+                                            <tr>
+                                                <td style="border: none;">
+                                                    <img src="../../static/uploads/association_profile_images/profile_img_association_e745117a-d1be-11ea-aac2-80000bda9a1b_email_verify (2).png" style="width: 50px;height:50px;border-radius: 50%;">
+                                                </td>
+                                                <td style="text-align: left;border: none">
+                                                    <span class="name" style="color: black;font-weight:bold;">Dev Patel</span>
+                                                    <br>
+                                                    <span class="preview" style="font-size: 14px;">Association Member</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    
+                                    
+                                    </div>
+
+                                    <div class="person" data-chat="person" data-personname="Dev Patel" data-personabout="Association Member" data-usertype="ASSOCIATION MEMBER" data-userid="2" data-personimage="../../static/uploads/association_profile_images/profile_img_association_e745117a-d1be-11ea-aac2-80000bda9a1b_email_verify (2).png" onclick="openChat(this);" style="cursor: pointer;box-shadow:1px 1px 3px gray,-1px -1px 3px gray;border-radius:10px;padding:0;margin:5px 0;">
+                                        <table style="width: 100%;">
+                                            <tr>
+                                                <td style="border: none;">
+                                                    <img src="../../static/uploads/association_profile_images/profile_img_association_e745117a-d1be-11ea-aac2-80000bda9a1b_email_verify (2).png" style="width: 50px;height:50px;border-radius: 50%;">
+                                                </td>
+                                                <td style="text-align: left;border: none">
+                                                    <span class="name" style="color: black;font-weight:bold;">Dev Patel</span>
+                                                    <br>
+                                                    <span class="preview" style="font-size: 14px;">Association Member</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    
+                                    
+                                    </div>
+
+                                    <div class="person" data-chat="person" data-personname="Dev Patel" data-personabout="Association Member" data-usertype="ASSOCIATION MEMBER" data-userid="2" data-personimage="../../static/uploads/association_profile_images/profile_img_association_e745117a-d1be-11ea-aac2-80000bda9a1b_email_verify (2).png" onclick="openChat(this);" style="cursor: pointer;box-shadow:1px 1px 3px gray,-1px -1px 3px gray;border-radius:10px;padding:0;margin:5px 0;">
+                                        <table style="width: 100%;">
+                                            <tr>
+                                                <td style="border: none;">
+                                                    <img src="../../static/uploads/association_profile_images/profile_img_association_e745117a-d1be-11ea-aac2-80000bda9a1b_email_verify (2).png" style="width: 50px;height:50px;border-radius: 50%;">
+                                                </td>
+                                                <td style="text-align: left;border: none">
+                                                    <span class="name" style="color: black;font-weight:bold;">Dev Patel</span>
+                                                    <br>
+                                                    <span class="preview" style="font-size: 14px;">Association Member</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    
+                                    
+                                    </div>
+                            </div> 
+
+                        </div>
+                                    
+                        </div>
+                        <i class="fas fa-plus" style="padding: 10px;font-size: 20px;background-color: #3f51b5;color:white;border-radius: 50%;cursor: pointer;" onclick="document.getElementById('create-g-container').style.display = 'block';document.getElementById('chat-custom-header').style.display = 'none';document.getElementsByClassName('write')[0].style.display = 'none';document.getElementById('custom-chat-c').style.display = 'none';document.getElementById('right-placeholder').style.display = 'none';"></i>
+                    </div>
+                    <div>
+                        <table style="width:100%;">
+                            <tr>
+                                <td style="width:50%;text-align: center;border-right:1px solid;border-left:1px solid;border-top:none;border-bottom:none;border-left:none;cursor:pointer;" class="active_tab_chat" id="p_c_c" onclick="openTab(1);">People</td>
+                                <td style="width:50%;text-align: center;border:none;cursor:pointer;" onclick="openTab(2);" class="temp-class" id="g_c_c">Groups</td>
+                            </tr>
+                        </table>
+                    </div>
+                  
+                    <div id="person-chat-container" style="display: none;">
+                            <ul class="people">
+                        
+                            
+                    
+                            </ul>
+                    </div>
+
+                    <div id="group-chat-container" style="display: none;">
+                        <ul class="people">
+                    
+                        
+                
+                        </ul>
+                    </div>
+
+                    
+                </div>
+                <div class="right" id="right">
+                    <div id="right-placeholder" style="position: absolute;top:50%;left:50%;transform: translate(-50%,-50%);">
+                    <center><h1>Select Peroson/Group To Start Chat.</h1></center>
+                    </div>
+                    <div id="create-g-container" style="display: none;">
+                        <h1>Create New Group</h1>
+                        <form style="margin:0 auto;justify-content: center;" method="POST" enctype="multipart/form-data">
+                            <table style="width: 100%;margin:0 auto;">
+                                <tr>
+                                    <td style="width:70%;margin: 0;padding:0;background-color: white;border: none !important;">
+                                     
+                                        <div class="floating-input" style="width: 100%;">
+                                            <input required id='group_title' name="group_name" style="width: 100% !important;border-radius: 0;" type="text" class="form-1-field"  required/>
+                                            <label>Group Name</label>
+                                          </div>
+
+                                          <div class="floating-input" style="width: 100%;">
+                                            <textarea name="group_description" placeholder="Write Something Here..." rows="8"  style="padding:10px;outline:none;resize: none;font-family: 'GoogleSans-Regular';width:100%;"></textarea>
+                                          </div>
+                                         
+                                    </td>
+                                    <td style="width:30%;margin: 0;padding:0;background-color: white;border: none !important;">
+                                        <div>
+                                            <center><img src="https://via.placeholder.com/512X512" width="200px" height="200px" style="padding:10px;justify-content:center;" class="group-upload-img"></center>
+                                            <input type="file" name="group-upload-file" id="event-file" style="display: none;" onchange="previewFile();">
+                                            <br>
+                                            <center><button class="button ripple" type="button" onclick="document.getElementById('event-file').click();">CHANGE</button></center>
+                                            <br>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <tr style="text-align: left;">
+                                        <td style="border: none;text-align: left;background-color: white !important;" colspan="2">
+                                                <label style="color: gray;font-size: 14px;font-weight: bold;">Add People</label>
+                                                <select name="add_to_people" id="add_to_people" style="padding-bottom: 0;">
+                                                            {% for i in to_profile_details %}
+                                                                    <option value="{{i[0]}},{{i[5]}}">{{i[1]}} {{i[2]}} ({{i[5]}})</option>
+                                                            {% endfor %}
+                                                </select>
+                                        </td>
+                                    </tr>
+                                </tr>
+
+                            </table>
+
+                            <input type="hidden" name="mode" value="3">
+                
+                              <div style="text-align: center;">                   
+                                <button class="button ripple" type="submit">SUBMIT</button>
+                              </div>
+                            <br>
+                            
+                        </form>
+                    </div>
+                    <div class="top" id="chat-custom-header" >
+                        <table>
+                            <tr>
+                                <td style="border: none;">
+                                    <img id="chat-person-image" src="../../static/assets/news-img-1.jpg" style="width: 50px;height:50px;border-radius: 50%;" alt="" srcset="">
+                                </td>
+                                <td style="border: none;text-align: left;">
+                                    <span class="name" style="color: black;font-weight: 600;padding-bottom: 5px;" id="chat-person-name">Dog Woofson</span>
+                                    <br>
+                                    <span style="color: grey;" id="chat-person-about">Association Member</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                
+                    <div id="custom-chat-c" style="position: relative;
+                    overflow: hidden;
+                    padding: 0 35px 10px;
+                    height: 75%;
+                    justify-content: flex-end;
+                    margin-top: 5px;
+                    overflow: auto;">
+                
+                        
+            
+                    
+                    
+                        
+
+                    </div>
+                
+                    <div class="chat" id="chat_personx" data-chat="personx">
+                        
+                    
+
+                        <div style="float: left;">
+                            <table>
+                                <tr>
+                                    <td style="border: none;text-align: right;margin: 0;padding: 0;">
+                                        <div class="bubble you" style="margin-bottom: 10px !important;">
+                                            I'm in California dreaming x
+                                        </div>
+                                    </td>
+                                    <td style="border: none;margin: 0;padding: 0;">
+                                        <div style="font-size: 12px;color: gray;position: relative;line-height: 50px;">12/12/2022 @05:30:35 A.M.</div>
+
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                        
+                        <div style="float: right;">
+                            <table>
+                                <tr>
+                                    <td style="border: none;text-align: right;margin: 0;padding: 0;">
+                                        <div style="font-size: 12px;color: gray;position: relative;line-height: 50px;right:10px;">12/12/2022 @05:30:35 A.M.</div>
+
+                                    </td>
+                                    <td style="border: none;margin: 0;padding: 0;">
+                                        <div class="bubble me" style="margin-bottom: 10px !important;">
+                                            ... about who we used to be. x
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+
+                        <div style="float: left;">
+                            <table>
+                                <tr>
+                                    <td style="border: none;text-align: right;margin: 0;padding: 0;">
+                                        <div class="bubble you" style="margin-bottom: 10px !important;">
+                                            I'm in California dreaming x
+                                        </div>
+                                    </td>
+                                    <td style="border: none;margin: 0;padding: 0;">
+                                        <div style="font-size: 12px;color: gray;position: relative;line-height: 50px;">12/12/2022 @05:30:35 A.M.</div>
+
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                        
+                        <div style="float: right;">
+                            <table>
+                                <tr>
+                                    <td style="border: none;text-align: right;margin: 0;padding: 0;">
+                                        <div style="font-size: 12px;color: gray;position: relative;line-height: 50px;right:10px;">12/12/2022 @05:30:35 A.M.</div>
+
+                                    </td>
+                                    <td style="border: none;margin: 0;padding: 0;">
+                                        <div class="bubble me" style="margin-bottom: 10px !important;">
+                                            ... about who we used to be. x
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                        <div style="float: left;">
+                            <table>
+                                <tr>
+                                    <td style="border: none;text-align: right;margin: 0;padding: 0;">
+                                        <div class="bubble you" style="margin-bottom: 10px !important;">
+                                            I'm in California dreaming x
+                                        </div>
+                                    </td>
+                                    <td style="border: none;margin: 0;padding: 0;">
+                                        <div style="font-size: 12px;color: gray;position: relative;line-height: 50px;">12/12/2022 @05:30:35 A.M.</div>
+
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                        
+                        <div style="float: right;">
+                            <table>
+                                <tr>
+                                    <td style="border: none;text-align: right;margin: 0;padding: 0;">
+                                        <div style="font-size: 12px;color: gray;position: relative;line-height: 50px;right:10px;">12/12/2022 @05:30:35 A.M.</div>
+
+                                    </td>
+                                    <td style="border: none;margin: 0;padding: 0;">
+                                        <div class="bubble me" style="margin-bottom: 10px !important;">
+                                            ... about who we used to be. x
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+
+                        <div style="float: left;">
+                            <table>
+                                <tr>
+                                    <td style="border: none;text-align: right;margin: 0;padding: 0;">
+                                        <div class="bubble you" style="margin-bottom: 10px !important;">
+                                            I'm in California dreaming x
+                                        </div>
+                                    </td>
+                                    <td style="border: none;margin: 0;padding: 0;">
+                                        <div style="font-size: 12px;color: gray;position: relative;line-height: 50px;">12/12/2022 @05:30:35 A.M.</div>
+
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                        
+                        <div style="float: right;">
+                            <table>
+                                <tr>
+                                    <td style="border: none;text-align: right;margin: 0;padding: 0;">
+                                        <div style="font-size: 12px;color: gray;position: relative;line-height: 50px;right:10px;">12/12/2022 @05:30:35 A.M.</div>
+
+                                    </td>
+                                    <td style="border: none;margin: 0;padding: 0;">
+                                        <div class="bubble me" style="margin-bottom: 10px !important;">
+                                            ... about who we used to be. x
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                        <div style="float: left;">
+                            
+                                        <div class="bubble you" style="margin-bottom: 10px !important;">
+                                                    left
+                                        </div>
+                            
+                                        <div style="font-size: 12px;color: gray;position: relative;line-height: 50px;">12/12/2022 @05:30:35 A.M.</div>
+
+                                    
+
+                        </div>
+                        
+                        <div style="float: right;">
+                            <table>
+                                <tr>
+                                    <td style="border: none;text-align: right;margin: 0;padding: 0;">
+                                        <div style="font-size: 12px;color: gray;position: relative;line-height: 50px;right:10px;">12/12/2022 @05:30:35 A.M.</div>
+
+                                    </td>
+                                    <td style="border: none;margin: 0;padding: 0;">
+                                        <div class="bubble me" style="margin-bottom: 10px !important;">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta culpa perspiciatis minus libero modi consequatur quidem cumque fugit sapiente rem. Laudantium dignissimos, nulla explicabo cum voluptas laborum qui esse quam.
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    
+                    </div>
+                
+                    <div class="write">
+                        <input type="text" id="chat-s-message" class="chat-s-message" placeholder="Enter Message..." />
+                    
+                        <a href="javascript:;" class="write-link send"></a>
+                    </div>
+            </div>
+               
+                     
+                   
+ 
+            </div>
+        </div>
+    </div>
+
+   
+  <input type="hidden" id="left_content_value" value='{{left_user_content}}'>
+  <input type="hidden" id="left_group_content_value" value='{{left_group_user_content}}'>
+
+<input type="hidden" name="profile_id_value" id="profile_id_value" value="{{session['association_login_id']}}">
+
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnLxRX_-6gZtde1HNsXQwn2Wr2_hIXBnM&libraries=places&callback=initMap" async defer></script> -->
+    <script src="{{url_for('static',filename='js/jquery-3.4.1.min.js') }}"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+
+    <script src="{{url_for('static',filename='js/sweetalert2.all.min.js')}}"></script>
+
+    <!-- <script src="../static/js/jquery.min.js"></script> -->
+    <!-- <script src="../static/js/font-awesome.js"></script> -->
+
+  <script>
+
+    $('.write').hide();
+    $('#custom-chat-c').hide();
+    $('#chat-custom-header').hide();
+
+    var listObj0 = new ej.dropdowns.MultiSelect({
+        // set placeholder to MultiSelect input element
+        placeholder: "Search People To Add..."});
+    listObj0.appendTo('#add_to_people');
+
+    function previewFile() {
+        var preview = document.querySelector('.group-upload-img');
+        var file    = document.querySelector('input[type=file]').files[0];
+        var reader  = new FileReader();
+      
+        reader.onloadend = function () {
+          preview.src = reader.result;
+        }
+      
+        if (file) {
+          reader.readAsDataURL(file);
+        } else {
+          preview.src = "https://via.placeholder.com/512X512";
+        }
+      }
+
+  
+    function searchQ(v)
+    {
+        var search_t = v.value;
+        $.ajax({
+            url:'',
+            method: "POST",
+            dataType: "TEXT",
+            data: {
+                mode : 0,
+                search: search_t,
+        },
+        success: function(response)
+        {
+            var obj = JSON.parse(response);
+                        
+                if(obj.res == 1)
+                {
+                
+                        document.getElementById('person_search_results').innerHTML = obj.person_search;
+                 
+                    
+                }
+                else {
+                  Swal.fire({
+                    icon: 'error',
+                    title: obj.msg,
+                  });
+                }
+            }
+        });
+    
+    
+    }
+
+    var to_id;
+    var membership_type;
+    var chat;
+    var to_person_name;
+    var to_person_about;
+    var to_image;
+    var si;
+    var si2;
+
+    var newRoom;
+    var room;
+
+    var group_id;
+    var group_name;
+    var group_description;
+    var group_image;
+    var total_g_members;
+    var profile_id = document.getElementById('profile_id_value').value;
+    alertify.set('notifier','position', 'bottom-left');
+
+    $('#create-g-container').hide();
+
+    function openTab(x)
+    {
+        for (var i = 1; i < 99999; i++)
+            window.clearInterval(i);
+            
+        if(x == 1)
+        {
+            document.getElementById('p_c_c').style.backgroundColor = "#0088ff";
+            document.getElementById('p_c_c').style.color = "white";
+            document.getElementById('person-chat-container').style.display = "block";
+            document.getElementById('group-chat-container').style.display = "none";
+            document.getElementById('g_c_c').style.backgroundColor = "white";
+            document.getElementById('g_c_c').style.color = "black";
+            clearInterval(si);
+            clearInterval(si2);
+        }
+        else 
+        {
+            document.getElementById('p_c_c').style.backgroundColor = "white";
+            document.getElementById('p_c_c').style.color = "black";
+            document.getElementById('person-chat-container').style.display = "none";
+            document.getElementById('group-chat-container').style.display = "block";
+            document.getElementById('g_c_c').style.backgroundColor = "#0088ff";
+            document.getElementById('g_c_c').style.color = "white";
+            clearInterval(si);
+            clearInterval(si2);
+        }
+        
+    }
+    
+    openTab(1);
+
+//    $('#chat-custom-header').hide();
+ //  $('.write').hide();
+   document.getElementsByClassName('people')[0].innerHTML = document.getElementById('left_content_value').value;
+   if(document.getElementById('left_content_value').value == "" || document.getElementById('left_content_value').value.length == 0)
+   {
+    document.getElementsByClassName('people')[0].innerHTML = "<br><br><br><center><h3>No Person In Your Network.</h3></center>"
+   }
+
+   document.getElementsByClassName('people')[1].innerHTML = document.getElementById('left_group_content_value').value;
+   if(document.getElementById('left_group_content_value').value == "" || document.getElementById('left_group_content_value').value.length == 0)
+   {
+    document.getElementsByClassName('people')[1].innerHTML = "<br><br><br><center><h3>No Groups Found.</h3></center>"
+   }
+
+
+   //<li class="person" data-chat="group'''+str(i+1)+'''" data-groupname="'''+str(res2[0][3])+'''" data-groupdescription="'''+str(res2[0][4])+'''" data-groupid="'''+str(group_id)+'''" data-groupimage="../../'''+str(p_i)+'''" onclick="openGroupChat(this);" style="padding-bottom:30px !important;padding-top:20px !important;">
+
+function openChat(x){
+    $('#right-placeholder').hide();
+    $('.write').show();
+    $('#custom-chat-c').show();
+    $('#chat-custom-header').show();
+    clearInterval(si2);
+    $('#create-g-container').hide();
+    document.getElementById('chat-custom-header').style.display = 'block';
+    document.getElementsByClassName('write')[0].style.display = 'block';
+    document.getElementById('custom-chat-c').style.display = 'block';
+   
+    to_id = $(x).attr('data-userid');
+    membership_type = $(x).attr('data-usertype');
+    chat = $(x).attr('data-chat');
+    to_person_name = $(x).attr('data-personname');
+    to_person_about = $(x).attr('data-personabout');
+    to_image = $(x).attr('data-personimage');
+    console.log(to_id);
+ //   <li class="person" data-chat="person1" data-personname='Thomas Bangalter' data-personabout='Association Member' data-usertype="ASSOCIATION MEMBER" data-userid="1" data-personimage="https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/thomas.jpg" onclick="openChat(this);">
+ //   alert(user_id);
+    document.getElementById('chat-person-image').src = to_image;
+    document.getElementById('chat-person-name').innerHTML = to_person_name;
+    document.getElementById('chat-person-about').innerHTML = to_person_about;
+    var to_active = "chat_"+chat;
+    $('.chat').hide();
+    $('#chat-custom-header').show();
+    $('.write').show();
+
+    clearInterval(si2);
+
+    $.ajax({
+        url:'',
+        method: "POST",
+        dataType: "TEXT",
+        data: {
+            mode : 2,
+            to_id: to_id,
+            membership_type : membership_type,
+        },
+        success: function(response)
+        {
+            var obj = JSON.parse(response);
+                    
+            if(obj.res == 1)
+            {
+                if(obj.content.length == 0)
+                {
+                    document.getElementById('custom-chat-c').innerHTML = "<center><h3><br><br><br>No Chat Found.</h3></center>";
+                    clearInterval(si);
+                }
+                else {
+                    document.getElementById('custom-chat-c').innerHTML = obj.content;
+                    clearInterval(si2);
+                    si = setInterval(updateChat,1000);
+                }
+                $("#custom-chat-c").scrollTop($("#custom-chat-c")[0].scrollHeight);
+            }
+            else {
+              Swal.fire({
+                icon: 'error',
+                title: obj.msg,
+              });
+            }
+        }
+    });
+
+
+    
+
+    
+
+
+}
+
+
+
+function openGroupChat(x){
+    $('#right-placeholder').hide();
+    $('.write').show();
+    $('#custom-chat-c').show();
+    $('#chat-custom-header').show();
+    $('#create-g-container').hide();
+    document.getElementById('chat-custom-header').style.display = 'block';
+    document.getElementsByClassName('write')[0].style.display = 'block';
+    document.getElementById('custom-chat-c').style.display = 'block';
+    clearInterval(si);
+    group_id = $(x).attr('data-groupid');
+    group_name = $(x).attr('data-groupname');
+    group_description = $(x).attr('data-groupdescription');
+    group_image = $(x).attr('data-groupimage');
+    chat = $(x).attr('data-chat');
+    total_g_members =  $(x).attr('data-totalgmembers');
+    
+    //   <li class="person" data-chat="person1" data-personname='Thomas Bangalter' data-personabout='Association Member' data-usertype="ASSOCIATION MEMBER" data-userid="1" data-personimage="https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/thomas.jpg" onclick="openChat(this);">
+ //   alert(user_id);
+    document.getElementById('chat-person-image').src = group_image;
+    document.getElementById('chat-person-name').innerHTML = group_name;
+    document.getElementById('chat-person-about').innerHTML = total_g_members + " "+ "Members";
+    $('.chat').hide();
+    $('#chat-custom-header').show();
+    $('.write').show();
+   
+    var c_u = "NO";
+
+    $.ajax({
+        url:'',
+        method: "POST",
+        dataType: "TEXT",
+        data: {
+            mode : 5,
+            group_id: group_id,
+            group_name: group_name,
+            profile_id:profile_id,
+            membership_type : "ASSOCIATION MEMBER",
+            c_u:c_u
+        },
+        success: function(response)
+        {
+            var obj = JSON.parse(response);
+                    
+            if(obj.res == 1)
+            {
+                if(obj.content.length == 0)
+                {
+                    document.getElementById('custom-chat-c').innerHTML = "<center><h3><br><br><br>No Chat Found.</h3></center>";
+                    clearInterval(si2);
+                }
+                else {
+                    document.getElementById('custom-chat-c').innerHTML = obj.content;
+                    clearInterval(si);
+                    si2 = setInterval(updateGroupChat,1000);
+                }
+                $("#custom-chat-c").scrollTop($("#custom-chat-c")[0].scrollHeight);
+            }
+            else {
+              Swal.fire({
+                icon: 'error',
+                title: obj.msg,
+              });
+            }
+        }
+    });
+
+
+   
+    
+
+    
+
+
+}
+
+
+
+function updateChat()
+{
+    $.ajax({
+        url:'',
+        method: "POST",
+        dataType: "TEXT",
+        data: {
+            mode : 2,
+            to_id: to_id,
+            membership_type : membership_type,
+        },
+        success: function(response)
+        {
+            var obj = JSON.parse(response);
+                    
+            if(obj.res == 1)
+            {
+                
+                document.getElementById('custom-chat-c').innerHTML = obj.content;
+                if(obj.isUpdate == 1)
+                {
+                    alertify.notify(obj.msg_to ,'custom', 2, function(){console.log('dismissed');});
+                                    $("#custom-chat-c").scrollTop($("#custom-chat-c")[0].scrollHeight);
+
+                }
+            }
+            else {
+              Swal.fire({
+                icon: 'error',
+                title: obj.msg,
+              });
+            }
+        }
+    });
+
+}
+
+
+function updateGroupChat()
+{
+    var m_t = "ASSOCIATION MEMBER";
+    var c_u = "YES";
+    $.ajax({
+        url:'',
+        method: "POST",
+        dataType: "TEXT",
+        data: {
+            mode : 5,
+            group_id:group_id,
+            group_name:group_name,
+            profile_id:profile_id,
+            membership_type: m_t,
+            c_u: c_u
+        },
+        success: function(response)
+        {
+            var obj = JSON.parse(response);
+                    
+            if(obj.res == 1)
+            {
+                
+                document.getElementById('custom-chat-c').innerHTML = obj.content;
+                if(obj.isUpdate == 1)
+                {   
+                    console.log(obj.s_id);
+                    console.log("My Profile Id : "+profile_id);
+                    
+                    if(obj.s_id == profile_id)
+                    {
+                        
+                            alertify.notify(obj.msg_to ,'custom', 2, function(){console.log('dismissed');});
+                            $("#custom-chat-c").scrollTop($("#custom-chat-c")[0].scrollHeight);
+
+                    }
+                    
+                   
+                }
+            }
+            else {
+              Swal.fire({
+                icon: 'error',
+                title: obj.msg,
+              });
+            }
+        }
+    });
+
+}
+
+
+$('#chat-s-message').keypress(function(event){
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13'){
+        var message = $('#chat-s-message').val().trim();
+        if(chat == "person")
+        {   
+            clearInterval(si);
+            console.log(to_id);
+            $.ajax({
+                url:'',
+                method: "POST",
+                dataType: "TEXT",
+                data: {
+                    mode : 1,
+                    to_id: to_id,
+                    membership_type : membership_type,
+                    message : message
+                },
+                success: function(response)
+                {
+                    var obj = JSON.parse(response);
+                            
+                    if(obj.res == 1)
+                    {
+                        document.getElementById('chat-s-message').value = "";
+                        document.getElementById('custom-chat-c').innerHTML = obj.content;
+                        $("#custom-chat-c").scrollTop($("#custom-chat-c")[0].scrollHeight);
+                        si = setInterval(updateChat,1000);
+                    }
+                    else {
+                      Swal.fire({
+                        icon: 'error',
+                        title: obj.msg,
+                      });
+                    }
+                }
+            });
+        }
+        
+        if(chat == "group")
+        {   
+            clearInterval(si2);
+            //console.log(to_id);
+            var membership_t = "ASSOCIATION MEMBER";
+            $.ajax({
+                url:'',
+                method: "POST",
+                dataType: "TEXT",
+                data: {
+                    mode : 4,
+                    group_id: group_id,
+                    group_name:group_name,
+                    membership_type :membership_t,
+                    message : message,
+                    profile_id: profile_id
+                },
+                success: function(response)
+                {
+                    var obj = JSON.parse(response);
+                            
+                    if(obj.res == 1)
+                    {
+                        document.getElementById('chat-s-message').value = "";
+                        document.getElementById('custom-chat-c').innerHTML = obj.content;
+                        $("#custom-chat-c").scrollTop($("#custom-chat-c")[0].scrollHeight);
+                        si2 = setInterval(updateGroupChat,1000);
+                    }
+                    else {
+                      Swal.fire({
+                        icon: 'error',
+                        title: obj.msg,
+                      });
+                    }
+                }
+            });
+        }
+        
+        
+    }
+});
+
+  
+
+ 
+
+  
+  
+  </script>
+
+  {% endblock %}
+</body>
+</html>

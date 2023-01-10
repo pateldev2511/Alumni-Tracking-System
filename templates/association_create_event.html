@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/final_aag_logo.png') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/alumni_signup.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/main_header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.css') }}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/sweetalert2.min.css')}}">
+  <script src="{{url_for('static',filename='js/platform.js')}}" async defer></script>
+  <meta name="google-signin-client_id" content="375235053283-1hlbi0eqkv7qdrph33qcd0kdna0j4beg.apps.googleusercontent.com">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/association_create_event.css')}}">
+  
+  <!-- <script src="{{url_for('static',filename='js/ckeditor/ckeditor.js')}}"></script> -->
+  <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+
+  <link rel="stylesheet" href="../static/css/simplepicker.css">
+  <script src="https://kit.fontawesome.com/a25e25945a.js" crossorigin="anonymous"></script>
+  
+  <title>Create Event | Association</title>
+ 
+
+  <script type="text/javascript">
+    var onloadCallback = function() {
+      widgetId1 = grecaptcha.render('html_element', {
+        'sitekey' : '6Le8MMsUAAAAABojhfaZf_CODZM13YJPo8oPzEUP'
+      });
+    };
+  </script>
+  <style>
+    #html_element {
+      margin-top: 0px;
+    }
+    .custom-file-upload {
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer; 
+    }
+  </style>
+</head>
+<body>
+  {% extends "main_header.html" %}
+  {% block content %}
+  <!-- <div>{{colleges}}</div> -->
+  <div id="loader_container">
+    <div id="loader">
+    <img src="{{url_for('static',filename='assets/loading.gif')}}">
+    </div>
+  </div>
+
+  <div style="position: fixed;bottom:10px;left:10px;padding:10px 0;margin:10px auto;width:300px;height:auto;z-index:1000;">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        
+        {% for message in messages %}
+        <div style="font-size:18px;background-color: #fff;color: black;padding: 15px 30px;margin:5px 0;box-shadow:1px 1px 3px grey,-1px -1px 3px grey;border-radius:30px;" id="div_{{loop.index}}"> 
+        <p style="float: right;"><i style="cursor:pointer" class="fas fa-times" onclick="document.getElementById('div_{{loop.index}}').style.display='none';"></i></p>
+        <p>{{ message }}</p>
+        </div>
+      
+        {% endfor %}
+    
+    
+    {% endif %}
+
+    {% endwith %}
+  </div>
+
+
+  <div class="event-container">
+    <div style="position: fixed;bottom:10px;left:10px;padding:10px 0;margin:10px auto;width:300px;height:200px;z-index:1000;">
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          
+          {% for message in messages %}
+          <div style="font-size:18px;background-color: #fff;color: black;padding: 5px 10px;margin:5px 0;box-shadow:1px 1px 3px grey,-1px -1px 3px grey;" id="div_{{loop.index}}"> 
+          <p style="float: right;"><i style="cursor:pointer" class="fas fa-times" onclick="document.getElementById('div_{{loop.index}}').style.display='none';"></i></p>
+          <p>{{ message }}</p>
+          </div>
+        
+          {% endfor %}
+      
+      
+      {% endif %}
+  
+      {% endwith %}
+    </div>
+   
+      <form method="POST" enctype="multipart/form-data">
+        <h1 style="text-align: center;">Create New Event</h1>
+        
+        <div class="main-form-container">
+            <div class="event-part-1">
+                <div class="event-poster-container">
+                <img src="https://via.placeholder.com/1920X628" width="200px" height="200px" style="padding:10px;" class="event-img">
+                <input type="file" name="event-file" id="event-file" style="display: none;" onchange="previewFile();">
+                <center><button class="button ripple" type="button" onclick="document.getElementById('event-file').click();">CHANGE</button></center>
+            </div>
+            <div style="width:100%;float:left;margin:0;padding:0;width:800px;">
+                <div class="floating-input" style="margin:30px 0 0 30px;padding:0 20px;">
+                  <input required id='event-name' name='event-name' type="text" class="form-1-field" style="width: 850px !important;" value="{{session['c_event_name']}}"/>
+                  <label for="event-name">Event Name</label>
+                </div>
+                <br>
+                <div style="display: flex;">
+                    <!-- <div class="boxes" style="width: 500px;margin:0;margin:30px 0 0 30px;padding:20px;">
+                        <input type="checkbox" id="isTicketFree" name="isTicketFree">
+                        <label for="isTicketFree" style="padding-left: 35px;text-align: left;width:200px;">There is no fee for event ticket booking.</label>
+                      </div> -->
+
+                      <div style="width:100%;float:left;margin:0;padding:0;width:300px;">
+                        <div class="floating-input" style="margin:0px 0 0 35px;padding:20px;">
+                          <textarea required id='event-venue' name='event-venue' type="number" class="form-1-field" style="width: 250px !important;outline:none;resize:none;padding:5px;"  rows="5" cols="50" placeholder="Event Venue...">{{session['c_event_venue']}}</textarea>
+                        </div>
+                    </div>
+
+                    <div style="width:100%;float:left;margin:0;padding:0;width:300px;">
+                        <div class="floating-input" style="margin:30px 0 0 10px;padding:20px;">
+                          <input required id='tickets-available' name='tickets-available' type="number" class="form-1-field" style="width: 250px !important;" value="{{session['c_tickets-available']}}"/>
+                          <label for="tickets-available">No. Of Tickets Available</label>
+                        </div>
+                    </div>
+                    <div style="width:100%;float:left;margin:0 0 0 0px;padding:0;width:300px;">
+                        <div class="floating-input" style="margin:30px 0 0 10px;padding:20px;">
+                          <input required id='ticket-price' name='ticket-price' type="number" class="form-1-field" style="width: 250px !important;" value="{{session['c_ticket-price']}}"/>
+                          <label for="ticket-price">Ticket Price</label>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: flex;">
+                   
+                      <div class="floating-input" style="margin:30px 0 0 30px;padding:0 20px;">
+                      
+                        <input type="datetime-local" id="event-start-date-time" name="event-start-date-time" class="form-1-field" style="border: none;border-bottom: 1px solid #757575;outline:none;" value="{{session['c_event-start-date-time']}}">
+                        <div style="position: relative;">
+                        <label for="event-start-date-time" style="position: absolute;top:-10px;font-size: 12px;
+                        color: #555555;">Event Starts At</label>
+                      </div>
+                      </div>
+                      
+                      <div class="floating-input" style="margin:30px 0 0 30px;padding:0 20px;">
+                      
+                        <input type="datetime-local" id="event-end-date-time" name="event-end-date-time" class="form-1-field" style="border: none;border-bottom: 1px solid #757575;outline:none;" value="{{session['c_event-end-date-time']}}">
+                        <div style="position: relative;">
+                        <label for="event-end-date-time" style="position: absolute;top:-10px;font-size: 12px;
+                        color: #555555;">Event Ends At</label>
+                      </div>
+                      </div>
+
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="event-part-2" style="width: 100%;">
+            <textarea required id="eventdescription" name="eventdescription" class="form-1-field" style="width: 100%;"></textarea>
+
+            <div style="display: flex;">
+              {% if session['s_not_association'] == "YES" %}
+              <div class="boxes" style="margin:0;margin:30px 0 0 30px;padding:20px;">
+                <input type="checkbox" id="send_not_association" name="send_not_association" checked>
+                <label for="send_not_association" style="padding-left: 35px;text-align: left;">Send Event Notification To Other Association Members.</label>
+              </div>
+              {% else %}
+              <div class="boxes" style="margin:0;margin:30px 0 0 30px;padding:20px;">
+                <input type="checkbox" id="send_not_association" name="send_not_association">
+                <label for="send_not_association" style="padding-left: 35px;text-align: left;">Send Event Notification To Other Association Members.</label>
+              </div>
+              {% endif %}
+              {% if session['s_not_colleges'] == "YES" %}
+              <div class="boxes" style="margin:0;margin:30px 0 0 30px;padding:20px;">
+                <input type="checkbox" id="send_not_colleges" name="send_not_colleges" checked>
+                <label for="send_not_colleges" style="padding-left: 35px;text-align: left;">Send Event Notification To Colleges.</label>
+              </div>
+              {% else %}
+              <div class="boxes" style="margin:0;margin:30px 0 0 30px;padding:20px;">
+                <input type="checkbox" id="send_not_colleges" name="send_not_colleges">
+                <label for="send_not_colleges" style="padding-left: 35px;text-align: left;">Send Event Notification To Colleges.</label>
+              </div>
+              {% endif %}
+              
+              {% if session['s_not_alumni'] == "YES" %}
+              <div class="boxes" style="margin:0;margin:30px 0 0 30px;padding:20px;">
+                <input type="checkbox" id="send_not_alumni" name="send_not_alumni" checked>
+                <label for="send_not_alumni" style="padding-left: 35px;text-align: left;">Send Event Notification To Alumni.</label>
+              </div>
+              {% else %}
+              <div class="boxes" style="margin:0;margin:30px 0 0 30px;padding:20px;">
+                <input type="checkbox" id="send_not_alumni" name="send_not_alumni">
+                <label for="send_not_alumni" style="padding-left: 35px;text-align: left;">Send Event Notification To Alumni.</label>
+              </div>
+              {% endif %}
+              
+              <input type="hidden" id="ed" value="{{session['c_event_description']}}">
+            </div>
+<br>
+ <center><button class="button ripple" type="submit">CREATE AN EVENT</button></center>
+            
+
+        </div>
+                    
+
+        </div>
+        
+        <br/>
+      </form>
+      
+  </div>
+ 
+  <script src="../static/js/simplepicker.js"></script>
+  <!-- <script>
+    let simplepicker = new SimplePicker({
+      zIndex: 10
+    });
+
+    let simplepicker2 = new SimplePicker({
+        zIndex: 10
+      });
+
+    const $button = document.querySelector('.picker');
+    $button.addEventListener('click', (e) => {
+      simplepicker.open();
+    });
+
+    const $button2 = document.querySelector('.picker2');
+    $button2.addEventListener('click', (e) => {
+      simplepicker2.open();
+    });
+
+    const $buttonWithDate = document.querySelector('.pickerwithdate');
+    $buttonWithDate.addEventListener('click', (e) => {
+      var dte = new Date(2020, 1, 28, 10, 0, 0);
+      simplepicker.reset(dte);
+      simplepicker.open();
+    });
+
+    const $eventLog = document.querySelector('.event-log');
+    // $eventLog.innerHTML += '\n\n';
+    simplepicker.on('submit', (date, readableDate) => {
+      $eventLog.innerHTML += readableDate + '\n';
+      document.getElementById('event-start-date-time').value = readableDate;
+    });
+
+    simplepicker2.on('submit', (date, readableDate) => {
+        $eventLog.innerHTML += readableDate + '\n';
+        document.getElementById('event-end-date-time').value = readableDate;
+      });
+
+    simplepicker.on('close', (date) => {
+      $eventLog.innerHTML += 'Picker Closed'  + '\n';
+    });
+
+    simplepicker2.on('close', (date) => {
+        $eventLog.innerHTML += 'Picker Closed'  + '\n';
+      });
+  </script> -->
+
+<script src="../static/js/jquery-3.4.1.min.js"></script>
+<script src="{{url_for('static',filename='js/association_create_event.js')}}"></script>
+  <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+  async defer>
+</script>
+<script src="{{url_for('static',filename='js/sweetalert2.all.min.js')}}"></script>
+<script>
+    CKEDITOR.replace("eventdescription");
+    function previewFile() {
+      var preview = document.querySelector('.event-img');
+      var file    = document.querySelector('input[type=file]').files[0];
+      var reader  = new FileReader();
+    
+      reader.onloadend = function () {
+        preview.src = reader.result;
+      }
+    
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        preview.src = "https://via.placeholder.com/1920X628";
+      }
+    }
+    document.getElementById('eventdescription').innerHTML = document.getElementById('ed').value;
+</script>
+  {% endblock %}
+</body>
+</html>

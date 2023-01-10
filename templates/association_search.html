@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/final_aag_logo.png') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/alumni_signup.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/main_header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/about.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.css') }}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/sweetalert2.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/association_college_applications.css')}}">
+  <script src="https://kit.fontawesome.com/a25e25945a.js" crossorigin="anonymous"></script>
+  <title>Search | Alumni Association Of Goa </title>
+  <link href="//cdn.syncfusion.com/ej2/ej2-base/styles/material.css" rel="stylesheet">
+  <link href="//cdn.syncfusion.com/ej2/ej2-inputs/styles/material.css" rel="stylesheet">
+  <link href="//cdn.syncfusion.com/ej2/ej2-dropdowns/styles/material.css" rel="stylesheet">
+  <link href="//cdn.syncfusion.com/ej2/ej2-buttons/styles/material.css" rel="stylesheet">
+  
+  
+<script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js" type="text/javascript"></script>
+
+  <style>
+
+       .page-title {
+        text-align: center;
+        font-size: 50px;
+        margin-bottom: 10px;
+    }
+
+      /* Tabs */
+
+
+.tabs {
+	clear: both;
+	position: relative;   
+   /* max-width: 650px; */
+   height: 750px;
+   margin: 0 auto;
+   padding: 10px 0;
+   box-shadow: 1px 1px 3px grey,-1px -1px 3px grey;
+   border-radius: 10px;
+   /* you can either manually set a min-height here or do it via JS ---> */
+}
+
+.tab {
+	float: left;
+}
+
+.tab label {
+	margin-right: 20px;
+	position: relative;
+	top: 0;
+	cursor: pointer;
+    color: #333;
+    padding: 30px 20px 10px 20px !important;
+    margin : 30px 0px 20px 0 !important;
+   /* text-transform: uppercase; */
+}
+
+.tab [type=radio] {
+    display: none;   
+    
+}
+
+.tab__content {
+   position: relative;
+	top: 40px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+    transition: opacity .2s cubic-bezier(.42,0,.34,1.01);
+    padding: 30px;
+    opacity: 0;
+    height: auto;
+}
+
+[type=radio]:checked ~ label {
+    padding-bottom: 5px;
+	border-bottom: 2px solid #1d1d1d;
+	color: #1d1d1d;
+	z-index: 2;
+}
+
+[type=radio]:checked ~ label ~ .tab__content {
+	z-index: 1;
+	opacity: 1;
+}
+
+
+/*Checkboxes styles*/
+
+
+/* end only demo styles */
+
+.checkbox-custom, .radio-custom {
+  opacity: 0;
+  position: absolute;   
+}
+
+
+
+.checkbox-custom + .checkbox-custom-label:before, .radio-custom + .radio-custom-label:before {
+  content: '';
+  background: #fff;
+  border: 2px solid #ddd;
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.checkbox-custom:checked + .checkbox-custom-label:before {
+  content: "\f00c";
+  font-family: 'FontAwesome';
+  background: rebeccapurple;
+  color: #fff;
+}
+
+.radio-custom + .radio-custom-label:before {
+  border-radius: 50%;
+}
+
+.radio-custom:checked + .radio-custom-label:before {
+  content: "\f00c";
+  font-family: 'FontAwesome';
+  color: #bbb;
+}
+
+/*button */
+
+.button {
+  position: relative;
+  display: inline-block;
+  height: 36px;
+  padding: 0 16px;
+  background-color: #3f51b5;
+  color: #fff;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 36px;
+  vertical-align: middle;
+  overflow: hidden;
+  cursor: pointer;
+  outline: 0;
+  z-index: 1;
+  transition: all 0.15s ease-in;
+}
+.button:hover, .button:focus {
+  opacity: 0.9;
+}
+@keyframes ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.5;
+ }
+  100% {
+    width: 150px;
+    height: 150px;
+    opacity: 0;
+ }
+}
+.ripple:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: currentColor;
+  visibility: hidden;
+  z-index: 2;
+}
+.ripple:not(:active):before {
+  animation: ripple 0.4s cubic-bezier(0, 0, 0.2, 1);
+  transition: visibility 0.4s step-end;
+}
+.ripple:active:before {
+  visibility: visible;
+}
+
+/* Input Field */
+
+ 
+/* Floating Input */
+
+
+  .fa-plus,.fa-close {
+      cursor: pointer;
+  }
+
+  .main-container {
+    position: relative;
+    width: 98%;
+    margin: 20px auto;
+    display: flex;
+}
+.left-container {
+    width: 20%;
+    float: right;
+   
+}
+.right-container {
+    width: 80%;
+    float: left;
+}
+.active {
+    background-color: gray;
+}
+
+.class_li {
+    padding: 10px;
+    margin: 5px;
+}
+
+div.dataTables_wrapper {
+  width: 100%;
+  margin: 0 auto;
+  height: auto;
+}
+#example {
+  width:100%;
+}
+
+
+/* Other Datatable */
+.dataTables_length label select {
+  width:60px;
+}
+
+/* From profile For Right Side */
+.profile-1-container,.profile-2-container,.profile-3-container,.profile-4-container,.profile-5-container {
+    text-align: center;
+    background-color: #fff;
+    margin: 0 0 20px 0;
+    min-height: 200px;
+    box-sizing: border-box;
+    box-shadow: rgba(0,0,0,0.14) 0px 2px 2px 0px,rgba(0,0,0,0.2) 0px 3px 1px -2px,rgba(0,0,0,0.12) 0px 1px 5px 0px;
+    border-radius: 2px;
+    padding: 10px 10px 20px 10px;
+
+}
+.profile-img-container {
+    position: relative;
+    padding: 5px;
+    overflow: hidden !important;
+}
+.main-profile-img {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+.profile-name {
+    font-size: 40px;
+}
+.profile-2-container {
+    padding:0;
+}
+.profile-side-header {
+    font-size: 16px;
+    line-height: 18px;
+    text-decoration: none solid rgba(0,0,0,0.54);
+    word-spacing: 0;
+    min-height: 50px;
+    overflow: hidden;
+    text-align: left;
+    padding: 9px 0;
+    color: gray;
+
+   
+}
+.contact-info,.skill-info,.network-info,.personal-info {
+    margin: 20px;
+    padding: 10px;
+    text-align: left;
+}
+
+.search-result-container {
+    padding: 20px;
+}
+.s_r_c {
+    position: relative;
+    width: 100%;
+    margin: 0 auto 50px 20px;
+    display: grid;
+    grid-template-columns: auto auto auto; 
+}
+
+ /* Fund Raising Container */
+
+ .fund-raising-container {
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .fund-raising-slider {
+    /* position: relative; */
+    /* margin: 20px 0;
+    padding: 20px 0; */
+  }
+
+  .snip1268 {
+    font-family: 'Raleway', Arial, sans-serif;
+    position: relative;
+    overflow: hidden;
+    margin: 25px 10px;
+    min-width: 220px;
+    max-width: 350px;
+    width: 100%;
+    color: #333333;
+    text-align: center;
+    background-color: #ffffff;
+    line-height: 1.6em;
+    border-radius: 25px;
+    border: 1px solid black;
+    max-height: 500px;
+  }
+  .snip1268:hover {
+    box-shadow: 1px 1px 5px black;
+  }
+  .snip1268 * {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all 0.6s ease;
+    transition: all 0.6s ease;
+  }
+  .snip1268 .image {
+    position: relative;
+  }
+  .snip1268 img {
+    max-width: 100%;
+    vertical-align: top;
+    -webkit-transition: opacity 0.35s;
+    transition: opacity 0.35s;
+  }
+  .snip1268 .icons,
+  .snip1268 .add-to-cart {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    opacity: 0;
+  }
+  .snip1268 .icons {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+    top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .snip1268 h2 {
+    font-size: 20px;
+  }
+  .snip1268 .icons a {
+    width: 32.5%;
+    background: #ffffff;
+  }
+  .snip1268 .icons a:hover {
+    background: #000000;
+  }
+  .snip1268 .icons a:hover i {
+    color: #ffffff;
+    opacity: 1;
+  }
+  .snip1268 .icons i {
+    line-height: 46px;
+    font-size: 20px;
+    color: #000000;
+    text-align: center;
+    opacity: 0.7;
+    margin: 0;
+  }
+  .snip1268 .add-to-cart {
+    position: absolute;
+    bottom: 20px;
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+    font-size: 0.8em;
+    color: #000000;
+    line-height: 46px;
+    letter-spacing: 1.5px;
+    background-color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .snip1268 .add-to-cart:hover {
+    background: #000000;
+    color: #ffffff;
+  }
+  .snip1268 figcaption {
+    padding: 20px 20px 30px;
+  }
+  .snip1268 h2,
+  .snip1268 p {
+
+    margin: 0;
+    text-align: left;
+  }
+  .snip1268 h2 {
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 15px;
+    max-height: 41px;
+    overflow: hidden;
+  }
+  .snip1268 p {
+    margin-bottom: 15px;
+    font-size: 0.85em;
+    font-weight: 500;
+  }
+  .snip1268 .price {
+    font-size: 1.3em;
+    opacity: 0.5;
+    font-weight: 700;
+    text-align: right;
+  }
+  .snip1268:hover img,
+  .snip1268.hover img {
+    opacity: 0.8;
+  }
+  .snip1268:hover .icons,
+  .snip1268.hover .icons,
+  .snip1268:hover .add-to-cart,
+  .snip1268.hover .add-to-cart {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+
+  </style>
+
+  
+</head>
+<body>
+  {% extends "main_header.html" %}
+  {% block content %}
+<br>
+  <p class="page-title">Search</p>
+<br>
+
+ 
+    <div style="position: fixed;bottom:10px;left:10px;padding:10px 0;margin:10px auto;width:300px;height:auto;z-index:1000;">
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          
+          {% for message in messages %}
+          <div style="font-size:18px;background-color: #fff;color: black;padding: 15px 30px;margin:5px 0;box-shadow:1px 1px 3px grey,-1px -1px 3px grey;border-radius:30px;" id="div_{{loop.index}}"> 
+          <p style="float: right;"><i style="cursor:pointer" class="fas fa-times" onclick="document.getElementById('div_{{loop.index}}').style.display='none';"></i></p>
+          <p>{{ message }}</p>
+          </div>
+        
+          {% endfor %}
+      
+      
+      {% endif %}
+  
+      {% endwith %}
+    </div>
+        
+        
+    
+    <div class="main-container">
+    <form id="searchForm" action="" method="post">
+                <div style="position: relative;width:100%;margin:0 auto;display: flex;">
+                    <div style="width:30%;height:500px;" style="position: sticky !important;top:100px;">
+                        <div class="profile-2-container" style="position: sticky !important;top:50px;">
+                            <div class="profile-side-header">
+                                <table style="width: 100%;" border="0">
+                                    <tr>
+                                        <td style="border: none !important;width:80%;text-align: left;">
+                                            <i class="fas fa-filter"></i>&nbsp;&nbsp;&nbsp;Filter
+                                        </td>
+                                       
+                                    </tr>
+                                </table>
+                                
+                            </div>
+                            <div style="width:100%;height:1px;background-color: rgba(0,0,0,0.08);"></div>
+                            <div class="contact-info">
+                                <table style="width: 100%;" border="0" style="float: left;text-align: left !important;">
+                               
+
+                                    <tr style="text-align: left;">
+                                     
+                                        <td style="border: none;text-align: left;background-color: white !important;">
+                                                <label style="color: gray;font-size: 14px;font-weight: bold;">College</label>
+                                                <select name="college_value" id="college_value" style="padding-bottom: 0;">
+                                                    {% for i in college_list %}
+                                                        <option value="{{i[1]}}">{{i[1]}}</option>
+                                                    {% endfor %} 
+                                                </select>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr style="text-align: left;">
+                                     
+                                        <td style="border: none;text-align: left;background-color: white !important;">
+                                                <label style="color: gray;font-size: 14px;font-weight: bold;">Degree</label>
+                                                <select name="college_degree_value" id="college_degree_value" style="padding-bottom: 0;">
+                                                    {% for i in college_degree_list %}
+                                                        <option value="{{i}}">{{i}}</option>
+                                                    {% endfor %} 
+                                                </select>
+                                        </td>
+                                    </tr>
+
+                                    <tr style="text-align: left;">
+                                     
+                                        <td style="border: none;text-align: left;background-color: white !important;">
+                                                <label style="color: gray;font-size: 14px;font-weight: bold;">Start Year</label>
+                                                <select name="starting_year_value" id="starting_year_value" style="padding-bottom: 0;">
+                                                    {% for i in years_list %}
+                                                        <option value="{{i}}">{{i}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            
+                                        </td>
+                                    </tr>
+
+                                    <tr style="text-align: left;">
+                                     
+                                        <td style="border: none;text-align: left;background-color: white !important;">
+                                                <label style="color: gray;font-size: 14px;font-weight: bold;">Graduation Year</label>
+                                                <select name="graduation_year_value" id="graduation_year_value" style="padding-bottom: 0;">
+                                                    {% for i in years_list %}
+                                                        <option value="{{i}}">{{i}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            
+                                        </td>
+                                    </tr>
+
+                                    <tr style="text-align: left;">
+                                     
+                                        <td style="border: none;text-align: left;background-color: white !important;">
+                                                
+                                            
+                                            <div class="floating-input" style="width: 100%;margin:0;padding:0;" id="option_1_container">
+                                                <span style="color: gray;font-size: 14px;font-weight: bold;">Location</span>
+                                                <input placeholder="Enter Location" id='map-search' name="location" style="width: 100% !important;border-radius: 0;" type="text" class="form-field" />
+                                                
+
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                    
+                                </table>
+                                    
+                              
+                            </div>
+                        </div>
+                    </div>
+                        <div style="width:70%;">
+                                  
+                                <div style="display: flex;">
+                                <div class="floating-input" style="width: 90%;padding:0;margin:0 20px;">
+                                  
+                                  <input required id='search_query' name="search_query" style="width: 98% !important;border-radius: 0;" type="text" class="form-field" onkeyup="searchQuery(this);"/>
+                                  
+                                    <label>Search</label>
+                                </div>
+                                <button class="button ripple" type="submit" style="position: relative;float:left;top:-10px;"><i class="fas fa-search"></i></button>
+                                </div>
+                              
+                           
+                            <div class="search-result-container">
+                                <div id="s_r_c" style="min-height: 500px;">
+                                  <div class="right-profile-3-container">
+                                    <div class="right-profile-side-header">
+                                        <table style="width: 100%;" border="0">
+                                            <tr>
+                                                <td style="border: none !important;width:60%;text-align: left;">
+                                                  <i class="fas fa-users" style="color: #3f51b5;"></i>&nbsp;&nbsp;&nbsp;Alumni
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        
+                        
+                                    </div>
+                                    <div style="width:100%;height:1px;background-color: rgba(0,0,0,0.08);"></div>
+                        
+                                        <div style="text-align:left;margin:0 50px;padding: 30px 10px 10px 10px;" class="edu-block">
+                                                <div class="main-edu">
+                        
+                                                  <div  id="alumni_search_con">
+                                                
+                                                        <div id="alumni_s_c" class="s_r_c">
+                                                            <!-- <figure class="snip1268">
+                                                                <div class="image">
+                                                                  <img src="../../static/assets/slider_img1.jpg" alt="sq-sample4" style="height: 200px;"/>
+                                                                  <a href="/" class="add-to-cart">VIEW PROFILE</a>
+                                                                </div>
+                                                                <figcaption>
+                                                                   
+                                                                  <h2 style="max-height:50px;font-size: 25px;">Darsh Patel</h2>
+                                                                 
+                                                                  <table>
+                                                                    <tr>
+                                                                        <td style="border: none;background-color: white;">    
+                                                                            <i class="fas fa-university"></i>
+                                                                        </td>
+                                                                        <td style="border: none;background-color: white;text-align: left;">
+                                                                               Goa University
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: none;background-color: white;">
+                                                                            <i class="fas fa-user-graduate"></i>
+                                                                        </td>
+                                                                        <td style="border: none;background-color: white;text-align: left;">
+                                                                            Bachelor Of Engineering (B.E.)
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: none;background-color: white;">
+                                                                            <i class="fas fa-sign-in-alt"></i>
+                                                                            
+                                                                        </td>
+                                                                        <td style="border: none;background-color: white;text-align: left;">
+                                                                                2017 - 2021
+                                                                        </td>
+                                                                       
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: none;background-color: white;">
+                                                                            <i class="fas fa-map-marker-alt"></i>
+                                                                        </td>
+                                                                        <td style="border: none;background-color: white;text-align: left;">
+                                                                            Mehsana,Gujarat,India.
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                                </figcaption>
+                                                              </figure>
+                        
+                                                    -->
+                                                        </div>
+                                                </div>                           
+                                                </div>
+                                        </div>
+                                  </div>
+                              
+                                  <div class="right-profile-3-container">
+                                    <div class="right-profile-side-header">
+                                        <table style="width: 100%;" border="0">
+                                            <tr>
+                                                <td style="border: none !important;width:60%;text-align: left;">
+                                                  <i class="fas fa-university" style="color: #3f51b5;"></i>&nbsp;&nbsp;&nbsp;College SPOC
+                                                </td>
+                                            </tr>
+                                        </table>                          
+                                    </div>
+                                    <div style="width:100%;height:1px;background-color: rgba(0,0,0,0.08);"></div>
+                        
+                                        <div style="text-align:left;margin:0 50px;padding: 30px 10px 10px 10px;" class="edu-block">
+                                                <div class="main-edu">
+                        
+
+                                                    <div  id="alumni_search_con">
+                                                          <div id="college_s_c" class="s_r_c">
+                                                    
+                                                          </div>
+                                                    </div>
+
+                                                </div>
+                                        </div>
+                                  </div>
+                            
+                                  <div class="right-profile-3-container">
+                                    <div class="right-profile-side-header">
+                                        <table style="width: 100%;" border="0">
+                                            <tr>
+                                                <td style="border: none !important;width:60%;text-align: left;">
+                                                  <i class="fas fa-user-shield" style="color: #3f51b5;"></i>&nbsp;&nbsp;&nbsp;Association
+                                                </td>
+                                            </tr>
+                                        </table>                          
+                                    </div>
+                                    <div style="width:100%;height:1px;background-color: rgba(0,0,0,0.08);"></div>
+                        
+                                        <div style="text-align:left;margin:0 50px;padding: 30px 10px 10px 10px;" class="edu-block">
+                                                <div class="main-edu">
+                        
+
+                                                <div  id="alumni_search_con">
+                                                      <div id="association_s_c" class="s_r_c">
+                                                
+                                                      </div>
+                                                </div>
+
+                                                
+                                              </div>
+                                            </div>
+                                      </div>
+                                
+
+                                  
+                                </div>
+                                
+                            </div>
+
+
+                        </div>
+                        
+                        
+                      
+
+                </div>
+                <input type="hidden" name="mode" value="1">
+    
+            </form>
+               
+
+    </div>
+    
+    <label for=""><input type="text" class="latitude" style="display: none;"></label>
+    <label for=""><input type="text" class="longitude" style="display: none;"></label>
+    <label for=""><input type="text" class="reg-input-city" placeholder="City" style="display: none;"></label>
+    
+    <div id="map-canvas" style="display: none;"></div>
+   
+    
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnLxRX_-6gZtde1HNsXQwn2Wr2_hIXBnM&libraries=places&callback=initMap" async defer></script> -->
+    <script src="{{url_for('static',filename='js/jquery-3.4.1.min.js') }}"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnLxRX_-6gZtde1HNsXQwn2Wr2_hIXBnM&libraries=places&callback=initialize"></script>
+    <script src="{{url_for('static',filename='js/javascript-2.js') }}"></script>
+
+    <script src="{{url_for('static',filename='js/sweetalert2.all.min.js')}}"></script>
+
+    <!-- <script src="../static/js/jquery.min.js"></script> -->
+    <!-- <script src="../static/js/font-awesome.js"></script> -->
+
+  <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+  <script>
+
+    var frm = $('#searchForm');
+
+    function searchQuery(v)
+    {
+        frm.submit();
+    }
+
+ 
+
+  frm.submit(function (e) {
+
+      e.preventDefault();
+
+      $.ajax({
+          type: "POST",
+          url: '',
+          data: frm.serialize(),
+          success: function (data) {
+              console.log('Submission was successful.');
+              
+              if(data.res == 1 )
+              {
+                document.getElementById('alumni_s_c').innerHTML = data.alumni_results;
+                document.getElementById('college_s_c').innerHTML = data.college_results;
+                document.getElementById('association_s_c').innerHTML = data.association_results;
+ 
+              }
+              else {
+                document.getElementById('s_r_c').innerHTML = data.msg;
+              }
+          },
+          error: function (data) {
+              console.log('An error occurred.');
+              console.log(data);
+          },
+      });
+  });
+
+
+ 
+
+function AddToNetwork(element)
+{
+  var id = $(element).attr('data-id');
+  var type = $(element).attr('data-usertype');
+  $.ajax({
+    url:'',
+    method: "GET",
+    dataType: "TEXT",
+    data: {
+        mode: 1,
+        to_id : id,
+        type : type
+    },
+    success: function(response)
+    {
+        var obj = JSON.parse(response);
+                
+        if(obj.res == 1)
+        {
+          Swal.fire({
+            icon: 'success',
+            title: obj.msg,
+          });
+        }
+        else if(obj.res == 2)
+        {
+          Swal.fire({
+            icon: 'info',
+            title: obj.msg,
+          });
+        }
+        else {
+          Swal.fire({
+            icon: 'error',
+            title: obj.msg,
+          });
+        }
+    }
+});
+
+}
+
+    var listObj0 = new ej.dropdowns.MultiSelect({
+        // set placeholder to MultiSelect input element
+        placeholder: "Enter College Name..."});
+    listObj0.appendTo('#college_value');
+
+    var listObj1 = new ej.dropdowns.MultiSelect({
+        // set placeholder to MultiSelect input element
+        placeholder: "Enter College Degree..."});
+    listObj1.appendTo('#college_degree_value');
+
+
+    var listObj2 = new ej.dropdowns.MultiSelect({
+        // set placeholder to MultiSelect input element
+        placeholder: "Enter Start Year..."});
+    listObj2.appendTo('#starting_year_value');
+
+    var listObj3 = new ej.dropdowns.MultiSelect({
+        // set placeholder to MultiSelect input element
+        placeholder: "Enter Graduation Year..."});
+    listObj3.appendTo('#graduation_year_value');
+
+  $(document).ready(function()
+  {
+  $('.poll_filter_link').click(function(){
+  var name=$(this).attr("data-filter");
+  if(name == "all")
+  {
+      $(".filter").show("2000");
+  }
+  else {
+      $(".filter").not("."+name).hide("2000");
+  
+      $(".filter").filter("."+name).show("2000");
+  }
+  });
+  document.getElementsByClassName('poll_filter_link')[0].click();
+  
+  });
+
+  
+  </script>
+
+  {% endblock %}
+</body>
+</html>

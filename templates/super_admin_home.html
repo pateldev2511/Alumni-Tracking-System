@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/final_aag_logo.png') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/alumni_signup.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/main_header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/about.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.css') }}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/sweetalert2.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/association_college_applications.css')}}">
+  <title>Association Applications - Super Admin</title>
+  <style>
+     
+  </style>
+</head>
+<body>
+  {% extends "main_header.html" %}
+  {% block content %}
+  <div id="loader_container">
+    <div id="loader">
+    <img src="{{url_for('static',filename='assets/loading.gif')}}">
+    </div>
+  </div>
+
+  <div class="main-container">
+    
+
+    {% if l_association_applications == 0 %}
+      <h1 style="text-align: center;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);">No Application Found.</h1>
+    {% else %}
+    <h1 style="text-align: center;">Association Applications</h1>
+    <br>
+    <div id="users" style="width: 100%;">
+        <!-- <div style="display: flex;position: relative;width:100%;background-color: aqua;">
+            <div style="width:50%;">
+                <input class="search" placeholder="Search Here" />
+            </div>
+            <div style="float: right;width:50%;right: 0;">
+                <button class="sort" data-sort="name">
+                    Sort by Name
+                  </button>
+                  <button class="sort" data-sort="college">
+                    Sort by College
+                  </button>
+                
+            </div>
+        
+        </div> -->
+        <table style="position: relative;margin:0 auto;" border="0">
+            <tr>
+                <td style="border: none;">
+                    <br>
+                    <input class="search" style="width:500px;height:35px !important;margin:2px 0;" placeholder="Search Here" />  
+                </td>
+                <td style="border: none;">
+                    <br>
+                    <button class="sort" data-sort="name">
+                        Sort by Name
+                      </button>
+                      <button class="sort" data-sort="college">
+                        Sort by College
+                      </button>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <table id="c_a_t" style="position: relative;margin:0 auto;">
+          
+            <thead>
+                <tr>
+                    <th style="padding: 5px;">Sr. No.</th>
+                    <th style="padding: 5px;">Name</th>
+                    <th style="padding: 5px;">Email</th>
+                    <th style="padding: 5px;">Mobile No.</th>
+                    <th style="padding: 5px;">Applied On</th>
+                    <th style="padding: 5px;">Consent Letter</th>
+                    <th style="padding: 5px;" colspan="2">Action</th>
+                </tr>
+            </thead>
+            
+          <!-- IMPORTANT, class="list" have to be at tbody -->
+          <tbody class="list">
+              
+              {% for i in association_applications %}
+            <tr>
+              <td class="sr_no">{{ loop.index }}</td>
+              <td class="name">{{ i[1] | title}} {{ i[2] | title }}</td>
+              <td class="email">{{ i[3] }}</td>
+              <td class="mobile_no">+{{ i[4] }} {{i[5]}}</td>
+              <td class="date"> {{ i[14].strftime("%d/%m/%Y") }}</td>
+              <td class="consent_letter">
+                <input type="hidden" id="con_let_{{i[0]}}" value="{{i[7]}}">
+                <button class="button ripple" id={{i[0]}} type="button" onclick="view_application(this);">VIEW</button>
+              </td>
+              <td class="consent_letter">
+                <input type="hidden" id="app_id_{{i[0]}}" value="{{i[0]}}">
+                <button class="button ripple" type="button" style="background-color: green;" onclick="accept_application(document.getElementById('app_id_{{i[0]}}').value);">ACCEPT</button>
+                
+              </td>
+              <td class="consent_letter">
+                <button class="button ripple" type="button" style="background-color: #FF4949;" onclick="reject_application(document.getElementById('app_id_{{i[0]}}').value);">REJECT</button>
+              </td>
+            </tr>
+            {% endfor %}
+            
+          </tbody>
+        </table>
+      
+      </div>
+      {% endif %}
+  </div>
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+
+  <script src="{{url_for('static',filename='js/jquery-3.4.1.min.js') }}"></script>
+  <script src="{{url_for('static',filename='js/sweetalert2.all.min.js')}}"></script>
+  <script>
+    var options = {
+        valueNames: [ 'name','email','mobile_no' ]
+      };
+      
+      var userList = new List('users', options);
+
+function view_application(x)
+{
+
+    
+    var file_path = document.getElementById("con_let_"+x.id).value;
+
+    Swal.fire({
+        title: 'Consent Letter',
+        width: '800px',
+        html:
+          '<iframe src="../../'+file_path+'" style="width:750px;height:750px;" frameBorder="0"></iframe>',
+      });
+
+    
+}
+
+function accept_application(v)
+{
+    var association_id = v.toString();
+    document.getElementById('loader_container').style.display = "block";
+    if(document.getElementById('loader_container').style.display == "block")
+    {
+
+        var x = setInterval(function()
+        {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", "?mode=1&association_id=" +association_id, false);
+        
+            xmlhttp.send(null);
+            var res = xmlhttp.responseText;
+            var obj = JSON.parse(res);
+            
+            if(obj.res == 1)
+            {
+                document.getElementById('loader_container').style.display = "none";
+                Swal.fire({
+                    icon: 'success',
+                    title: obj.msg,
+                    });
+                window.location.href = "/super-admin/home/";
+            }
+            else {
+                document.getElementById('loader_container').style.display = "none";
+                Swal.fire({
+                    icon: 'error',
+                    title: obj.msg,
+                    });
+            }
+            clearInterval(x);
+        },1000);
+                        
+    }
+                    
+}
+
+
+function reject_application(v)
+{
+    var association_id = v.toString();
+    document.getElementById('loader_container').style.display = "block";
+    if(document.getElementById('loader_container').style.display == "block")
+    {
+
+        var x = setInterval(function()
+        {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", "?mode=2&association_id=" +association_id, false);
+        
+            xmlhttp.send(null);
+            var res = xmlhttp.responseText;
+            var obj = JSON.parse(res);
+            
+            if(obj.res == 1)
+            {
+                document.getElementById('loader_container').style.display = "none";
+                Swal.fire({
+                    icon: 'success',
+                    title: obj.msg,
+                    });
+                    window.location.href = "/super-admin/home/";
+                }
+            else {
+                document.getElementById('loader_container').style.display = "none";
+                Swal.fire({
+                    icon: 'error',
+                    title: obj.msg,
+                    });
+            }
+            clearInterval(x);
+        },1000);
+                        
+    }
+                    
+}
+
+  </script>
+  {% endblock %}
+</body>
+</html>

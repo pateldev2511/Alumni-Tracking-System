@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/final_aag_logo.png') }}" type="image/x-icon">
+  <script src="https://kit.fontawesome.com/a25e25945a.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/main_header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/about.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.css') }}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/sweetalert2.min.css')}}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Fund Raising Projects |  {{account_details[1] }} {{account_details[2] }}</title>
+  <style>
+      #loader_container {
+          display: none;
+      }
+    .snip1268 {
+        font-family: 'Raleway', Arial, sans-serif;
+        position: relative;
+        overflow: hidden;
+        margin: 25px 10px;
+        min-width: 220px;
+        max-width: 310px;
+        width: 100%;
+        color: #333333;
+        text-align: center;
+        background-color: #ffffff;
+        line-height: 1.6em;
+        border-radius: 25px;
+        border: 1px solid black;
+        max-height: 500px;
+      }
+      .snip1268:hover {
+        box-shadow: 1px 1px 5px black;
+      }
+      .snip1268 * {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition: all 0.6s ease;
+        transition: all 0.6s ease;
+      }
+      .snip1268 .image {
+        position: relative;
+      }
+      .snip1268 img {
+        max-width: 100%;
+        vertical-align: top;
+        -webkit-transition: opacity 0.35s;
+        transition: opacity 0.35s;
+      }
+      .snip1268 .icons,
+      .snip1268 .add-to-cart {
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        opacity: 0;
+      }
+      .snip1268 .icons {
+        -webkit-transform: translateY(-100%);
+        transform: translateY(-100%);
+        top: 20px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .snip1268 h2 {
+        font-size: 20px;
+      }
+      .snip1268 .icons a {
+        width: 32.5%;
+        background: #ffffff;
+      }
+      .snip1268 .icons a:hover {
+        background: #000000;
+      }
+      .snip1268 .icons a:hover i {
+        color: #ffffff;
+        opacity: 1;
+      }
+      .snip1268 .icons i {
+        line-height: 46px;
+        font-size: 20px;
+        color: #000000;
+        text-align: center;
+        opacity: 0.7;
+        margin: 0;
+      }
+      .snip1268 .add-to-cart {
+        position: absolute;
+        bottom: 20px;
+        -webkit-transform: translateY(100%);
+        transform: translateY(100%);
+        font-size: 0.8em;
+        color: #000000;
+        line-height: 46px;
+        letter-spacing: 1.5px;
+        background-color: #ffffff;
+        font-weight: 700;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+      .snip1268 .add-to-cart:hover {
+        background: #000000;
+        color: #ffffff;
+      }
+      .snip1268 figcaption {
+        padding: 20px 20px 30px;
+      }
+      .snip1268 h2,
+      .snip1268 p {
+    
+        margin: 0;
+        text-align: left;
+      }
+      .snip1268 h2 {
+        margin-bottom: 10px;
+        font-weight: 700;
+        font-size: 15px;
+        max-height: 41px;
+        overflow: hidden;
+      }
+      .snip1268 p {
+        margin-bottom: 15px;
+        font-size: 0.85em;
+        font-weight: 500;
+      }
+      .snip1268 .price {
+        font-size: 1.3em;
+        opacity: 0.5;
+        font-weight: 700;
+        text-align: right;
+      }
+      .snip1268:hover img,
+      .snip1268.hover img {
+        opacity: 0.8;
+      }
+      .snip1268:hover .icons,
+      .snip1268.hover .icons,
+      .snip1268:hover .add-to-cart,
+      .snip1268.hover .add-to-cart {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+      }
+      .fund-raising-slider {
+          position: relative;
+          width: 80%;
+          margin: 0 auto;
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+      }
+    
+  </style>
+  
+</head>
+<body>
+  {% extends "main_header.html" %}
+  {% block content %}
+  <div id="loader_container">
+    <div id="loader">
+    <img src="{{url_for('static',filename='assets/loading.gif')}}">
+    </div>
+  </div>
+  <div class="fund-raising-container">
+    <div class="block-title" style="text-align: center;font-size: 50px;margin-bottom: 10px;">
+      Fund Raising Projects
+    </div>
+    <div class="fund-raising-slider">
+      <div>
+        <figure class="snip1268">
+          <div class="image">
+            <img src="../static/assets/project_image.jpg" alt="sq-sample4"/>
+            <a href="#" class="add-to-cart">VIEW MORE</a>
+          </div>
+          <figcaption>
+            <h2>Face Detection System</h2>
+            <p>U. V. Patel College of Engineering</p>
+            <div class="price">₹8000 </div>
+          </figcaption>
+        </figure>
+    </div>
+      <div>
+        <figure class="snip1268">
+          <div class="image">
+            <img src="../static/assets/project_image.jpg" alt="sq-sample4"/>
+            <a href="#" class="add-to-cart">VIEW MORE</a>
+          </div>
+          <figcaption>
+            <h2>Face Detection System</h2>
+            <p>U. V. Patel College of Engineering</p>
+            <div class="price">₹8000 </div>
+          </figcaption>
+        </figure>
+    </div>
+      <div>
+        <figure class="snip1268">
+          <div class="image">
+            <img src="../static/assets/project_image.jpg" alt="sq-sample4"/>
+            <a href="#" class="add-to-cart">VIEW MORE</a>
+          </div>
+          <figcaption>
+            <h2>Face Detection System</h2>
+            <p>U. V. Patel College of Engineering</p>
+            <div class="price">₹8000 </div>
+          </figcaption>
+        </figure>
+      </div>
+      <div>
+        <figure class="snip1268">
+          <div class="image">
+            <img src="../static/assets/project_image.jpg" alt="sq-sample4"/>
+            <a href="#" class="add-to-cart">VIEW MORE</a>
+          </div>
+          <figcaption>
+            <h2>Face Detection System</h2>
+            <p>U. V. Patel College of Engineering</p>
+            <div class="price">₹8000 </div>
+          </figcaption>
+        </figure>
+    </div>
+      <div>  
+        <figure class="snip1268">
+          <div class="image">
+            <img src="../static/assets/project_image.jpg" alt="sq-sample4"/>
+            <a href="#" class="add-to-cart">VIEW MORE</a>
+          </div>
+          <figcaption>
+            <h2>Face Detection System</h2>
+            <p>U. V. Patel College of Engineering</p>
+            <div class="price">₹8000 </div>
+          </figcaption>
+        </figure>
+    </div>
+      </div>
+ </div>
+
+
+<script src="../static/js/jquery-3.4.1.min.js"></script>
+
+
+  {% endblock %}
+</body>
+</html>

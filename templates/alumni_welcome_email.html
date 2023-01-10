@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/final_aag_logo.png') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/alumni_signup.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/main_header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/about.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.css') }}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/sweetalert2.min.css')}}">
+  <title>Alumni | Welcome Email </title>
+  <style>
+      .welcome_email_container {
+          position: relative;
+          width: 80%;
+          margin: 10px auto;
+          height:500px;
+          padding: 50px;
+          display: flex;
+          
+      }
+  </style>
+</head>
+<body>
+  {% extends "main_header.html" %}
+  {% block content %}
+  <div id="loader_container">
+    <div id="loader">
+    <img src="{{url_for('static',filename='assets/loading.gif')}}">
+    </div>
+  </div>
+  <div class="welcome_email_container">
+      <div style="width: 40%;">
+                <img src="{{url_for('static',filename='assets/welcome_email.png')}}" style="width: 100%;height:500px;" alt="">
+      </div>
+      <div style="width: 60%;text-align: center;">
+        <h1 style="font-size: 50px;">Hey <i>{{session['signed_up_f_name']}}</i> , You Are Almost There.</h1>
+        <p style="padding: 20px 0;font-size: 30px;line-height:70px;">We Have Sent You A Verification Email On <b>{{session['signed_up_email']}}</b> <br> Please Verify Your Email To Continue.</p>
+        <p style="padding: 20px 0;font-size: 30px;line-height:70px;">Didn't Get An Email ?</p>
+        <button class="button ripple" type="button" onclick="resend();">RESEND EMAIL</button>
+    </div>
+        
+  </div>
+  <script>
+      function resend()
+      {
+        document.getElementById('loader_container').style.display = "block";
+        if(document.getElementById('loader_container').style.display == "block")
+        {
+
+          var x = setInterval(function()
+          {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", "/alumni/welcome_email?mode=1", false);
+            xmlhttp.send(null);
+            var res = xmlhttp.responseText;
+            var obj = JSON.parse(res);
+          
+            if(obj.res == 1)
+            {
+              document.getElementById('loader_container').style.display = "none";
+              Swal.fire({
+                icon: 'success',
+                title: 'New Verification Email Has Been Sent Successfully.',
+              }); 
+            }
+            else {
+                document.getElementById('loader_container').style.display = "none";
+                Swal.fire({
+                    icon: 'error',
+                    title: 'unable To Send Email.\nPlease Try Again.',
+                  }); 
+            }
+            clearInterval(x);
+          },1000);
+          
+        }
+      }
+  </script>
+  <script src="{{url_for('static',filename='js/sweetalert2.all.min.js')}}"></script>
+  {% endblock %}
+</body>
+</html>

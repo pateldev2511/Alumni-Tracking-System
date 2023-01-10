@@ -1,0 +1,249 @@
+.main-container {
+    position: relative;
+    width: 80%;
+    margin: 20px auto;
+    min-height: 500px;
+    /* background-color: #1b8aba; */
+}
+.welcome_email_container {
+    position: relative;
+    width: 80%;
+    margin: 10px auto;
+    height:500px;
+    padding: 50px;
+    display: flex;
+    
+}
+.list {
+  font-family:sans-serif;
+}
+td {
+  padding:10px; 
+  border:solid 1px #eee;
+}
+
+input {
+  border:solid 1px #ccc;
+  border-radius: 5px;
+  padding:7px 14px;
+  margin-bottom:10px
+}
+input:focus {
+  outline:none;
+  border-color:#aaa;
+}
+.sort {
+    position: relative;
+    display: inline-block;
+    height: 36px;
+    padding: 0 16px;
+    background-color: #3f51b5;
+    color: #fff;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 36px;
+    vertical-align: middle;
+    overflow: hidden;
+    cursor: pointer;
+    outline: 0;
+    z-index: 1;
+    transition: all 0.15s ease-in;
+}
+
+.button:hover, .button:focus {
+    opacity: 0.9;
+}
+@keyframes ripple {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.5;
+   }
+    100% {
+        width: 150px;
+        height: 150px;
+        opacity: 0;
+   }
+}
+.ripple:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: currentColor;
+    visibility: hidden;
+    z-index: 2;
+}
+.ripple:not(:active):before {
+    animation: ripple 0.4s cubic-bezier(0, 0, 0.2, 1);
+    transition: visibility 0.4s step-end;
+}
+.ripple:active:before {
+    visibility: visible;
+}
+
+
+.sort:hover {
+  text-decoration: none;
+  background-color:
+}
+.sort:focus {
+  outline:none;
+}
+.sort:after {
+  display:inline-block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  content:"";
+  position: relative;
+  top:-10px;
+  right:-5px;
+}
+.sort.asc:after {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #fff;
+  content:"";
+  position: relative;
+  top:4px;
+  right:-5px;
+}
+.sort.desc:after {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #fff;
+  content:"";
+  position: relative;
+  top:-4px;
+  right:-5px;
+}
+td {
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  .swal-wide{
+    width:850px !important;
+}
+
+
+* {
+	font-family: Arial, sans;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+h1 {
+	margin: 1em 0;
+	text-align: center;
+}
+
+#container {
+    margin: 0 auto;
+    /* width: 50%;  Ancho del contenedor */
+}
+
+#container input {
+	height: 2.5em;
+	visibility: hidden;
+}
+
+#container label {
+	background: #f9f9f9;  /* Fondo de las pestañas */
+	border-radius: .25em .25em 0 0;
+	color: #888;  /* Color del texto de las pestañas */
+	cursor: pointer;
+	display: block;
+	float: left;
+	font-size: 1em;  /* Tamaño del texto de las pestañas */
+	height: 2.5em;
+	line-height: 2.5em;
+	margin-right: .25em;
+	padding: 0 1.5em;
+	text-align: center;
+}
+
+#container input:hover + label {
+	background: #ddd;  /* Fondo de las pestañas al pasar el cursor por encima */
+	color: #666;  /* Color del texto de las pestañas al pasar el cursor por encima */
+}
+
+#container input:checked + label {
+	background: #f1f1f1;  /* Fondo de las pestañas al presionar */
+	color: #444; /* Color de las pestañas al presionar */
+	position: relative;
+	z-index: 6;
+	/*
+	-webkit-transition: .1s;
+	-moz-transition: .1s;
+	-o-transition: .1s;
+	-ms-transition: .1s;
+	*/
+}
+
+#content {
+	background: #f1f1f1;  /* Fondo del contenido */
+	border-radius: 0 .25em .25em .25em;
+	min-height: 20em;  /* Alto del contenido */
+	position: relative;
+	width: 100%;
+	z-index: 5;
+}
+
+#content div {
+	opacity: 0;
+	padding: 1.5em;
+	position: absolute;
+  z-index: -100;
+  width: 100%;
+  height: 850px;
+	/*
+	transition: all linear 0.1s;
+	*/
+}
+
+
+
+#container input#tab-1:checked ~ #content #content-1,
+#container input#tab-2:checked ~ #content #content-2,
+#container input#tab-3:checked ~ #content #content-3 {
+    opacity: 1;
+    z-index: 100;
+}
+
+input.visible {
+  visibility: visible !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+

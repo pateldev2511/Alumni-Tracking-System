@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/final_aag_logo.png') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/alumni_signup.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/main_header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/about.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.css') }}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/sweetalert2.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/association_college_applications.css')}}">
+  <title>Alumni Job Statistics | Alumni Association Of Goa </title>
+  <style>
+     
+  </style>
+</head>
+<body>
+  {% extends "main_header.html" %}
+  {% block content %}
+  <div id="loader_container">
+    <div id="loader">
+    <img src="{{url_for('static',filename='assets/loading.gif')}}">
+    </div>
+  </div>
+
+
+   
+  <div style="position: fixed;bottom:10px;left:10px;padding:10px 0;margin:10px auto;width:300px;height:auto;z-index:1000;">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        
+        {% for message in messages %}
+        <div style="font-size:18px;background-color: #fff;color: black;padding: 15px 30px;margin:5px 0;box-shadow:1px 1px 3px grey,-1px -1px 3px grey;border-radius:30px;" id="div_{{loop.index}}"> 
+        <p style="float: right;"><i style="cursor:pointer" class="fas fa-times" onclick="document.getElementById('div_{{loop.index}}').style.display='none';"></i></p>
+        <p>{{ message }}</p>
+        </div>
+      
+        {% endfor %}
+    
+    
+    {% endif %}
+
+    {% endwith %}
+  </div>
+  
+
+  <div class="main-container" style="width: 90%;">
+    <h1 style="text-align: center;">Job Statistics</h1>
+
+
+    {% if total_applications == 0 %}
+      <h1 style="text-align: center;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);">No Application Found.</h1>
+    {% else %}
+    <br>
+    <div id="users" style="width: 100%;">
+        <!-- <div style="display: flex;position: relative;width:100%;background-color: aqua;">
+            <div style="width:50%;">
+                <input class="search" placeholder="Search Here" />
+            </div>
+            <div style="float: right;width:50%;right: 0;">
+                <button class="sort" data-sort="name">
+                    Sort by Name
+                  </button>
+                  <button class="sort" data-sort="college">
+                    Sort by College
+                  </button>
+                
+            </div>
+        
+        </div> -->
+        <table style="position: relative;margin:0 auto;" border="0">
+            <tr>
+                <td style="border: none;">
+                    <br>
+                    <input class="search" style="width:500px;height:35px !important;margin:2px 0;" placeholder="Search Here" />  
+                </td>
+                <td style="border: none;">
+                    <br>
+                    <button class="sort" data-sort="company-name">
+                        Sort by Company Name
+                      </button>
+                      <button class="sort" data-sort="t-applicants">
+                        Sort by Applicants
+                      </button>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <table id="c_a_t" style="position: relative;margin:0 auto;">
+          
+            <thead>
+                <tr>
+                    <th style="padding: 5px;">Sr. No.</th>
+                    <th style="padding: 5px;">Company Name</th>
+                    <th style="padding: 5px;">Designation</th>
+                    <th style="padding: 5px;">Salary</th>
+                    <th style="padding: 5px;">Location</th>
+                    <th style="padding: 5px;">Deadline</th>
+                    <th style="padding: 5px;">Total Applicants</th>
+                    <th style="padding: 5px;" colspan="3">Action</th>
+                </tr>
+            </thead>
+            
+          <!-- IMPORTANT, class="list" have to be at tbody -->
+          <tbody class="list">
+              
+              {% for i in job_details %}
+            <tr>
+              <td class="sr_no">{{ loop.index }}</td>
+              <td class="company-name">
+                   {{i[2]}}
+              </td>
+              <td class="designation">{{i[4]}}</td>
+              <td class="salary">{{i[5]}}</td>
+              <td class="location">{{i[6]}}</td>
+              <td class="application-deadline">{{i[7].strftime('%d/%m/%Y')}}</td>
+              <td class="t-applicants">{{i[12]}}</td>
+
+              <td class="consent_letter">
+                <a href="../../../alumni/job/edit/{{i[0]}}"><button class="button ripple" type="button" style="background-color: #3f51b5;">EDIT</button></a>
+              </td>
+
+                  <td class="consent_letter">
+                      <a href="../../../alumni/job/statistics/download/{{i[0]}}"><button class="button ripple" type="button" style="background-color: #3f51b5;">DOWNLOAD</button></a>
+                    </td>
+
+                    <td class="consent_letter">
+                      <a href="../../../alumni/job/statistics/extract/{{i[0]}}"><button class="button ripple" type="button" style="background-color: #3f51b5;">EXTRACT</button></a>
+                    </td>
+            </tr>
+            {% endfor %}
+            
+          </tbody>
+        </table>
+      
+      </div>
+      {% endif %}
+  </div>
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+
+  <script src="{{url_for('static',filename='js/jquery-3.4.1.min.js') }}"></script>
+  <script src="{{url_for('static',filename='js/sweetalert2.all.min.js')}}"></script>
+  <script>
+    var options = {
+        valueNames: [ 'company-name','t-applicants','designation','location' ]
+      };
+      
+      var userList = new List('users', options);
+
+function view_application(x)
+{
+
+    
+    var file_path = document.getElementById("con_let_"+x.id).value;
+
+    Swal.fire({
+        title: 'Consent Letter',
+        width: '800px',
+        html:
+          '<iframe src="../../'+file_path+'" style="width:750px;height:750px;" frameBorder="0"></iframe>',
+      });
+
+    
+}
+
+function accept_application(v,w,x,y,z)
+{
+    var project_id = v.toString();
+    var college = w.toString();
+    var name = x.toString();
+    var email = y.toString();
+    var mobile_no = z.toString();
+    document.getElementById('loader_container').style.display = "block";
+    if(document.getElementById('loader_container').style.display == "block")
+    {
+
+        var x = setInterval(function()
+        {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", "?mode=1&project_id=" +project_id+"&college="+college+"&name="+name+"&email="+email+"&mobile_no="+mobile_no, false);
+        
+            xmlhttp.send(null);
+            var res = xmlhttp.responseText;
+            var obj = JSON.parse(res);
+            
+            if(obj.res == 1)
+            {
+                document.getElementById('loader_container').style.display = "none";
+                Swal.fire({
+                    icon: 'success',
+                    title: obj.msg,
+                    });
+                window.location.href = "/association/fund-raising-projects/applications";
+            }
+            else {
+                document.getElementById('loader_container').style.display = "none";
+                Swal.fire({
+                    icon: 'error',
+                    title: obj.msg,
+                    });
+            }
+            clearInterval(x);
+        },1000);
+                        
+    }
+                    
+}
+
+
+function reject_application(v,w,x,y,z)
+{
+  var project_id = v.toString();
+  var college = w.toString();
+  var name = x.toString();
+  var email = y.toString();
+  var mobile_no = z.toString();
+
+    document.getElementById('loader_container').style.display = "block";
+    if(document.getElementById('loader_container').style.display == "block")
+    {
+
+        var x = setInterval(function()
+        {
+            var xmlhttp = new XMLHttpRequest();
+
+            xmlhttp.open("GET", "?mode=2&project_id=" +project_id+"&college="+college+"&name="+name+"&email="+email+"&mobile_no="+mobile_no, false);
+            xmlhttp.send(null);
+            var res = xmlhttp.responseText;
+            var obj = JSON.parse(res);
+            
+            if(obj.res == 1)
+            {
+                document.getElementById('loader_container').style.display = "none";
+                Swal.fire({
+                    icon: 'success',
+                    title: obj.msg,
+                    });
+                    window.location.href = "/association/fund-raising-projects/applications";
+
+            }
+            else {
+                document.getElementById('loader_container').style.display = "none";
+                Swal.fire({
+                    icon: 'error',
+                    title: obj.msg,
+                    });
+            }
+            clearInterval(x);
+        },1000);
+                        
+    }
+                    
+}
+
+  </script>
+  {% endblock %}
+</body>
+</html>

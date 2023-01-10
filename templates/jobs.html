@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/final_aag_logo.png') }}" type="image/x-icon">
+  <title>Jobs | Alumni Association Of Goa </title>
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/main_header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.css') }}">
+  <script src="https://kit.fontawesome.com/a25e25945a.js" crossorigin="anonymous"></script>
+  <style>
+    .page-title {
+      text-align: center;
+      font-size: 50px;
+      margin-bottom: 10px;
+  }
+  @import url(https://fonts.googleapis.com/css?family=Roboto);
+
+body {
+  background-color: #FAFAFA;
+}
+
+.card_area{
+    position: relative;
+    width: 70%;
+    margin: 0 auto 50px auto;
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.main_card{
+  background-color:white;
+  width:435px;
+  height:auto;
+  border-radius:8px;
+  
+  -webkit-box-shadow: 0px 4px 40px 0px rgba(0,0,0,0.08);
+-moz-box-shadow: 0px 4px 40px 0px rgba(0,0,0,0.08);
+box-shadow: 0px 4px 40px 0px rgba(0,0,0,0.08);
+margin:10px;
+}
+
+.main_card:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+  transition: all .6s ease-in-out;
+    -webkit-transition: all .6s ease-in-out; /** Chrome & Safari **/
+    -moz-transition: all .6s ease-in-out; /** Firefox **/
+    -o-transition: all .6s ease-in-out; /** Opera **/
+    box-shadow: 1px 1px 3px grey,-1px -1px 3px grey;
+}
+
+.content {
+    padding: 35px 30px 0 35px;
+    font-family: 'Roboto', sans-serif; line-height:24px;
+}
+
+.upper_content {
+  display:flex;
+}
+
+.logo {
+  font-size: 54px;
+  height:54px;
+  width : 54px;
+  color: #4285F4;
+}
+
+.name_position_info{
+  width: 100%;
+  padding: 0 0 0 35px;  
+  display:flex;  
+  justify-content: space-between;
+}
+
+.name{
+  color: Black;
+  font-weight:bold;
+  font-size:25px;
+}
+
+.sub_content{
+  padding:10px 0 0 0;
+    color: #5E6573;
+  font-weight:regular;
+}
+
+.designation{
+  font-size:16px;
+}
+.info{
+  font-size:14px;
+}
+
+.country{
+  color: #5E6573;
+  padding: 35px 0 0 0;
+  font-size:14px;
+}
+
+.seperator{
+  padding:40px 0 0 0;
+    border-bottom: 1px solid #F1F1F1;
+}
+
+
+.middle_content {
+  display:flex;
+  padding:15px 0 15px 0;
+  font-size:14px;
+    justify-content: space-between;
+}
+
+.sub_topic{
+  color:#5E6573;
+}
+
+.view_all {
+  font-weight:medium;
+  color:#4451FE;
+  
+  transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out; /** Chrome & Safari **/
+    -moz-transition: all .2s ease-in-out; /** Firefox **/
+    -o-transition: all .2s ease-in-out; /** Opera **/
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.view_all:hover{
+color:#1A2AFF;
+}
+
+.other_jobs{
+
+}
+
+.job1{
+  padding-right:15px;
+}
+
+.job{
+  cursor: pointer;
+  flex-shrink: 0;
+  height:78px;
+  width:196px;
+  border-radius:9px;
+  border: 1px solid #E8E8E8;
+  font-size:16px;
+}
+
+.job_name{
+  padding: 15px 15px 0 15px;
+  font-weight: 500;
+}
+
+.job_country{
+    padding: 0 15px 15px 15px;
+  color:#9EA0A4;
+  font-weight:200;
+}
+
+.job:hover{
+      background-color:#F9FAFF;
+
+}
+    
+  </style>
+</head>
+<body>
+  {% extends "main_header.html" %}
+  {% block content %}
+  
+
+  <div class="main-container">
+    <p class="page-title">Jobs</p>
+    <br>
+    <div class="card_area">
+        <div class="main_card">
+            <p style="float: right;padding:5px;margin:10px;"><span style="text-align: right;padding:8px;margin:5px 10px;background-color:#3f51b5;color:white;border-radius:10px;">Designing</span></p>
+
+          <div class="content">
+            <div class="upper_content">
+              <div class="logo">
+                <i class="fab fa-google google"></i>
+              </div>
+    
+              <div class="name_position_info">
+                <div class="part_one">
+                  <div class="name">Google</div>
+                  <div class="sub_content">
+                    <div class="designation">UI Design Lead</div>
+                    <div class="info">3 Days Ago • <b>6</b> applied</div>
+                  </div>
+                </div>
+              
+              </div>
+            </div>
+    
+            <div class="seperator"></div>
+              
+              
+              <div class="middle_content">
+                <div class="sub_topic">
+                    <i class="fas fa-map-marker-alt"></i> Singapore
+                    <br>
+                    <i class="fas fa-rupee-sign"></i> 56,00,000
+                    <br>
+                    Minimum 5-10 Years Experience Required.
+                    
+                    <br>
+                    <i class="fas fa-calendar-times"></i> 26/05/2020
+                </div>
+                
+                
+              </div>
+              
+              
+              <div class="other_jobs">
+                
+                <div class="view_all" style="margin-bottom: 5px;">
+                   <center> <a href="" style="text-decoration: none;color:#0088ff;">View More</a> </center>
+                  </div>
+        
+               
+              </div>
+              </div>
+            </div>
+            <div class="main_card">
+                <p style="float: right;padding:5px;margin:10px;"><span style="text-align: right;padding:8px;margin:5px 10px;background-color:#3f51b5;color:white;border-radius:10px;">Marketing</span></p>
+    
+              <div class="content">
+                <div class="upper_content">
+                  <div class="logo">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT1IMjR14N-x9eJN_LsiAmaxSIvoYKenMigwlL_ehSMNtQK1Tbp&usqp=CAU" alt="" style="width:75px;height:75px;">
+                  </div>
+        
+                  <div class="name_position_info">
+                    <div class="part_one">
+                      <div class="name">Yahoo</div>
+                      <div class="sub_content">
+                        <div class="designation">Senior Sales Manager</div>
+                        <div class="info">6 Days Ago • <b>57</b> applied</div>
+                      </div>
+                    </div>
+                  
+                  </div>
+                </div>
+        
+                <div class="seperator"></div>
+                  
+                  
+                  <div class="middle_content">
+                    <div class="sub_topic">
+                        <i class="fas fa-map-marker-alt"></i> Chicago
+                        <br>
+                        <i class="fas fa-rupee-sign"></i> 36,00,000
+                        <br>
+                        Minimum 4-5 Years Experience Required.
+                        
+                        <br>
+                        <i class="fas fa-calendar-times"></i> 25/05/2020
+                    </div>
+                    
+                    
+                  </div>
+                  
+                  
+                  <div class="other_jobs">
+                    
+                    <div class="view_all">
+                       <center> <a href="" style="text-decoration: none;color:#0088ff;">View More</a> </center>
+                      </div>
+            
+                   
+                  </div>
+                  </div>
+                </div> 
+                <div class="main_card">
+                    <p style="float: right;padding:5px;margin:10px;"><span style="text-align: right;padding:8px;margin:5px 10px;background-color:#3f51b5;color:white;border-radius:10px;">Designing</span></p>
+        
+                  <div class="content">
+                    <div class="upper_content">
+                      <div class="logo">
+                        <i class="fab fa-google google"></i>
+                      </div>
+            
+                      <div class="name_position_info">
+                        <div class="part_one">
+                          <div class="name">Google</div>
+                          <div class="sub_content">
+                            <div class="designation">UI Design Lead</div>
+                            <div class="info">3 Days Ago • <b>6</b> applied</div>
+                          </div>
+                        </div>
+                      
+                      </div>
+                    </div>
+            
+                    <div class="seperator"></div>
+                      
+                      
+                      <div class="middle_content">
+                        <div class="sub_topic">
+                            <i class="fas fa-map-marker-alt"></i> Singapore
+                            <br>
+                            <i class="fas fa-rupee-sign"></i> 56,00,000
+                            <br>
+                            Minimum 5-10 Years Experience Required.
+                            
+                            <br>
+                            <i class="fas fa-calendar-times"></i> 26/05/2020
+                        </div>
+                        
+                        
+                      </div>
+                      
+                      
+                      <div class="other_jobs">
+                        
+                        <div class="view_all" style="margin-bottom: 5px;">
+                           <center> <a href="" style="text-decoration: none;color:#0088ff;">View More</a> </center>
+                          </div>
+                
+                       
+                      </div>
+                      </div>
+                    </div>
+                    <div class="main_card">
+                        <p style="float: right;padding:5px;margin:10px;"><span style="text-align: right;padding:8px;margin:5px 10px;background-color:#3f51b5;color:white;border-radius:10px;">Marketing</span></p>
+            
+                      <div class="content">
+                        <div class="upper_content">
+                          <div class="logo">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT1IMjR14N-x9eJN_LsiAmaxSIvoYKenMigwlL_ehSMNtQK1Tbp&usqp=CAU" alt="" style="width:75px;height:75px;">
+                          </div>
+                
+                          <div class="name_position_info">
+                            <div class="part_one">
+                              <div class="name">Yahoo</div>
+                              <div class="sub_content">
+                                <div class="designation">Senior Sales Manager</div>
+                                <div class="info">6 Days Ago • <b>57</b> applied</div>
+                              </div>
+                            </div>
+                          
+                          </div>
+                        </div>
+                
+                        <div class="seperator"></div>
+                          
+                          
+                          <div class="middle_content">
+                            <div class="sub_topic">
+                                <i class="fas fa-map-marker-alt"></i> Chicago
+                                <br>
+                                <i class="fas fa-rupee-sign"></i> 36,00,000
+                                <br>
+                                Minimum 4-5 Years Experience Required.
+                                
+                                <br>
+                                <i class="fas fa-calendar-times"></i> 25/05/2020
+                            </div>
+                            
+                            
+                          </div>
+                          
+                          
+                          <div class="other_jobs">
+                            
+                            <div class="view_all">
+                               <center> <a href="" style="text-decoration: none;color:#0088ff;">View More</a> </center>
+                              </div>
+                    
+                           
+                          </div>
+                          </div>
+                        </div> 
+                        <div class="main_card">
+                            <p style="float: right;padding:5px;margin:10px;"><span style="text-align: right;padding:8px;margin:5px 10px;background-color:#3f51b5;color:white;border-radius:10px;">Marketing</span></p>
+                
+                          <div class="content">
+                            <div class="upper_content">
+                              <div class="logo">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT1IMjR14N-x9eJN_LsiAmaxSIvoYKenMigwlL_ehSMNtQK1Tbp&usqp=CAU" alt="" style="width:75px;height:75px;">
+                              </div>
+                    
+                              <div class="name_position_info">
+                                <div class="part_one">
+                                  <div class="name">Yahoo</div>
+                                  <div class="sub_content">
+                                    <div class="designation">Senior Sales Manager</div>
+                                    <div class="info">6 Days Ago • <b>57</b> applied</div>
+                                  </div>
+                                </div>
+                              
+                              </div>
+                            </div>
+                    
+                            <div class="seperator"></div>
+                              
+                              
+                              <div class="middle_content">
+                                <div class="sub_topic">
+                                    <i class="fas fa-map-marker-alt"></i> Chicago
+                                    <br>
+                                    <i class="fas fa-rupee-sign"></i> 36,00,000
+                                    <br>
+                                    Minimum 4-5 Years Experience Required.
+                                    
+                                    <br>
+                                    <i class="fas fa-calendar-times"></i> 25/05/2020
+                                </div>
+                                
+                                
+                              </div>
+                              
+                              
+                              <div class="other_jobs">
+                                
+                                <div class="view_all">
+                                   <center> <a href="" style="text-decoration: none;color:#0088ff;">View More</a> </center>
+                                  </div>
+                        
+                               
+                              </div>
+                              </div>
+                            </div> 
+                          
+	</div>
+
+    
+    
+  
+  
+
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnLxRX_-6gZtde1HNsXQwn2Wr2_hIXBnM&libraries=places&callback=initMap" async defer></script> -->
+    <script src="../static/js/jquery-3.4.1.min.js"></script>
+    <!-- <script src="{{url_for('static',filename='js/sweetalert2.all.min.js')}}"></script> -->
+    
+    <!-- <script src="../static/js/jquery.min.js"></script> -->
+    <!-- <script src="../static/js/font-awesome.js"></script> -->
+
+
+  {% endblock %}
+</body>
+</html>

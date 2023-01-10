@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/final_aag_logo.png') }}" type="image/x-icon">
+  <title>Mentorships | Alumni Association Of Goa </title>
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/main_header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.css') }}">
+  <script src="https://kit.fontawesome.com/a25e25945a.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/alumni_signup.css') }}">
+  <style>
+    .page-title {
+      text-align: center;
+      font-size: 50px;
+      margin-bottom: 10px;
+  } 
+  .container {
+      position: relative;
+      width: 80%;
+      margin: 10px auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      display: grid;
+    grid-template-columns: auto auto auto auto;
+  }
+  .card {
+      position: relative;
+      margin: 20px 0;
+      width: 300px;
+      height: 300px;
+      background-color: #FFF;
+      transform-style: preserve-3d;
+      transform: perspective(2000px);
+      transition: 1s;
+     /* box-shadow: inset 300px 0 5px rgba(0,0,0,0.5); */
+  }
+  .card:hover {
+      z-index: 1000;
+      transform: perspective(2000px) rotate(-10deg);
+      /* box-shadow: inset 20px 0 5px rgba(0,0,0,0.5); */
+  }
+  .card .imgBox {
+   position: relative;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      transform-origin: left;
+      z-index: 1;
+      transition: 1s;
+  }
+  .card:hover .imgBox {
+      transform: rotateY(-135deg);
+  }
+  .card .imgBox img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+
+  }
+  .card .details {
+      position: absolute;
+      top: 0;
+      left: 0;
+      box-sizing: border-box;
+      padding: 20px;
+      overflow: scroll;
+      box-shadow: 1px 1px 3px grey,-1px -1px 3px grey;
+      height:300px;
+  }
+  </style>
+</head>
+<body>
+  {% extends "main_header.html" %}
+  {% block content %}
+  
+
+  <div class="main-container">
+    <p class="page-title">Mentorships</p>
+    <br>
+    <div class="container">
+        <div class="card">
+            <div class="imgBox" style="position: relative;">
+                <div style="position: relative;">
+                <img src="https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="" srcset="" style="width:300px;height:300px;">
+                
+            </div>
+                
+            </div>
+            
+            <div class="details" style="overflow: scroll !important;">
+                <h2>Max William</h2>
+                <br>
+                <p>Expertise in Machine Learning, Artificial Intelligence.</p>
+                <br>
+                <p>
+                    Member Since 05 May, 2017.
+                </p>
+
+                <br>
+                <p>Experience : 4 Years</p>
+                <br>
+                <center> <a href="" style="text-decoration: none;color:#0088ff;">Visit Profile</a> </center>
+
+            </div>
+        </div>
+        <div class="card">
+            <div class="imgBox" style="position: relative;">
+                <div style="position: relative;">
+                <img src="https://images.pexels.com/photos/736716/pexels-photo-736716.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" srcset="" style="width:300px;height:300px;">
+                
+            </div>
+                
+            </div>
+            
+            <div class="details" style="overflow: scroll !important;">
+                <h2>John Doe</h2>
+                <br>
+                <p>Expertise in Machine Learning, Artificial Intelligence.</p>
+                <br>
+                <p>
+                    Member Since 05 May, 2017.
+                </p>
+
+                <br>
+                <p>Experience : 4 Years</p>
+                <br>
+                <center> <a href="" style="text-decoration: none;color:#0088ff;">Visit Profile</a> </center>
+
+            </div>
+        </div>
+      
+        <div class="card">
+            <div class="imgBox" style="position: relative;">
+                <div style="position: relative;">
+                    
+                    
+                <img src="https://ceoworld.biz/wp-content/uploads/2019/12/businesswoman-2.jpg" alt="" srcset="" style="width:300px;height:300px;">
+                
+            </div>
+                
+            </div>
+            
+            <div class="details" style="overflow: scroll !important;">
+                <h2>Henry Maxwell</h2>
+                <br>
+                <p>Expertise in Machine Learning, Artificial Intelligence.</p>
+                <br>
+                <p>
+                    Member Since 05 May, 2017.
+                </p>
+
+                <br>
+                <p>Experience : 4 Years</p>
+                <br>
+                <center> <a href="" style="text-decoration: none;color:#0088ff;">Visit Profile</a> </center>
+
+            </div>
+        </div>
+      
+        <div class="card">
+            <div class="imgBox" style="position: relative;">
+                <div style="position: relative;">
+                <img src="https://steamuserimages-a.akamaihd.net/ugc/902267248842753767/BDFA2022BE1D420249B31AF05D0CDC2A70597B47/" alt="" srcset="" style="width:300px;height:300px;">
+                
+            </div>
+                
+            </div>
+            
+            <div class="details" style="overflow: scroll !important;">
+                <h2>John Doe</h2>
+                <br>
+                <p>Expertise in Machine Learning, Artificial Intelligence.</p>
+                <br>
+                <p>
+                    Member Since 05 May, 2017.
+                </p>
+
+                <br>
+                <p>Experience : 4 Years</p>
+                <br>
+                <center> <a href="" style="text-decoration: none;color:#0088ff;">Visit Profile</a> </center>
+
+            </div>
+        </div>
+      
+        <div class="card">
+            <div class="imgBox" style="position: relative;">
+                <div style="position: relative;">
+                <img src="https://www.nasdaq.com/sites/acquia.prod/files/styles/720x400/public/2019-08/introvert-entrepreneur.jpg?h=b4bcbf55&itok=lFp111gF" alt="" srcset="" style="width:300px;height:300px;">
+                
+            </div>
+                
+            </div>
+            
+            <div class="details" style="overflow: scroll !important;">
+                <h2>Richard Tom</h2>
+                <br>
+                <p>Expertise in Machine Learning, Artificial Intelligence.</p>
+                <br>
+                <p>
+                    Member Since 05 May, 2017.
+                </p>
+
+                <br>
+                <p>Experience : 4 Years</p>
+                <br>
+                <center> <a href="" style="text-decoration: none;color:#0088ff;">Visit Profile</a> </center>
+
+            </div>
+        </div>
+      
+        <div class="card">
+            <div class="imgBox" style="position: relative;">
+                <div style="position: relative;">
+                <img src="https://startupmindset.com/wp-content/uploads/2015/01/rsz_driven_female_enterpreneur-780x528.jpg" alt="" srcset="" style="width:300px;height:300px;">
+                
+            </div>
+                
+            </div>
+            
+            <div class="details" style="overflow: scroll !important;">
+                <h2>Jessica Ford</h2>
+                <br>
+                <p>Expertise in Machine Learning, Artificial Intelligence.</p>
+                <br>
+                <p>
+                    Member Since 05 May, 2017.
+                </p>
+
+                <br>
+                <p>Experience : 4 Years</p>
+                <br>
+                <center> <a href="" style="text-decoration: none;color:#0088ff;">Visit Profile</a> </center>
+
+            </div>
+        </div>
+      
+    </div>
+
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnLxRX_-6gZtde1HNsXQwn2Wr2_hIXBnM&libraries=places&callback=initMap" async defer></script> -->
+    <script src="../static/js/jquery-3.4.1.min.js"></script>
+    <!-- <script src="{{url_for('static',filename='js/sweetalert2.all.min.js')}}"></script> -->
+    
+    <!-- <script src="../static/js/jquery.min.js"></script> -->
+    <!-- <script src="../static/js/font-awesome.js"></script> -->
+
+
+  {% endblock %}
+</body>
+</html>
