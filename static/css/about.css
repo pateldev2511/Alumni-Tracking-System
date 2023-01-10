@@ -1,0 +1,85 @@
+.about-main-container {
+    position: relative;
+    width: 60%;
+    margin: 10px auto;
+    background-color: white;
+    padding: 20px 50px;
+    box-shadow: 1px 1px 5px black;
+    border-radius: 10px;
+}
+
+.about-container {
+    margin: 100px 0;
+}
+.about-container:nth-child(1) {
+    margin: 10px 0 100px 0;
+}
+.about-container:last-child {
+    margin: 100px 0 10px 0;
+}
+.about-container h1 {
+    font-size: 30px;
+    margin: 5px 0 20px 0;
+}
+
+.about-container p {
+    font-size: 20px;
+    margin: 10px;
+    word-break: break-all;
+}
+
+#first::first-letter {
+    color: black;
+    font-size: 40px;
+    padding-right: 8px;
+    float:left;
+    line-height: 0.7;
+    margin-top: 5px;
+    text-indent: 50px;
+    text-shadow: 1px 1px 1px black;
+    padding-left: 40px;
+}
+.about-container-d-flex {
+    position: relative;
+    display: flex !important;
+    width: 100%;
+    margin: 100px 0;
+  
+}
+
+.about-msg-left {
+    position: relative;
+        width: 30%;
+        overflow: hidden;
+        justify-content: center;
+        text-align: center;
+        padding: 10px;
+}
+.about-msg-left img {
+    position: relative;
+    width: 60%;
+    /* height: 300px; */
+    border-radius: 50%;
+    justify-content: center;
+    
+}
+
+.about-msg-right {
+    width: 70%;
+    padding: 10px;
+}
+
+.about-msg-right h1 {
+    margin-bottom: 20px;
+}
+
+.about-msg-right p {
+    font-size: 20px;
+}
+
+.about-container ul li {
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px 0;
+}
+

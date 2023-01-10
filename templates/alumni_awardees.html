@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/final_aag_logo.png') }}" type="image/x-icon">
+  <title>Alumni Awardees | Alumni Association Of Goa </title>
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/main_header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.css') }}">
+  <script src="https://kit.fontawesome.com/a25e25945a.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/alumni_signup.css') }}">
+  <style>
+    .page-title {
+      text-align: center;
+      font-size: 50px;
+      margin-bottom: 10px;
+  } 
+  .container {
+    position: relative;
+    width: 80%;
+    margin: 10px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+
+.snip1376 {
+  font-family: 'Quattrocento', Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  min-width: 230px;
+  max-width: 315px;
+  width: 100%;
+  color: #141414;
+  text-align: left;
+  line-height: 1.4em;
+  font-size: 16px;
+  box-shadow: 1px 1px 3px grey,-1px -1px 3px grey;
+  border-radius: 10px;
+}
+.snip1376:hover {
+    transform: scale(1.1);
+    transition: 0.5s;
+    z-index: 1000 !important;
+}
+.snip1376 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.snip1376 img {
+  max-width: 100%;
+  vertical-align: top;
+}
+.snip1376 img:hover {
+    transform: scale(1.1);
+    transition: 1s;
+}
+.snip1376 figcaption {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 15px 25px;
+  position: relative;
+}
+.snip1376 figcaption:before {
+  position: absolute;
+  content: '';
+  z-index: 2;
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background-image: -webkit-linear-gradient(top, transparent 0%, #ffffff 100%);
+  background-image: linear-gradient(to bottom, transparent 0%, #ffffff 100%);
+}
+.snip1376 h2,
+.snip1376 p {
+  margin: 0 0 10px;
+}
+.snip1376 h2 {
+  font-weight: 300;
+  font-size: 1.5em;
+  line-height: 1.2em;
+  font-family: 'Oswald', Arial, sans-serif;
+  text-transform: uppercase;
+}
+.snip1376 p {
+  font-size: 0.9em;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+.snip1376 .icons {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #e6e6e6;
+  width: 100%;
+  text-align: center;
+}
+.snip1376 i {
+  padding: 10px 5px;
+  display: inline-block;
+  font-size: 24px;
+  color: #141414;
+  opacity: 0.65;
+}
+.snip1376 i:hover {
+  opacity: 1;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+
+  </style>
+</head>
+<body>
+  {% extends "main_header.html" %}
+  {% block content %}
+  
+
+  <div class="main-container">
+    <p class="page-title">Alumni Awardees</p>
+    <br>
+<div class="container">
+    <figure class="snip1376">
+        <img src="https://www.nasdaq.com/sites/acquia.prod/files/styles/720x400/public/2019-08/introvert-entrepreneur.jpg?h=b4bcbf55&itok=lFp111gF" alt="sample17" />
+        <figcaption style="text-align: center;">
+          <h2 style="text-align: center;">MAX WILLIAM</h2>
+          <p>Entrepreneurial Achievement</p>
+          <p>Class of 2019</p>
+          <p>Senior Software Engineer at Adobe System</p>
+          <br>
+          <div>
+              <a href="#" style="text-decoration: none;color:#0088ff">View Profile</a>
+          </div>
+        </figcaption>
+      </figure>
+      <figure class="snip1376">
+        <img src="https://steamuserimages-a.akamaihd.net/ugc/902267248842753767/BDFA2022BE1D420249B31AF05D0CDC2A70597B47/" alt="sample17" />
+        <figcaption style="text-align: center;">
+          <h2 style="text-align: center;">Nick Johnson</h2>
+          <p>Entrepreneurial Achievement</p>
+          <p>Class of 2019</p>
+          <p>Senior Software Engineer at Adobe System</p>
+          <br>
+          <div>
+              <a href="#" style="text-decoration: none;color:#0088ff">View Profile</a>
+          </div>
+        </figcaption>
+      </figure>
+      
+      <figure class="snip1376">
+        <img src="https://startupmindset.com/wp-content/uploads/2015/01/rsz_driven_female_enterpreneur-780x528.jpg" alt="sample17" />
+        <figcaption style="text-align: center;">
+          <h2 style="text-align: center;">Jessica George</h2>
+          <p>Entrepreneurial Achievement</p>
+          <p>Class of 2019</p>
+          <p>Senior Software Engineer at Adobe System</p>
+          <br>
+          <div>
+              <a href="#" style="text-decoration: none;color:#0088ff">View Profile</a>
+          </div>
+        </figcaption>
+      </figure>
+      
+      <figure class="snip1376">
+        <img src="https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="sample17" />
+        <figcaption style="text-align: center;">
+          <h2 style="text-align: center;">James Maxwell</h2>
+          <p>Entrepreneurial Achievement</p>
+          <p>Class of 2019</p>
+          <p>Senior Software Engineer at Adobe System</p>
+          <br>
+          <div>
+              <a href="#" style="text-decoration: none;color:#0088ff">View Profile</a>
+          </div>
+        </figcaption>
+      </figure>
+      
+      <figure class="snip1376">
+        <img src="https://images.pexels.com/photos/736716/pexels-photo-736716.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="sample17" />
+        <figcaption style="text-align: center;">
+          <h2 style="text-align: center;">John Doe</h2>
+          <p>Entrepreneurial Achievement</p>
+          <p>Class of 2019</p>
+          <p>Senior Software Engineer at Adobe System</p>
+          <br>
+          <div>
+              <a href="#" style="text-decoration: none;color:#0088ff">View Profile</a>
+          </div>
+        </figcaption>
+      </figure>
+      
+</div>    
+
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnLxRX_-6gZtde1HNsXQwn2Wr2_hIXBnM&libraries=places&callback=initMap" async defer></script> -->
+    <script src="../static/js/jquery-3.4.1.min.js"></script>
+    <!-- <script src="{{url_for('static',filename='js/sweetalert2.all.min.js')}}"></script> -->
+    
+    <!-- <script src="../static/js/jquery.min.js"></script> -->
+    <!-- <script src="../static/js/font-awesome.js"></script> -->
+
+
+  {% endblock %}
+</body>
+</html>

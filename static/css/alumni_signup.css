@@ -1,0 +1,341 @@
+/* Input CSS */
+/* @import url(); */
+@font-face {
+    font-family: "GoogleSans-Regular";
+    src: url(GoogleSans-Regular.ttf);
+  }
+body {
+  font-family: "GoogleSans-Regular";
+  /* height: auto; */
+}
+form {
+    width: 100%;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    /* box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); */
+    padding: 20px 0;
+    /* margin-top: 40px; */
+    font-family: "GoogleSans-Regular";
+  }
+  
+  form h4{
+    font-size: 32px;
+    color: #333333;
+    font-family: Roboto, arial, sans-serif;
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .floating-input{
+    padding: 10px;
+    display: block;
+    width: 300px;
+    margin: 20px auto;
+  }
+  
+  .floating-input label{
+    position: absolute;
+    font-family: Roboto, arial, sans-serif;
+    color: #757575;
+    font-size: 16px;
+    margin-top: -30px;
+    transition: all .2s cubic-bezier(0.4, 0, 0.2, 1);;
+    cursor: text;
+    margin-left: 0;
+    display: block;
+  }
+  
+  .floating-input input[type="text"], .floating-input input[type="email"],  .floating-input input[type="date"],select,.floating-input input[type="password"],.floating-input input[type="number"]{
+    border: none;
+    border-bottom: 1px solid #757575;
+    outline: none;
+    width: 300px;
+    padding: 5px 0;
+    font-size: 16px;
+    transition: all .2s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: transparent;
+   
+  }
+  
+
+  .floating-input input:valid + label,  .floating-input select:valid + label{
+    margin-top: -50px;
+    font-size: 12px;
+    color: #555555;
+  }
+
+  
+  .floating-input input[type="text"]:focus,.floating-input input[type="email"]:focus,.floating-input input[type="date"]:focus,.floating-input select:focus,.floating-input input[type="password"]:focus,.floating-input input[type="number"]:focus{
+    border-bottom: 1px solid #2A9AF2;
+    box-shadow: 0px 1px 0px 0px #2A9AF2;
+    
+  }
+  
+  .floating-input input:focus + label,.floating-input select:focus + label{
+    margin-top: -50px !important;
+    color: #2A9AF2 !important;
+    font-size: 12px !important;
+    
+  
+  }
+  
+  .input-button{
+    width: 100px;
+    margin: 0 auto;
+    position: relative;
+    cursor: pointer;
+  }
+
+.button {
+	 position: relative;
+	 display: inline-block;
+	 height: 36px;
+	 padding: 0 16px;
+	 background-color: #3f51b5;
+	 color: #fff;
+	 border: 0;
+	 border-radius: 2px;
+	 box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+	 text-decoration: none;
+	 text-transform: uppercase;
+	 font-size: 14px;
+	 font-weight: 500;
+	 line-height: 36px;
+	 vertical-align: middle;
+	 overflow: hidden;
+	 cursor: pointer;
+	 outline: 0;
+	 z-index: 1;
+	 transition: all 0.15s ease-in;
+}
+ .button:hover, .button:focus {
+	 opacity: 0.9;
+}
+ @keyframes ripple {
+	 0% {
+		 width: 0;
+		 height: 0;
+		 opacity: 0.5;
+	}
+	 100% {
+		 width: 150px;
+		 height: 150px;
+		 opacity: 0;
+	}
+}
+ .ripple:before {
+	 content: '';
+	 position: absolute;
+	 top: 50%;
+	 left: 50%;
+	 width: 0;
+	 height: 0;
+	 transform: translate(-50%, -50%);
+	 border-radius: 50%;
+	 background-color: currentColor;
+	 visibility: hidden;
+	 z-index: 2;
+}
+ .ripple:not(:active):before {
+	 animation: ripple 0.4s cubic-bezier(0, 0, 0.2, 1);
+	 transition: visibility 0.4s step-end;
+}
+ .ripple:active:before {
+	 visibility: visible;
+}
+ 
+  
+ 
+
+
+/* lOG IN css */
+
+.login-container {
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+    
+    /* background-color: #FFFFFF;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); */
+    height: 670px;
+    /* min-height: 800px; */
+    display: flex;
+}
+
+.left-login {
+    width: 55%;
+    text-align: center;
+    
+}
+.left-login img {
+  position: relative;
+  height: 670px;
+}
+.right-login {
+    width: 30%;
+    position: relative;
+    margin: 0 auto;
+    /* text-align: center; */
+    /* background-color: #333333; */
+    
+}
+
+.right-login form {
+    width: 100% !important;
+    text-align: center;
+    margin-top: 30px;
+    border-radius: 30px;
+    box-shadow: 2px 2px 5px black,-2px -2px 5px black;
+}
+
+
+a {
+    text-decoration: none;
+    color: #0088ff;
+}
+
+/* Captcha CSS */
+canvas{
+/*prevent interaction with the canvas*/
+pointer-events:none;
+}
+
+/* Signup CSS */
+
+.form-part-1,.form-part-2,.form-part-3,.form-part-4 {
+    display: none;
+    margin: 20px 0 0 0;
+}
+
+
+::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+    color: transparent;
+}
+
+input[type="date"]::-webkit-input-placeholder {
+    color: red !important;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+
+#dob:focus + label {
+    color: #0088ff !important;
+}
+
+.form-outer-f-1 {
+  position: relative;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.form-inner-f-1 {
+  display: flex;
+  width:300px;
+  justify-content: center;
+  margin:0 auto;
+  /* background-color: #0088ff; */
+}
+
+.form-1-field {
+  position: relative;
+  width: 320px !important;
+  
+}
+
+/* Checkbox */
+.boxes {
+  margin: 0 auto;
+  /* padding: 50px; */
+  /* background: #484848; */
+}
+
+/*Checkboxes styles*/
+input[type="checkbox"] { display: none; }
+
+input[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  
+  /* padding-left: 35px; */
+  /* margin-bottom: 20px; */
+  font: 14px/20px 'Open Sans', Arial, sans-serif;
+  /* color: #ddd; */
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+input[type="checkbox"] + label:last-child { margin-bottom: 0; }
+
+input[type="checkbox"] + label:before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #6cc0e5;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: .6;
+  -webkit-transition: all .12s, border-color .08s;
+  transition: all .12s, border-color .08s;
+  
+}
+
+input[type="checkbox"]:checked + label:before {
+  width: 10px;
+  top: -5px;
+  left: 5px;
+  border-radius: 0;
+  opacity: 1;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+/* Remove Arrows */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+/* Loader CSS */
+#loader_container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: auto;
+  background-color: rgba(255,255,255, 0.5);
+  z-index: 9999 !important;
+  display: none;
+}
+
+#loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}

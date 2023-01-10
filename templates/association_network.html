@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/final_aag_logo.png') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/alumni_signup.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/main_header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/about.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.css') }}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/sweetalert2.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/association_college_applications.css')}}">
+  <script src="https://kit.fontawesome.com/a25e25945a.js" crossorigin="anonymous"></script>
+  <title>Network | Alumni Association Of Goa </title>
+  <link href="//cdn.syncfusion.com/ej2/ej2-base/styles/material.css" rel="stylesheet">
+  <link href="//cdn.syncfusion.com/ej2/ej2-inputs/styles/material.css" rel="stylesheet">
+  <link href="//cdn.syncfusion.com/ej2/ej2-dropdowns/styles/material.css" rel="stylesheet">
+  <link href="//cdn.syncfusion.com/ej2/ej2-buttons/styles/material.css" rel="stylesheet">
+  
+  
+<script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js" type="text/javascript"></script>
+
+  <style>
+
+       .page-title {
+        text-align: center;
+        font-size: 50px;
+        margin-bottom: 10px;
+    }
+
+      /* Tabs */
+
+
+.tabs {
+	clear: both;
+	position: relative;   
+   /* max-width: 650px; */
+   height: 750px;
+   margin: 0 auto;
+   padding: 10px 0;
+   box-shadow: 1px 1px 3px grey,-1px -1px 3px grey;
+   border-radius: 10px;
+   /* you can either manually set a min-height here or do it via JS ---> */
+}
+
+.tab {
+	float: left;
+}
+
+.tab label {
+	margin-right: 20px;
+	position: relative;
+	top: 0;
+	cursor: pointer;
+    color: #333;
+    padding: 30px 20px 10px 20px !important;
+    margin : 30px 0px 20px 0 !important;
+   /* text-transform: uppercase; */
+}
+
+.tab [type=radio] {
+    display: none;   
+    
+}
+
+.tab__content {
+   position: relative;
+	top: 40px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+    transition: opacity .2s cubic-bezier(.42,0,.34,1.01);
+    padding: 30px;
+    opacity: 0;
+    height: auto;
+}
+
+[type=radio]:checked ~ label {
+    padding-bottom: 5px;
+	border-bottom: 2px solid #1d1d1d;
+	color: #1d1d1d;
+	z-index: 2;
+}
+
+[type=radio]:checked ~ label ~ .tab__content {
+	z-index: 1;
+	opacity: 1;
+}
+
+
+/*Checkboxes styles*/
+
+
+/* end only demo styles */
+
+.checkbox-custom, .radio-custom {
+  opacity: 0;
+  position: absolute;   
+}
+
+
+
+.checkbox-custom + .checkbox-custom-label:before, .radio-custom + .radio-custom-label:before {
+  content: '';
+  background: #fff;
+  border: 2px solid #ddd;
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.checkbox-custom:checked + .checkbox-custom-label:before {
+  content: "\f00c";
+  font-family: 'FontAwesome';
+  background: rebeccapurple;
+  color: #fff;
+}
+
+.radio-custom + .radio-custom-label:before {
+  border-radius: 50%;
+}
+
+.radio-custom:checked + .radio-custom-label:before {
+  content: "\f00c";
+  font-family: 'FontAwesome';
+  color: #bbb;
+}
+
+/*button */
+
+.button {
+  position: relative;
+  display: inline-block;
+  height: 36px;
+  padding: 0 16px;
+  background-color: #3f51b5;
+  color: #fff;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 36px;
+  vertical-align: middle;
+  overflow: hidden;
+  cursor: pointer;
+  outline: 0;
+  z-index: 1;
+  transition: all 0.15s ease-in;
+}
+.button:hover, .button:focus {
+  opacity: 0.9;
+}
+@keyframes ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.5;
+ }
+  100% {
+    width: 150px;
+    height: 150px;
+    opacity: 0;
+ }
+}
+.ripple:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: currentColor;
+  visibility: hidden;
+  z-index: 2;
+}
+.ripple:not(:active):before {
+  animation: ripple 0.4s cubic-bezier(0, 0, 0.2, 1);
+  transition: visibility 0.4s step-end;
+}
+.ripple:active:before {
+  visibility: visible;
+}
+
+/* Input Field */
+
+ 
+/* Floating Input */
+
+
+  .fa-plus,.fa-close {
+      cursor: pointer;
+  }
+
+  .main-container {
+    position: relative;
+    width: 80%;
+    margin: 20px auto;
+    display: flex;
+}
+.left-container {
+    width: 20%;
+    float: right;
+   
+}
+.right-container {
+    width: 80%;
+    float: left;
+}
+.active {
+    background-color: gray;
+}
+
+.class_li {
+    padding: 10px;
+    margin: 5px;
+}
+
+div.dataTables_wrapper {
+  width: 100%;
+  margin: 0 auto;
+  height: auto;
+}
+#example {
+  width:100%;
+}
+
+/* Poll CSS */
+
+.poll-option {
+  margin-bottom: 25px;
+  padding: 15px;
+  box-shadow: 1px 1px 3px grey, -1px -1px 3px grey;
+  border-radius: 10px;
+}
+span.poll-option__label {
+  font-weight: bold;
+}
+table.poll-option__result {
+  width: 100%;
+}
+table.poll-option__result tr, table.poll-option__result td {
+  padding: 0;
+
+}
+table.poll-option__result td:nth-child(odd) {
+  width: 40px;
+}
+table.poll-option__result td:nth-child(even) {
+  border: 0;
+  height: 100%;
+  position: relative;
+  vertical-align: center;
+  width: 100%;
+}
+table.poll-option__result td:first-child {
+  padding-right: 20px;
+}
+table.poll-option__result td:last-child {
+  padding-left: 20px;
+}
+table.poll-option__result span {
+  border-radius: 3px;
+  display: block;
+  height: 6px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+table.poll-option__result span:first-child {
+  background: rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+table.poll-option__result span:last-child {
+  background: aliceblue;
+  background-image: linear-gradient(to right, #ff5a00, #e3a417);
+}
+
+
+.option_votes {
+  background-color: transparent !important;
+  border: none !important;
+  
+}
+.votes_count {
+  background-color: #3f51b5 !important;
+  padding:15px 20px !important;
+  color: white !important;
+  text-align: center !important;
+  border-radius: 50% !important;
+}
+
+/* Other Datatable */
+.dataTables_length label select {
+  width:60px;
+}
+
+/* From profile For Right Side */
+.profile-1-container,.profile-2-container,.profile-3-container,.profile-4-container,.profile-5-container {
+    text-align: center;
+    background-color: #fff;
+    margin: 0 0 20px 0;
+    min-height: 200px;
+    box-sizing: border-box;
+    box-shadow: rgba(0,0,0,0.14) 0px 2px 2px 0px,rgba(0,0,0,0.2) 0px 3px 1px -2px,rgba(0,0,0,0.12) 0px 1px 5px 0px;
+    border-radius: 2px;
+    padding: 10px 10px 20px 10px;
+
+}
+.profile-img-container {
+    position: relative;
+    padding: 5px;
+    overflow: hidden !important;
+}
+.main-profile-img {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+.profile-name {
+    font-size: 40px;
+}
+.profile-2-container {
+    padding:0;
+}
+.profile-side-header {
+    font-size: 16px;
+    line-height: 18px;
+    text-decoration: none solid rgba(0,0,0,0.54);
+    word-spacing: 0;
+    min-height: 50px;
+    overflow: hidden;
+    text-align: left;
+    padding: 9px 0;
+    color: gray;
+
+   
+}
+.contact-info,.skill-info,.network-info,.personal-info {
+    margin: 20px;
+    padding: 10px;
+    text-align: left;
+}
+
+.search-result-container {
+    padding: 20px;
+}
+.s_r_c {
+    position: relative;
+    width: 100%;
+    margin: 0 auto 50px -30px;
+    display: grid;
+    grid-template-columns: auto auto; 
+}
+
+/* CSS CARD */
+
+@import url(https://fonts.googleapis.com/css?family=Exo+2:300,400,700);
+
+
+.card{
+  position: relative;
+  width: 315px; /* Remove for full width */
+  height: 300px; /* Remove for full width */
+  margin:10px auto;
+  box-shadow: 0 0 100px rgba(0,0,0, .3);
+  padding-bottom:5px;
+  box-shadow: 1px 1px 3px gray,-1o;
+}
+.card-header{
+  position: relative;
+  height: 220px;
+  background-size: cover;
+  background-position: center;
+}
+.card-header:after{
+  content:'';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.card-header-bar{
+  position: absolute;
+  top:0;
+  width: 100%;
+  z-index: 1;
+  width: 100%;
+}
+
+
+
+svg .polygon{
+  fill: #fff;
+}
+.card-header-slanted-edge{
+  position: absolute;
+  bottom: -3px;
+  z-index: 1;
+  width: 100%;
+  right:0;
+  left:0;
+}
+
+.btn-follow{
+  position: absolute;
+  top: -25px;
+  right: 15px;
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(to left, #2D77C1, #68FAC2);
+  border-radius:100%;
+  box-shadow: 0 10px 15px rgba(110,221,235, .53);
+}
+
+.btn-follow:after{
+  content: '';
+  position:absolute;
+  background: url(https://res.cloudinary.com/dj14cmwoz/image/upload/v1491077480/profile-card/images/add.svg) no-repeat;
+  width:17px;
+  height: 17px;
+  left: 50%;
+  top:50%;
+  transform: translate(-50%, -50%);
+}
+
+.card-body{
+  text-align:center;
+  padding-left: 10px;
+}
+
+.name{
+  font-size: 30px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 5px auto;
+  padding: 10px 0 0 0;
+}
+
+.job-title{
+  font-size: 14px;
+  font-weight: 300;
+  margin-top: 5px;
+  color: #919191;
+}
+
+.bio{
+  font-size: 14px;
+  color: #7B7B7B;
+  font-weight: 300;
+  margin: 10px auto;
+  line-height: 20px;
+}
+
+.social-accounts img{
+  width: 15px;
+}
+
+.social-accounts a{
+  margin-left: 10px;
+}
+.social-accounts a:first-child{
+  margin-left: 0;
+}
+
+.card-footer{
+  /*position:fixed; /* Full card width/height */
+  position: absolute; /* Fixed card width/height */
+
+  left: 0;
+  width: 100%;
+  bottom: 20px;
+}
+.stat{
+  box-sizing: border-box;
+  width: calc(100% / 3);
+  float: left;
+  text-align: center;
+  border-left: 1px solid #EBEBEB;
+}
+.stat .label{
+  display: block;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #95989A;
+}
+
+.stat .value{
+  display: block;
+  font-weight: 700;
+  font-size:20px;
+  margin-top: 5px;
+}
+.card-body p {
+    margin: 5px 0;
+}
+
+  </style>
+
+  
+</head>
+<body>
+  {% extends "main_header.html" %}
+  {% block content %}
+<br>
+  <p class="page-title">Network</p>
+<br>
+
+ 
+    <div style="position: fixed;bottom:10px;left:10px;padding:10px 0;margin:10px auto;width:300px;height:auto;z-index:1000;">
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          
+          {% for message in messages %}
+          <div style="font-size:18px;background-color: #fff;color: black;padding: 15px 30px;margin:5px 0;box-shadow:1px 1px 3px grey,-1px -1px 3px grey;border-radius:30px;" id="div_{{loop.index}}"> 
+          <p style="float: right;"><i style="cursor:pointer" class="fas fa-times" onclick="document.getElementById('div_{{loop.index}}').style.display='none';"></i></p>
+          <p>{{ message }}</p>
+          </div>
+        
+          {% endfor %}
+      
+      
+      {% endif %}
+  
+      {% endwith %}
+    </div>
+        
+        
+    
+    <div class="main-container">
+
+        
+        <div class="left-container">
+        <div style="margin: 5px;">
+            <ul style="list-style: none;" class="ul_class">
+                <li class="class_li">
+                    <a href="#" data-filter="one" class="poll_filter_link" style="text-decoration: none;color:black;">Search</a>
+                </li>
+                <li class="class_li">
+                    <a href="#" data-filter="two" class="poll_filter_link" style="text-decoration: none;color:black;">My Network</a>
+                </li>
+               
+                
+            </ul>
+           
+            
+            
+       
+        </div>
+        </div>
+        <div class="right-container">
+            <div class="filter one">
+              <form id="searchForm" action="" method="post">
+                <div style="position: relative;width:100%;margin:0 auto;display: flex;">
+                   
+                        <div style="width:70%;">
+                                  
+                                <div style="display: flex;">
+                                <div class="floating-input" style="width: 90%;padding:0;margin:0;">
+                                  
+                                  <input required id='search_query' name="search_query" style="width: 98% !important;border-radius: 0;" type="text" class="form-field" onkeyup="searchQuery(this);"/>
+                                  
+                                    <label>Search</label>
+                                </div>
+                                <button class="button ripple" type="submit" style="position: relative;float:left;top:-10px;"><i class="fas fa-search"></i></button>
+                                </div>
+                              
+                           
+                            <div class="search-result-container">
+                                <div class="s_r_c" id="s_r_c" style="min-height: 500px;">
+                                    <!-- <div class="card">
+                                        <div class="card-header"
+                                      style="background-image: url(https://res.cloudinary.com/dj14cmwoz/image/upload/v1491077482/profile-card/images/profile-picture.png)"
+                                        >
+                                              
+                                  
+                                              <div class="card-header-slanted-edge">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 200"><path class="polygon" d="M-20,200,1000,0V200Z" /></svg>
+                                                  <a href="#" class="btn-follow"><span class="sr-only">Follow</span></a>
+                                              </div>
+                                        </div>
+                                  
+                                        <div class="card-body">
+                                            <h2 class="name">John Smith</h2>
+                                            <h4 class="job-title">Alumni , Class Of 2020</h4>
+                                            <div class="bio"></div>
+                                          <p>Goa University (2016-2020)<p>
+                                          <p>Mehsana,Gujarat,India.</p>
+                                        </div>
+                                  
+                                        
+                                    </div>
+                                     -->
+                                  
+                                </div>
+                                
+                            </div>
+
+
+                        </div>
+                        <div style="width:30%;height:500px;" style="position: sticky !important;top:100px;">
+                            <div class="profile-2-container">
+                                <div class="profile-side-header">
+                                    <table style="width: 100%;" border="0">
+                                        <tr>
+                                            <td style="border: none !important;width:80%;text-align: left;">
+                                                <i class="fas fa-filter"></i>&nbsp;&nbsp;&nbsp;Filter
+                                            </td>
+                                           
+                                        </tr>
+                                    </table>
+                                    
+                                </div>
+                                <div style="width:100%;height:1px;background-color: rgba(0,0,0,0.08);"></div>
+                                <div class="contact-info">
+                                    <table style="width: 100%;" border="0" style="float: left;text-align: left !important;">
+                                      <tr style="text-align: left;">
+                                         
+                                        <td style="border: none;text-align: left;background-color: white !important;">
+                                                
+                                            
+                                            <div  style="width: 310px;margin:0;padding:0;" id="option_1_container">
+                                              <label style="color: gray;font-size: 14px;font-weight: bold;">Membership Type</label>
+                                              <select name="membership_type" id="membership_type" style="padding-bottom: 0;">
+                                                
+                                                    <option value="ALUMNI">Alumni</option>
+                                                    <option value="COLLEGE SPOC">College SPOC</option>
+                                                    <option value="ASSOCIATION MEMBER">Association Member</option>
+
+                                            </select>
+
+                                            </div>
+
+                                        </td>
+                                    </tr>
+
+                                        <tr style="text-align: left;">
+                                         
+                                            <td style="border: none;text-align: left;background-color: white !important;">
+                                                    <label style="color: gray;font-size: 14px;font-weight: bold;">College</label>
+                                                    <select name="college_value" id="college_value" style="padding-bottom: 0;">
+                                                        {% for i in college_list %}
+                                                            <option value="{{i[1]}}">{{i[1]}}</option>
+                                                        {% endfor %} 
+                                                    </select>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr style="text-align: left;">
+                                         
+                                            <td style="border: none;text-align: left;background-color: white !important;">
+                                                    <label style="color: gray;font-size: 14px;font-weight: bold;">Degree</label>
+                                                    <select name="college_degree_value" id="college_degree_value" style="padding-bottom: 0;">
+                                                        {% for i in college_degree_list %}
+                                                            <option value="{{i}}">{{i}}</option>
+                                                        {% endfor %} 
+                                                    </select>
+                                            </td>
+                                        </tr>
+
+                                        <tr style="text-align: left;">
+                                         
+                                            <td style="border: none;text-align: left;background-color: white !important;">
+                                                    <label style="color: gray;font-size: 14px;font-weight: bold;">Start Year</label>
+                                                    <select name="starting_year_value" id="starting_year_value" style="padding-bottom: 0;">
+                                                        {% for i in years_list %}
+                                                            <option value="{{i}}">{{i}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                
+                                            </td>
+                                        </tr>
+
+                                        <tr style="text-align: left;">
+                                         
+                                            <td style="border: none;text-align: left;background-color: white !important;">
+                                                    <label style="color: gray;font-size: 14px;font-weight: bold;">Graduation Year</label>
+                                                    <select name="graduation_year_value" id="graduation_year_value" style="padding-bottom: 0;">
+                                                        {% for i in years_list %}
+                                                            <option value="{{i}}">{{i}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                
+                                            </td>
+                                        </tr>
+
+                                        <tr style="text-align: left;">
+                                         
+                                            <td style="border: none;text-align: left;background-color: white !important;">
+                                                    
+                                                
+                                                <div class="floating-input" style="width: 310px;margin:0;padding:0;" id="option_1_container">
+                                                    <span style="color: gray;font-size: 14px;font-weight: bold;">Location</span>
+                                                    <input id='map-search' name="location" style="width: 100% !important;border-radius: 0;" type="text" class="form-field" />
+                                                    
+
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                        
+                                    </table>
+                                        
+                                  
+                                </div>
+                            </div>
+                        </div>
+                        
+                      
+
+                </div>
+                <input type="hidden" name="mode" value="1">
+              </form>
+               
+
+            </div>
+              <div class="filter two" style="padding: 10px;">
+                 two
+                
+              </div>
+              <div class="filter three" style="padding: 10px;">
+                threee
+                
+              </div>
+        </div>
+    </div>
+    
+    <label for=""><input type="text" class="latitude" style="display: none;"></label>
+    <label for=""><input type="text" class="longitude" style="display: none;"></label>
+    <label for=""><input type="text" class="reg-input-city" placeholder="City" style="display: none;"></label>
+    
+    <div id="map-canvas" style="display: none;"></div>
+   
+    
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnLxRX_-6gZtde1HNsXQwn2Wr2_hIXBnM&libraries=places&callback=initMap" async defer></script> -->
+    <script src="{{url_for('static',filename='js/jquery-3.4.1.min.js') }}"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnLxRX_-6gZtde1HNsXQwn2Wr2_hIXBnM&libraries=places&callback=initialize"></script>
+    <script src="{{url_for('static',filename='js/javascript.js') }}"></script>
+
+    <script src="{{url_for('static',filename='js/sweetalert2.all.min.js')}}"></script>
+
+    <!-- <script src="../static/js/jquery.min.js"></script> -->
+    <!-- <script src="../static/js/font-awesome.js"></script> -->
+
+  <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+  <script>
+
+    var frm = $('#searchForm');
+
+    function searchQuery(v)
+    {
+        frm.submit();
+    }
+
+ 
+
+  frm.submit(function (e) {
+
+      e.preventDefault();
+
+      $.ajax({
+          type: "POST",
+          url: '',
+          data: frm.serialize(),
+          success: function (data) {
+              console.log('Submission was successful.');
+              
+              if(data.res == 1 )
+              {
+                document.getElementById('s_r_c').innerHTML = data.content;
+              }
+              else {
+                document.getElementById('s_r_c').innerHTML = data.msg;
+              }
+          },
+          error: function (data) {
+              console.log('An error occurred.');
+              console.log(data);
+          },
+      });
+  });
+
+
+  document.getElementsByName('membership_type')[0].addEventListener('click',function(){console.log('clicked');});
+ 
+
+var listObj00 = new ej.dropdowns.MultiSelect({
+  // set placeholder to MultiSelect input element
+  placeholder: "Enter Membership Type...",
+  allowFiltering: true,
+  filtering: function (e) {
+        console.log("Hellow");
+        frm.submit();
+  }
+
+  });
+listObj00.appendTo('#membership_type');
+
+    
+function AddToNetwork(element)
+{
+  var id = $(element).attr('data-id');
+  var type = $(element).attr('data-usertype');
+  $.ajax({
+    url:'',
+    method: "GET",
+    dataType: "TEXT",
+    data: {
+        mode: 1,
+        to_id : id,
+        type : type
+    },
+    success: function(response)
+    {
+        var obj = JSON.parse(response);
+                
+        if(obj.res == 1)
+        {
+          Swal.fire({
+            icon: 'success',
+            title: obj.msg,
+          });
+        }
+        else if(obj.res == 2)
+        {
+          Swal.fire({
+            icon: 'info',
+            title: obj.msg,
+          });
+        }
+        else {
+          Swal.fire({
+            icon: 'error',
+            title: obj.msg,
+          });
+        }
+    }
+});
+
+}
+
+    var listObj0 = new ej.dropdowns.MultiSelect({
+        // set placeholder to MultiSelect input element
+        placeholder: "Enter College Name..."});
+    listObj0.appendTo('#college_value');
+
+    var listObj1 = new ej.dropdowns.MultiSelect({
+        // set placeholder to MultiSelect input element
+        placeholder: "Enter College Degree..."});
+    listObj1.appendTo('#college_degree_value');
+
+
+    var listObj2 = new ej.dropdowns.MultiSelect({
+        // set placeholder to MultiSelect input element
+        placeholder: "Enter Start Year..."});
+    listObj2.appendTo('#starting_year_value');
+
+    var listObj3 = new ej.dropdowns.MultiSelect({
+        // set placeholder to MultiSelect input element
+        placeholder: "Enter Graduation Year..."});
+    listObj3.appendTo('#graduation_year_value');
+
+  $(document).ready(function()
+  {
+  $('.poll_filter_link').click(function(){
+  var name=$(this).attr("data-filter");
+  if(name == "all")
+  {
+      $(".filter").show("2000");
+  }
+  else {
+      $(".filter").not("."+name).hide("2000");
+  
+      $(".filter").filter("."+name).show("2000");
+  }
+  });
+  document.getElementsByClassName('poll_filter_link')[0].click();
+  
+  });
+
+  
+  </script>
+
+  {% endblock %}
+</body>
+</html>

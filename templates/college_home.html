@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/final_aag_logo.png') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/alumni_signup.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/main_header.css') }}">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/about.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.css') }}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/sweetalert2.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/association_college_applications.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/association_create_blog_post.css')}}">
+  <script src="https://kit.fontawesome.com/a25e25945a.js" crossorigin="anonymous"></script>
+<script>
+  window.location.href = "http://localhost:5000/college/alumni_applications";
+</script>
+  <title> College SPOC | Alumni Association Of Goa </title>
+  <style>
+     body {
+         background-color: #F5F5F5 !important;
+     }
+
+     @font-face {
+        font-family: "GoogleSans-Regular" !important;
+        src: url(GoogleSans-Regular.ttf);
+      }
+
+       /* Tags */
+
+  #tags{
+    /* -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px; */
+    /* box-shadow: 1px 1px 4px #CCC inset; */
+    padding: 10px;
+    width: 100%;
+    /* background: #fafafa; */
+    margin: auto;
+  }
+  
+  #tag-typer{
+    outline: none;
+    border: none;
+    padding: 6px;
+    margin: 3px;
+    margin-right: -25px;
+    width: 100px;
+    background-color: transparent;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .tag{
+    display: inline-block;
+    background: #3f51b5;
+    color: #FFF;
+    padding: 5px 10px;
+    margin:2px 2px 2px 20px;
+    font: normal 16px sans-serif;
+    position: relative;
+    cursor: default;
+    box-shadow:1px 1px 0 rgba(0,0,0,.2);
+    -webkit-transform-origin:0% 50%;
+    -webkit-animation: swing 1s;
+    -o-animation: swing 1s;
+    animation: swing 1s ;
+  }
+  
+  .tag:before{
+    content: "";
+    position: absolute;
+    width: 0;
+    background: inherit;
+    height: 10px;
+    border: 10px solid #fafafa;
+    border-right-color: transparent;
+    -webkit-border-radius: 10px 0 0 10px;
+    -moz-border-radius:10px 0 0 10px;
+    border-radius:10px 0 0 10px;
+    left: -20px;
+    top: 0;
+  }
+  
+  .tag:after{
+    content: "";
+    width: 6px;
+    height: 6px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background: #FFF;
+    position: absolute;
+    left: -3px;
+    top: 12px;
+    box-shadow:inset 1px 1px 0 #CCC;
+  }
+  
+  .tag .close{
+    position: absolute;
+    background: inherit;
+    left: -4px;
+    z-index: 3;
+    visibility: hidden;
+  }
+  
+  .tag:hover .close{
+    visibility: visible;
+    
+  }
+  
+  .close:hover {
+    color: rgba(0,0,0,.5);
+  }
+  
+  
+  .colors {
+    list-style:none;
+  }
+  .colors li{
+    display: inline-block;
+    width:15px;
+    height: 15px;
+  }
+  
+  /* Chrome, Safari, Opera */
+  @-webkit-keyframes swing
+  {
+    0%   {-webkit-transform: rotate(100deg)}
+    25%  {-webkit-transform: rotate(-25deg)}
+    50%  {-webkit-transform: rotate(15deg)}
+    100% {-webkit-transform: rotate(0deg)}
+  }
+  
+  
+  @keyframes swing
+  {
+    0%   {-webkit-transform: rotate(-200)}
+    25%  {-webkit-transform: rotate(-70)}
+    50%  {-webkit-transform: rotate(-185)}
+    100% {-webkit-transform: rotate(-180)}
+  }
+
+
+  /* Blog Card CSS */
+  .blog-card {
+	display: flex;
+	flex-direction: column;
+	margin: 1rem auto;
+	box-shadow: 0 3px 7px -1px rgba(0, 0, 0, 0.1);
+	margin-bottom: 1.6%;
+	background: #fff;
+	line-height: 1.4;
+	font-family: sans-serif;
+	border-radius: 5px;
+	overflow: hidden;
+    z-index: 0;
+    width:580px;
+    height: auto;
+}
+
+.blog-card a {
+	color: inherit;
+}
+
+.blog-card a:hover {
+	color: #3f51b5;
+}
+
+.blog-card:hover .photo {
+	transform: scale(1.3) rotate(3deg);
+}
+
+.blog-card .meta {
+	position: relative;
+	z-index: 0;
+	height: 200px;
+}
+
+.blog-card .photo {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-size: cover;
+	background-position: center;
+	transition: transform .2s;
+}
+
+.blog-card .details,
+  .blog-card .details ul {
+	margin: auto;
+	padding: 0;
+	list-style: none;
+}
+
+.blog-card .details {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: -100%;
+	margin: auto;
+	transition: left .2s;
+	background: rgba(0, 0, 0, 0.6);
+	color: #fff;
+	padding: 10px;
+	width: 100%;
+	font-size: .9rem;
+}
+
+.blog-card .details a {
+	text-decoration: dotted underline;
+}
+
+.blog-card .details ul li {
+	display: inline-block;
+}
+
+.blog-card .details .author:before {
+	font-family: FontAwesome;
+	margin-right: 10px;
+	content: "\f007";
+}
+
+.blog-card .details .date:before {
+	font-family: FontAwesome;
+	margin-right: 10px;
+	content: "\f133";
+}
+
+.blog-card .details .tags ul:before {
+	font-family: FontAwesome;
+	content: "\f02b";
+	margin-right: 10px;
+}
+
+.blog-card .details .tags li {
+	margin-right: 2px;
+}
+
+.blog-card .details .tags li:first-child {
+	margin-left: -4px;
+}
+
+.blog-card .description {
+	padding: 1rem;
+	background: #fff;
+	position: relative;
+	z-index: 1;
+}
+
+.blog-card .description h1,
+    .blog-card .description h2 {
+	font-family: Poppins, sans-serif;
+}
+
+.blog-card .description h1 {
+	line-height: 1;
+	margin: 0;
+	font-size: 1.7rem;
+}
+
+.blog-card .description h2 {
+	font-size: 1rem;
+	font-weight: 300;
+	text-transform: uppercase;
+	color: #a2a2a2;
+	margin-top: 5px;
+}
+
+.blog-card .description .read-more {
+	text-align: right;
+}
+
+.blog-card .description .read-more a {
+	color: #3f51b5;
+	display: inline-block;
+    position: relative;
+    text-decoration: none;
+}
+
+.blog-card .description .read-more a:after {
+	content: "\2192";
+	font-family: FontAwesome;
+	margin-left: 20px;
+	opacity: 0;
+	vertical-align: middle;
+	transition: margin .3s, opacity .3s;
+}
+
+.blog-card .description .read-more a:hover:after {
+	margin-left: 5px;
+	opacity: 1;
+}
+
+.blog-card p {
+	position: relative;
+	margin: 1rem 0 0;
+}
+
+.blog-card p:first-of-type {
+	margin-top: 1.25rem;
+}
+
+.blog-card p:first-of-type:before {
+	
+}
+
+.blog-card:hover .details {
+	left: 0%;
+}
+
+@media (min-width: 640px) {
+	.blog-card {
+		flex-direction: row;
+		max-width: 700px;
+	}
+
+	.blog-card .meta {
+		flex-basis: 40%;
+		height: auto;
+	}
+
+	.blog-card .description {
+		flex-basis: 60%;
+	}
+
+	.blog-card .description:before {
+		transform: skewX(-3deg);
+		content: "";
+		background: #fff;
+		width: 30px;
+		position: absolute;
+		left: -10px;
+		top: 0;
+		bottom: 0;
+		z-index: -1;
+	}
+
+	.blog-card.alt {
+		flex-direction: row-reverse;
+	}
+
+	.blog-card.alt .description:before {
+		left: inherit;
+		right: -10px;
+		transform: skew(3deg);
+	}
+
+	.blog-card.alt .details {
+		padding-left: 25px;
+	}
+}
+
+
+/* Fund Rasing Card CSS*/
+.snip1268 {
+    font-family: 'Raleway', Arial, sans-serif;
+    position: relative;
+    overflow: hidden;
+    margin: 25px 10px;
+    min-width: 220px;
+    max-width: 310px;
+    width: 100%;
+    color: #333333;
+    text-align: center;
+    background-color: #ffffff;
+    line-height: 1.6em;
+    border-radius: 25px;
+    border: 1px solid black;
+    max-height: 500px;
+  }
+  .snip1268:hover {
+    box-shadow: 1px 1px 5px black;
+  }
+  .snip1268 * {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all 0.6s ease;
+    transition: all 0.6s ease;
+  }
+  .snip1268 .image {
+    position: relative;
+  }
+  .snip1268 img {
+    max-width: 100%;
+    vertical-align: top;
+    -webkit-transition: opacity 0.35s;
+    transition: opacity 0.35s;
+    min-height: 150px;
+    max-height: 150px;
+  }
+  .snip1268 .icons,
+  .snip1268 .add-to-cart {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    opacity: 0;
+  }
+  .snip1268 .icons {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+    top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .snip1268 h2 {
+    font-size: 20px;
+  }
+  .snip1268 .icons a {
+    width: 32.5%;
+    background: #ffffff;
+  }
+  .snip1268 .icons a:hover {
+    background: #000000;
+  }
+  .snip1268 .icons a:hover i {
+    color: #ffffff;
+    opacity: 1;
+  }
+  .snip1268 .icons i {
+    line-height: 46px;
+    font-size: 20px;
+    color: #000000;
+    text-align: center;
+    opacity: 0.7;
+    margin: 0;
+  }
+  .snip1268 .add-to-cart {
+    position: absolute;
+    bottom: 20px;
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+    font-size: 0.8em;
+    color: #000000;
+    line-height: 46px;
+    letter-spacing: 1.5px;
+    background-color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .snip1268 .add-to-cart:hover {
+    background: #000000;
+    color: #ffffff;
+  }
+  .snip1268 figcaption {
+    padding: 20px 20px 30px;
+  }
+  .snip1268 h2,
+  .snip1268 p {
+
+    margin: 0;
+    text-align: left;
+  }
+  .snip1268 h2 {
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .snip1268 p {
+    margin-bottom: 15px;
+    font-size: 0.85em;
+    font-weight: 500;
+  }
+  .snip1268 .price {
+    font-size: 1.3em;
+    opacity: 0.5;
+    font-weight: 700;
+    text-align: right;
+  }
+  .snip1268:hover img,
+  .snip1268.hover img {
+    opacity: 0.8;
+  }
+  .snip1268:hover .icons,
+  .snip1268.hover .icons,
+  .snip1268:hover .add-to-cart,
+  .snip1268.hover .add-to-cart {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+    .main-container {
+        position: relative;
+        width: 80%;
+        margin: 0 auto;
+        min-height: 500px;
+        display: flex;
+    }
+    .left-container {
+            width: 70%;
+            background-color: transparent !important;
+            padding: 10px;
+
+    }
+    .right-container {
+            width:30%;
+            background-color: transparent !important;
+            padding: 10px;
+    }
+    .profile-1-container,.profile-2-container,.profile-3-container,.profile-4-container,.profile-5-container {
+        text-align: center;
+        background-color: #fff;
+        margin: 0 0 20px 0;
+        min-height: 200px;
+        box-sizing: border-box;
+        box-shadow: rgba(0,0,0,0.14) 0px 2px 2px 0px,rgba(0,0,0,0.2) 0px 3px 1px -2px,rgba(0,0,0,0.12) 0px 1px 5px 0px;
+        border-radius: 2px;
+        padding: 10px 10px 20px 10px;
+
+    }
+    .profile-img-container {
+        position: relative;
+        padding: 5px;
+        overflow: hidden !important;
+    }
+    .main-profile-img {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+    }
+    .profile-name {
+        font-size: 40px;
+    }
+    .profile-2-container {
+        padding:0;
+    }
+    .profile-side-header {
+        font-size: 16px;
+        line-height: 18px;
+        text-decoration: none solid rgba(0,0,0,0.54);
+        word-spacing: 0;
+        min-height: 50px;
+        overflow: hidden;
+        text-align: left;
+        padding: 9px 0;
+        color: gray;
+
+       
+    }
+    .contact-info,.skill-info,.network-info,.personal-info {
+        margin: 20px;
+        padding: 10px;
+        text-align: left;
+    }
+
+
+
+    .right-profile-1-container,.right-profile-2-container,.right-profile-3-container,.right-profile-4-container,.right-profile-5-container {
+        text-align: center;
+        background-color: #fff;
+        margin: 0 0 20px 0;
+        min-height: 100px;
+        box-sizing: border-box;
+        box-shadow: rgba(0,0,0,0.14) 0px 2px 2px 0px,rgba(0,0,0,0.2) 0px 3px 1px -2px,rgba(0,0,0,0.12) 0px 1px 5px 0px;
+        border-radius: 2px;
+        padding: 10px 10px 20px 10px;
+
+    }
+    .right-profile-side-header {
+        font-size: 16px;
+        line-height: 18px;
+        text-decoration: none solid rgba(0,0,0,0.54);
+        word-spacing: 0;
+        min-height: 50px;
+        overflow: hidden;
+        text-align: left;
+        padding: 9px 0;
+        color: gray;
+
+       
+    }
+    .edu-b {
+        padding: 10px;
+        margin: 5px;
+    }
+    .edu-b:hover {
+        background-color: #EEEEEE;
+    }
+   
+    .profile-blog-container {
+        position: relative;
+        width: 100%;
+        margin: 10px auto;
+        display: grid;
+        grid-template-columns: auto auto auto; 
+    }
+    
+    input {
+        border-radius: 0 !important;
+    }
+
+
+    /* Counter */
+    
+
+  
+  /*-=-=-=-=-=-=-=-=-=-=-=- */
+  /* Column Grids */
+  /*-=-=-=-=-=-=-=-=-=-=-=- */
+  
+  .col_half { width: 49%; }
+  .col_third { width: 32%; }
+  .col_fourth { width: 23.5%; }
+  .col_fifth { width: 18.4%; }
+  .col_sixth { width: 15%; }
+  .col_three_fourth { width: 74.5%;}
+  .col_twothird{ width: 66%;}
+  .col_half,
+  .col_third,
+  .col_twothird,
+  .col_fourth,
+  .col_three_fourth,
+  .col_fifth{
+      position: relative;
+      display:inline;
+      display: inline-block;
+      float: left;
+      margin-right: 2%;
+      margin-bottom: 20px;
+  }
+  .end { margin-right: 0 !important; }
+  /* Column Grids End */
+  
+  
+  .counter { background-color: #ffffff; padding: 20px 0; border-radius: 5px;}
+  .count-title { font-size: 40px; font-weight: normal;  margin-top: 10px; margin-bottom: 0; text-align: center; }
+  .count-text { font-size: 13px; font-weight: normal;  margin-top: 10px; margin-bottom: 0; text-align: center; }
+  .fa-2x { margin: 0 auto; float: none; display: table; color: #4ad1e5; }
+  
+
+
+/* // News & Notices Tab JS */
+  
+.unstyledList, .tabBlock-tabs {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .tabBlock {
+    margin: 0 0 2.5rem;
+    border-bottom-right-radius: 250px;
+  }
+  
+  .tabBlock-tab {
+    background-color: #fff;
+    border-color: #d8d8d8;
+    border-left-style: solid;
+    border-top: solid;
+    border-width: 2px;
+    color: #0088ff;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    float: left;
+    padding: 0.625rem 1.25rem;
+    position: relative;
+    -webkit-transition: 0.1s ease-in-out;
+            transition: 0.1s ease-in-out;
+    width:50%;
+    text-align: center;
+  }
+  .tabBlock-tab:last-of-type {
+    border-right-style: solid;
+  }
+  .tabBlock-tab::before, .tabBlock-tab::after {
+    content: "";
+    display: block;
+    height: 4px;
+    position: absolute;
+    -webkit-transition: 0.1s ease-in-out;
+            transition: 0.1s ease-in-out;
+  }
+  .tabBlock-tab::before {
+    background-color: #0088ff;
+    left: -2px;
+    right: -2px;
+    top: -2px;
+  }
+  .tabBlock-tab::after {
+    background-color: transparent;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+  }
+  @media screen and (min-width: 700px) {
+    .tabBlock-tab {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+  }
+  .tabBlock-tab.is-active {
+    position: relative;
+    color: #0088ff;
+    z-index: 1;
+  }
+  .tabBlock-tab.is-active::before {
+    background-color: #0088ff;
+  }
+  .tabBlock-tab.is-active::after {
+    background-color: #fff;
+  }
+  
+  .tabBlock-content {
+    background-color: #fff;
+    border: 2px solid #d8d8d8;
+    padding: 1.25rem;
+    min-height: 200px;
+    overflow:auto;
+    overflow-x: hidden !important;
+    position: relative;
+    /* margin: 0 20px; */
+  }
+  
+  .tabBlock-pane > :last-child {
+    margin-bottom: 0;
+  }
+
+  textarea {
+      text-align: left;
+  }
+  
+  .poll_outer_container
+  {
+      margin: 10px 0;
+  }
+
+
+  .swiper-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-container2 {
+    width: 100%;
+    height: 100%;
+  }
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+
+  .swiper-slide2 {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    margin: 30px 20px 50px 20px;
+    max-width:500px;
+  }
+
+
+  .swiper-pagination {
+        bottom: 10px;
+  }
+
+  .swiper-pagination2 {
+    bottom: 10px;
+}
+
+
+  </style>
+
+
+     <!-- <script src='https://cdn.tiny.cloud/1/t80l09l1e3m2paqocy8sqdfk7tnswgwyc47nr0jjbmvibdp2/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script> -->
+     <link href="https://cdn.syncfusion.com/ej2/ej2-base/styles/material.css" rel="stylesheet" type="text/css" />
+     <link href="https://cdn.syncfusion.com/ej2/ej2-buttons/styles/material.css" rel="stylesheet" type="text/css" />
+     <link href="https://cdn.syncfusion.com/ej2/ej2-inputs/styles/material.css" rel="stylesheet" type="text/css" />
+     <link href="https://cdn.syncfusion.com/ej2/ej2-lists/styles/material.css" rel="stylesheet" type="text/css" />
+     <link href="https://cdn.syncfusion.com/ej2/ej2-popups/styles/material.css" rel="stylesheet" type="text/css" />
+     <link href="https://cdn.syncfusion.com/ej2/ej2-splitbuttons/styles/material.css" rel="stylesheet" type="text/css" />
+     <link href="https://cdn.syncfusion.com/ej2/ej2-navigations/styles/material.css" rel="stylesheet" type="text/css" />
+     <!-- Essential JS 2 Rich Text Editor material theme -->
+     <link href="https://cdn.syncfusion.com/ej2/ej2-richtexteditor/styles/material.css" rel="stylesheet" type="text/css" />
+   
+     <!-- Essential JS 2 Rich Text Editor's dependent script -->
+     <script src="https://cdn.syncfusion.com/ej2/ej2-base/dist/global/ej2-base.min.js" type="text/javascript"></script>
+     <script src="https://cdn.syncfusion.com/ej2/ej2-buttons/dist/global/ej2-buttons.min.js" type="text/javascript"></script>
+     <script src="https://cdn.syncfusion.com/ej2/ej2-inputs/dist/global/ej2-inputs.min.js" type="text/javascript"></script>
+     <script src="https://cdn.syncfusion.com/ej2/ej2-lists/dist/global/ej2-lists.min.js" type="text/javascript"></script>
+     <script src="https://cdn.syncfusion.com/ej2/ej2-popups/dist/global/ej2-popups.min.js" type="text/javascript"></script>
+     <script src="https://cdn.syncfusion.com/ej2/ej2-splitbuttons/dist/global/ej2-splitbuttons.min.js" type="text/javascript"></script>
+     <script src="https://cdn.syncfusion.com/ej2/ej2-navigations/dist/global/ej2-navigations.min.js" type="text/javascript"></script>
+     <!-- Essential JS 2 Rich Text Editor's global script -->
+     <script src="https://cdn.syncfusion.com/ej2/ej2-richtexteditor/dist/global/ej2-richtexteditor.min.js" type="text/javascript"></script>
+ 
+
+</head>
+<body>
+  {% extends "main_header.html" %}
+
+  {% block content %}
+  <div id="loader_container">
+    <div id="loader">
+    <img src="{{url_for('static',filename='assets/loading.gif')}}">
+    </div>
+  </div>
+
+  <div style="position: fixed;bottom:10px;left:10px;padding:10px 0;margin:10px auto;width:300px;height:auto;z-index:1000;">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        
+        {% for message in messages %}
+        <div style="font-size:18px;background-color: #fff;color: black;padding: 15px 30px;margin:5px 0;box-shadow:1px 1px 3px grey,-1px -1px 3px grey;border-radius:30px;" id="div_{{loop.index}}"> 
+        <p style="float: right;"><i style="cursor:pointer" class="fas fa-times" onclick="document.getElementById('div_{{loop.index}}').style.display='none';"></i></p>
+        <p>{{ message }}</p>
+        </div>
+      
+        {% endfor %}
+    
+    
+    {% endif %}
+
+    {% endwith %}
+  </div>
+  
+
+
+  <div class="main-container">
+
+        <h1>Welcome {{session['college_login_id']}} {{session['college_login_email']}}</h1>
+
+   </div>
+  
+  
+  
+    <!-- <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script> -->
+
+  <script src="{{url_for('static',filename='js/jquery-3.4.1.min.js') }}"></script>
+  <script src="{{url_for('static',filename='js/sweetalert2.all.min.js')}}"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  
+  <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+    <script>
+        var f1 = $('#d_form');
+        var f2 = $('#p_form');
+
+
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 3,
+            spaceBetween: 10,
+            enteredSlides: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            freeMode: true,
+            pagination: {
+              el: '.swiper-pagination',
+              clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+              },
+          });
+
+          var swiper2 = new Swiper('.swiper-container2', {
+            slidesPerView: 2,
+            spaceBetween: 10,
+            enteredSlides: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+              el: '.swiper-pagination2',
+              clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next2',
+                prevEl: '.swiper-button-prev2',
+              },
+          });
+
+
+
+function show_hide(x)
+{
+    
+        document.getElementById('tabBlock').style.display = "block";
+        x.style.display = "none";
+   
+    
+}
+
+
+function createDiscussion()
+{
+
+    var d_content = document.getElementById('defaultRTE').value;
+    var d_p_t_v = document.getElementById('post_tag_value').value;
+    $.ajax({
+        url:'',
+        method: "POST",
+        dataType: "TEXT",
+        data: f1.serialize(),
+        success: function(response)
+        {
+            var obj = JSON.parse(response);
+                    
+            if(obj.res == 1)
+            {
+                Swal.fire({
+                    icon: 'success',
+                    title: obj.msg,
+                  });
+
+                  document.getElementById('defaultRTE').value = "";
+                  document.getElementById('post_tag_value').value = "";
+                  document.getElementById('tag-typer').value = "";
+            }
+            else {
+              Swal.fire({
+                icon: 'error',
+                title: obj.msg,
+              });
+            }
+        }
+    });
+
+}
+
+
+function createPoll()
+{
+
+  
+    $.ajax({
+        url:'',
+        method: "POST",
+        dataType: "TEXT",
+        data: f2.serialize(),
+        success: function(response)
+        {
+            var obj = JSON.parse(response);
+                    
+            if(obj.res == 1)
+            {
+                Swal.fire({
+                    icon: 'success',
+                    title: obj.msg,
+                  });
+
+            }
+            else {
+              Swal.fire({
+                icon: 'error',
+                title: obj.msg,
+              });
+            }
+        }
+    });
+
+}
+
+
+function addPollResponse(x)
+{
+    var poll_id = $(x).attr('data-pollid');
+    var option_id = $(x).attr('data-optionid');
+    
+    $.ajax({
+        url:'',
+        method: "POST",
+        dataType: "TEXT",
+        data: {
+            mode : 3,
+            poll_id : poll_id,
+            option_id : option_id 
+        },
+        success: function(response)
+        {
+            var obj = JSON.parse(response);
+                    
+            if(obj.res == 1)
+            {
+                var total_op = obj.total_options;
+                console.log(total_op);
+                for(var i=1;i <= total_op;i++)
+                {
+                    
+                    var po = "poll-counter-"+poll_id+"-"+option_id;
+                    console.log(po);
+                    if(i != option_id)
+                    {
+                        
+                        document.getElementById(po).style.backgroundColor = "#3f51b";
+                        console.log("x");
+                    }
+                    else {
+                        document.getElementById(po).innerHTML = obj.total_count;
+                        x.style.backgroundColor = "red";
+                        console.log("y");
+                    }
+                    
+                }
+                
+
+            }
+            else {
+              Swal.fire({
+                icon: 'error',
+                title: obj.msg,
+              });
+            }
+        }
+    });
+
+
+}
+
+
+
+var total_options = 4;
+    var total_options_created = 1;
+    document.getElementById('total_options').value = total_options_created;
+    
+    function addOption(x)
+    {
+        if(total_options_created == total_options)
+        {
+            Swal.fire({
+                html : 'Maximum 4 Options Are Allowed.'
+              });
+              return;
+        }
+        var container = document.getElementById("options_container");
+        var next = x+1;
+        var ele = document.createElement('div');
+        
+        
+        var content = '<div class="floating-input" style="width: 100%;" id="option_'+x.toString()+'_container"><table style="width: 100%;" align="center"><tr><td style="margin: 0;padding: 0;border: none;width:100%;"><input required id="option_'+x.toString()+'" name="option_'+x.toString()+'" style="width: 100% !important;border-radius: 0;" type="text" class="form-field" required /><label>Option '+x.toString()+'</label></td><td style="margin: 0;padding: 0;border: none;width:5%;"><i class="fa fa-plus" style="padding:5px;width:10%;float:left" id="option_'+x.toString()+'_plus" onclick="addOption('+next.toString()+');"></i></td></tr></table></div>';
+
+        document.getElementById('option_'+(x-1).toString()+'_plus').style.display = "none";
+
+        total_options_created += 1
+        document.getElementById('total_options').value = total_options_created;
+        ele.innerHTML = content;
+        container.appendChild(ele);
+    }
+
+
+
+
+// News & Notices Tab JS
+var TabBlock = {
+    s: {
+      animLen: 200
+    },
+    
+    init: function() {
+      TabBlock.bindUIActions();
+      TabBlock.hideInactive();
+    },
+    
+    bindUIActions: function() {
+      $('.tabBlock-tabs').on('click', '.tabBlock-tab', function(){
+        TabBlock.switchTab($(this));
+      });
+    },
+    
+    hideInactive: function() {
+      var $tabBlocks = $('.tabBlock');
+      
+      $tabBlocks.each(function(i) {
+        var 
+          $tabBlock = $($tabBlocks[i]),
+          $panes = $tabBlock.find('.tabBlock-pane'),
+          $activeTab = $tabBlock.find('.tabBlock-tab.is-active');
+        
+        $panes.hide();
+        $($panes[$activeTab.index()]).show();
+      });
+    },
+    
+    switchTab: function($tab) {
+      var $context = $tab.closest('.tabBlock');
+      
+      if (!$tab.hasClass('is-active')) {
+        $tab.siblings().removeClass('is-active');
+        $tab.addClass('is-active');
+     
+        TabBlock.showPane($tab.index(), $context);
+      }
+     },
+    
+    showPane: function(i, $context) {
+      var $panes = $context.find('.tabBlock-pane');
+     
+      // Normally I'd frown at using jQuery over CSS animations, but we can't transition between unspecified variable heights, right? If you know a better way, I'd love a read it in the comments or on Twitter @johndjameson
+      $panes.slideUp(TabBlock.s.animLen);
+      $($panes[i]).slideDown(TabBlock.s.animLen);
+    }
+  };
+  
+  $(function() {
+    TabBlock.init();
+  });
+
+    /* Demo purposes only */
+$(".hover").mouseleave(
+function () {
+$(this).removeClass("hover");
+}
+);
+
+
+
+        (function ($) {
+            $.fn.countTo = function (options) {
+                options = options || {};
+                
+                return $(this).each(function () {
+                    // set options for current element
+                    var settings = $.extend({}, $.fn.countTo.defaults, {
+                        from:            $(this).data('from'),
+                        to:              $(this).data('to'),
+                        speed:           $(this).data('speed'),
+                        refreshInterval: $(this).data('refresh-interval'),
+                        decimals:        $(this).data('decimals')
+                    }, options);
+                    
+                    // how many times to update the value, and how much to increment the value on each update
+                    var loops = Math.ceil(settings.speed / settings.refreshInterval),
+                        increment = (settings.to - settings.from) / loops;
+                    
+                    // references & variables that will change with each update
+                    var self = this,
+                        $self = $(this),
+                        loopCount = 0,
+                        value = settings.from,
+                        data = $self.data('countTo') || {};
+                    
+                    $self.data('countTo', data);
+                    
+                    // if an existing interval can be found, clear it first
+                    if (data.interval) {
+                        clearInterval(data.interval);
+                    }
+                    data.interval = setInterval(updateTimer, settings.refreshInterval);
+                    
+                    // initialize the element with the starting value
+                    render(value);
+                    
+                    function updateTimer() {
+                        value += increment;
+                        loopCount++;
+                        
+                        render(value);
+                        
+                        if (typeof(settings.onUpdate) == 'function') {
+                            settings.onUpdate.call(self, value);
+                        }
+                        
+                        if (loopCount >= loops) {
+                            // remove the interval
+                            $self.removeData('countTo');
+                            clearInterval(data.interval);
+                            value = settings.to;
+                            
+                            if (typeof(settings.onComplete) == 'function') {
+                                settings.onComplete.call(self, value);
+                            }
+                        }
+                    }
+                    
+                    function render(value) {
+                        var formattedValue = settings.formatter.call(self, value, settings);
+                        $self.html(formattedValue);
+                    }
+                });
+            };
+            
+            $.fn.countTo.defaults = {
+                from: 0,               // the number the element should start at
+                to: 0,                 // the number the element should end at
+                speed: 1000,           // how long it should take to count between the target numbers
+                refreshInterval: 100,  // how often the element should be updated
+                decimals: 0,           // the number of decimal places to show
+                formatter: formatter,  // handler for formatting the value before rendering
+                onUpdate: null,        // callback method for every time the element is updated
+                onComplete: null       // callback method for when the element finishes updating
+            };
+            
+            function formatter(value, settings) {
+                return value.toFixed(settings.decimals);
+            }
+        }(jQuery));
+        
+        jQuery(function ($) {
+          // custom formatting example
+          $('.count-number').data('countToOptions', {
+            formatter: function (value, options) {
+              return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
+            }
+          });
+          
+          // start all the timers
+          $('.timer').each(count);  
+          
+          function count(options) {
+            var $this = $(this);
+            options = $.extend({}, options || {}, $this.data('countToOptions') || {});
+            $this.countTo(options);
+          }
+        });
+
+
+        function previewFile() {
+            var preview = document.querySelector('#main-profile-img');
+            var file    = document.querySelector('input[type=file]').files[0];
+            var reader  = new FileReader();
+            console.log(file.name);
+            
+          
+            if (file.name != '') {
+              
+                document.getElementById('profile-img-form').submit();
+              
+            } 
+    }
+
+        $(document).ready( function() {
+            $("#tag-typer").keypress( function(event) {
+              var key = event.which;
+              if (key == 13 || key == 44){
+               event.preventDefault();
+               var tag = $(this).val();
+                if(tag.length > 0){
+                  $("<span class='tag' style='display:none'><span class='close'>&times;</span>"+tag+" </span>").insertBefore(this).fadeIn(100);
+                  $(this).val("");
+                  document.getElementById('post_tag_value').value += ","+tag;
+                }
+              }
+            });
+            
+            $("#tags").on("click", ".close", function() {
+              $(this).parent("span").fadeOut(100);
+            });
+            
+            $(".colors li").click(function() {
+              var c = $(this).css("background-color");
+              $(".tag").css("background-color",c);
+              $("#title").css("color",c);
+            });
+            
+          });
+
+     
+    </script>
+
+    <script>
+        // initialize Rich Text Editor component
+ var RichTextEditor = new ej.richtexteditor.RichTextEditor(
+  {
+   toolbarSettings: {
+       type: 'Expand'
+   },
+   pasteCleanupSettings: {
+       prompt: true,
+       plainText: false,
+       keepFormat: false,
+       deniedTags: ['a'],
+       deniedAttrs: ['class', 'title', 'id'],
+       allowedStyleProps: ['color', 'margin', 'font-size']
+   }
+  }
+);
+// Render initialized Rich Text Editor.
+var defaultRTE = new ej.richtexteditor.RichTextEditor({toolbarSettings: {
+   items: ['Bold', 'Italic', 'Underline', 'StrikeThrough',
+   'FontName', 'FontSize', 'FontColor', 'BackgroundColor',
+    '|',
+   'Formats', 'Alignments', 'OrderedList', 'UnorderedList',
+   'Outdent', 'Indent', '|',
+   'CreateLink', '|', 'ClearFormat', 'Print',
+   'SourceCode', '|', 'Undo', 'Redo']
+},
+insertImageSettings: {
+saveUrl: 'http://localhost:5000/association_broadcast_ajax',
+path: 'https://media.publit.io/file/'
+},
+height: "300px",
+});
+
+// render initialized Rich Text Editor
+defaultRTE.appendTo('#defaultRTE');
+
+
+$(document).ready( function() {
+  $("#tag-typer").keypress( function(event) {
+    var key = event.which;
+    if (key == 13 || key == 44){
+     event.preventDefault();
+     var tag = $(this).val();
+      if(tag.length > 0){
+        $("<span class='tag' style='display:none'><span class='close'>&times;</span>"+tag+" </span>").insertBefore(this).fadeIn(100);
+        $(this).val("");
+        document.getElementById('post_tag_value').value += ","+tag;
+      }
+    }
+  });
+  
+  $("#tags").on("click", ".close", function() {
+    $(this).parent("span").fadeOut(100);
+  });
+  
+  $(".colors li").click(function() {
+    var c = $(this).css("background-color");
+    $(".tag").css("background-color",c);
+    $("#title").css("color",c);
+  });
+  
+});
+
+document.getElementById('defaultRTE_rte-edit-view').style.textAlign = "left";
+
+</script>
+
+
+
+  {% endblock %}
+</body>
+</html>

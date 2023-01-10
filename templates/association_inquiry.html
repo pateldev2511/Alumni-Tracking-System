@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/final_aag_logo.png') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/alumni_signup.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/main_header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/about.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.css') }}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/sweetalert2.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/association_college_applications.css')}}">
+  <script src="https://kit.fontawesome.com/a25e25945a.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+  <script src="https://kit.fontawesome.com/a25e25945a.js" crossorigin="anonymous"></script>
+
+  <title>Inquiries | Alumni Association Of Goa </title>
+  <style>
+
+       .page-title {
+        text-align: center;
+        font-size: 50px;
+        margin-bottom: 10px;
+    }
+
+      /* Tabs */
+
+
+.tabs {
+	clear: both;
+	position: relative;   
+   /* max-width: 650px; */
+   height: 750px;
+   margin: 0 auto;
+   padding: 10px 0;
+   box-shadow: 1px 1px 3px grey,-1px -1px 3px grey;
+   border-radius: 10px;
+   /* you can either manually set a min-height here or do it via JS ---> */
+}
+
+.tab {
+	float: left;
+}
+
+.tab label {
+	margin-right: 20px;
+	position: relative;
+	top: 0;
+	cursor: pointer;
+    color: #333;
+    padding: 30px 20px 10px 20px !important;
+    margin : 30px 0px 20px 0 !important;
+   /* text-transform: uppercase; */
+}
+
+.tab [type=radio] {
+    display: none;   
+    
+}
+
+.tab__content {
+   position: relative;
+	top: 40px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+    transition: opacity .2s cubic-bezier(.42,0,.34,1.01);
+    padding: 30px;
+    opacity: 0;
+    height: auto;
+}
+
+[type=radio]:checked ~ label {
+    padding-bottom: 5px;
+	border-bottom: 2px solid #1d1d1d;
+	color: #1d1d1d;
+	z-index: 2;
+}
+
+[type=radio]:checked ~ label ~ .tab__content {
+	z-index: 1;
+	opacity: 1;
+}
+
+
+/*Checkboxes styles*/
+
+
+/* end only demo styles */
+
+.checkbox-custom, .radio-custom {
+  opacity: 0;
+  position: absolute;   
+}
+
+
+
+.checkbox-custom + .checkbox-custom-label:before, .radio-custom + .radio-custom-label:before {
+  content: '';
+  background: #fff;
+  border: 2px solid #ddd;
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.checkbox-custom:checked + .checkbox-custom-label:before {
+  content: "\f00c";
+  font-family: 'FontAwesome';
+  background: rebeccapurple;
+  color: #fff;
+}
+
+.radio-custom + .radio-custom-label:before {
+  border-radius: 50%;
+}
+
+.radio-custom:checked + .radio-custom-label:before {
+  content: "\f00c";
+  font-family: 'FontAwesome';
+  color: #bbb;
+}
+
+/*button */
+
+.button {
+  position: relative;
+  display: inline-block;
+  height: 36px;
+  padding: 0 16px;
+  background-color: #3f51b5;
+  color: #fff;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 36px;
+  vertical-align: middle;
+  overflow: hidden;
+  cursor: pointer;
+  outline: 0;
+  z-index: 1;
+  transition: all 0.15s ease-in;
+}
+.button:hover, .button:focus {
+  opacity: 0.9;
+}
+@keyframes ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.5;
+ }
+  100% {
+    width: 150px;
+    height: 150px;
+    opacity: 0;
+ }
+}
+.ripple:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: currentColor;
+  visibility: hidden;
+  z-index: 2;
+}
+.ripple:not(:active):before {
+  animation: ripple 0.4s cubic-bezier(0, 0, 0.2, 1);
+  transition: visibility 0.4s step-end;
+}
+.ripple:active:before {
+  visibility: visible;
+}
+
+/* Input Field */
+
+ 
+/* Floating Input */
+
+
+  .fa-plus,.fa-close {
+      cursor: pointer;
+  }
+
+  .main-container {
+    position: relative;
+    width: 80%;
+    margin: 20px auto;
+    display: flex;
+}
+.left-container {
+    width: 20%;
+    float: right;
+   
+}
+.right-container {
+    width: 80%;
+    float: left;
+}
+.active {
+    background-color: gray;
+}
+
+.class_li {
+    padding: 10px;
+    margin: 5px;
+}
+
+div.dataTables_wrapper {
+  width: 100%;
+  margin: 0 auto;
+  height: auto;
+}
+#example {
+  width:100%;
+}
+
+/* Poll CSS */
+
+.poll-option {
+  margin-bottom: 25px;
+  padding: 15px;
+  box-shadow: 1px 1px 3px grey, -1px -1px 3px grey;
+  border-radius: 10px;
+}
+span.poll-option__label {
+  font-weight: bold;
+}
+table.poll-option__result {
+  width: 100%;
+}
+table.poll-option__result tr, table.poll-option__result td {
+  padding: 0;
+
+}
+table.poll-option__result td:nth-child(odd) {
+  width: 40px;
+}
+table.poll-option__result td:nth-child(even) {
+  border: 0;
+  height: 100%;
+  position: relative;
+  vertical-align: center;
+  width: 100%;
+}
+table.poll-option__result td:first-child {
+  padding-right: 20px;
+}
+table.poll-option__result td:last-child {
+  padding-left: 20px;
+}
+table.poll-option__result span {
+  border-radius: 3px;
+  display: block;
+  height: 6px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+table.poll-option__result span:first-child {
+  background: rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+table.poll-option__result span:last-child {
+  background: aliceblue;
+  background-image: linear-gradient(to right, #ff5a00, #e3a417);
+}
+
+
+.option_votes {
+  background-color: transparent !important;
+  border: none !important;
+  
+}
+.votes_count {
+  background-color: #3f51b5 !important;
+  padding:15px 20px !important;
+  color: white !important;
+  text-align: center !important;
+  border-radius: 50% !important;
+}
+
+/* Other Datatable */
+.dataTables_length label select {
+  width:60px;
+}
+
+
+/* File Upload Button */
+.file-upload {
+	display: block;
+	text-align: center;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 12px;
+}
+
+.file-upload .file-select {
+	display: block;
+	border: 2px solid #dce4ec;
+	color: #34495e;
+	cursor: pointer;
+	height: 40px;
+	line-height: 40px;
+	text-align: left;
+	background: #FFFFFF;
+	overflow: hidden;
+	position: relative;
+}
+
+.file-upload .file-select .file-select-button {
+	background: #dce4ec;
+	padding: 0 10px;
+	display: inline-block;
+	height: 40px;
+	line-height: 40px;
+}
+
+.file-upload .file-select .file-select-name {
+	line-height: 40px;
+	display: inline-block;
+	padding: 0 10px;
+}
+
+.file-upload .file-select:hover {
+	border-color: #34495e;
+	transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	-webkit-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+}
+
+.file-upload .file-select:hover .file-select-button {
+	background: #34495e;
+	color: #FFFFFF;
+	transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	-webkit-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+}
+
+.file-upload.active .file-select {
+	border-color: #3fa46a;
+	transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	-webkit-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+}
+
+.file-upload.active .file-select .file-select-button {
+	background: #3fa46a;
+	color: #FFFFFF;
+	transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	-webkit-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+}
+
+.file-upload .file-select input[type=file] {
+	z-index: 100;
+	cursor: pointer;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+
+.file-upload .file-select.file-select-disabled {
+	opacity: 0.65;
+}
+
+.file-upload .file-select.file-select-disabled:hover {
+	cursor: default;
+	display: block;
+	border: 2px solid #dce4ec;
+	color: #34495e;
+	cursor: pointer;
+	height: 40px;
+	line-height: 40px;
+	margin-top: 5px;
+	text-align: left;
+	background: #FFFFFF;
+	overflow: hidden;
+	position: relative;
+}
+
+.file-upload .file-select.file-select-disabled:hover .file-select-button {
+	background: #dce4ec;
+	color: #666666;
+	padding: 0 10px;
+	display: inline-block;
+	height: 40px;
+	line-height: 40px;
+}
+
+.file-upload .file-select.file-select-disabled:hover .file-select-name {
+	line-height: 40px;
+	display: inline-block;
+	padding: 0 10px;
+}
+
+
+
+.blog-card {
+	display: flex;
+	flex-direction: column;
+	margin: 1rem auto;
+	box-shadow: 0 3px 7px -1px rgba(0, 0, 0, 0.1);
+	margin-bottom: 1.6%;
+	background: #fff;
+	line-height: 1.4;
+	font-family: sans-serif;
+	border-radius: 5px;
+	overflow: hidden;
+    z-index: 0;
+    width:580px;
+}
+
+.blog-card a {
+	color: inherit;
+}
+
+.blog-card a:hover {
+	color: #3f51b5;
+}
+
+.blog-card:hover .photo {
+	transform: scale(1.3) rotate(3deg);
+}
+
+.blog-card .meta {
+	position: relative;
+	z-index: 0;
+	height: 200px;
+}
+
+.blog-card .photo {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-size: cover;
+	background-position: center;
+	transition: transform .2s;
+}
+
+.blog-card .details,
+  .blog-card .details ul {
+	margin: auto;
+	padding: 0;
+	list-style: none;
+}
+
+.blog-card .details {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: -100%;
+	margin: auto;
+	transition: left .2s;
+	background: rgba(0, 0, 0, 0.6);
+	color: #fff;
+	padding: 10px;
+	width: 100%;
+	font-size: .9rem;
+}
+
+.blog-card .details a {
+	text-decoration: dotted underline;
+}
+
+.blog-card .details ul li {
+	display: inline-block;
+}
+
+.blog-card .details .author:before {
+	font-family: FontAwesome;
+	margin-right: 10px;
+	content: "\f007";
+}
+
+.blog-card .details .date:before {
+	font-family: FontAwesome;
+	margin-right: 10px;
+	content: "\f133";
+}
+
+.blog-card .details .tags ul:before {
+	font-family: FontAwesome;
+	content: "\f02b";
+	margin-right: 10px;
+}
+
+.blog-card .details .tags li {
+	margin-right: 2px;
+}
+
+.blog-card .details .tags li:first-child {
+	margin-left: -4px;
+}
+
+.blog-card .description {
+	padding: 1rem;
+	background: #fff;
+	position: relative;
+	z-index: 1;
+}
+
+.blog-card .description h1,
+    .blog-card .description h2 {
+	font-family: Poppins, sans-serif;
+}
+
+.blog-card .description h1 {
+	line-height: 1;
+	margin: 0;
+	font-size: 1.7rem;
+}
+
+.blog-card .description h2 {
+	font-size: 1rem;
+	font-weight: 300;
+	text-transform: uppercase;
+	color: #a2a2a2;
+	margin-top: 5px;
+}
+
+.blog-card .description .read-more {
+	text-align: right;
+}
+
+.blog-card .description .read-more a {
+	color: #3f51b5;
+	display: inline-block;
+    position: relative;
+    text-decoration: none;
+}
+
+.blog-card .description .read-more a:after {
+	content: "\2192";
+	font-family: FontAwesome;
+	margin-left: 20px;
+	opacity: 0;
+	vertical-align: middle;
+	transition: margin .3s, opacity .3s;
+}
+
+.blog-card .description .read-more a:hover:after {
+	margin-left: 5px;
+	opacity: 1;
+}
+
+.blog-card p {
+	position: relative;
+	margin: 1rem 0 0;
+}
+
+.blog-card p:first-of-type {
+	margin-top: 1.25rem;
+}
+
+.blog-card p:first-of-type:before {
+	
+}
+
+.blog-card:hover .details {
+	left: 0%;
+}
+
+@media (min-width: 640px) {
+	.blog-card {
+		flex-direction: row;
+		max-width: 700px;
+	}
+
+	.blog-card .meta {
+		flex-basis: 40%;
+		height: auto;
+	}
+
+	.blog-card .description {
+		flex-basis: 60%;
+	}
+
+	.blog-card .description:before {
+		transform: skewX(-3deg);
+		content: "";
+		background: #fff;
+		width: 30px;
+		position: absolute;
+		left: -10px;
+		top: 0;
+		bottom: 0;
+		z-index: -1;
+	}
+
+	.blog-card.alt {
+		flex-direction: row-reverse;
+	}
+
+	.blog-card.alt .description:before {
+		left: inherit;
+		right: -10px;
+		transform: skew(3deg);
+	}
+
+	.blog-card.alt .details {
+		padding-left: 25px;
+	}
+}
+
+
+.my_groups_container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto auto; 
+}
+
+  </style>
+
+  <!-- <script src='https://cdn.tiny.cloud/1/t80l09l1e3m2paqocy8sqdfk7tnswgwyc47nr0jjbmvibdp2/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script> -->
+  <link href="https://cdn.syncfusion.com/ej2/ej2-base/styles/material.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.syncfusion.com/ej2/ej2-buttons/styles/material.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.syncfusion.com/ej2/ej2-inputs/styles/material.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.syncfusion.com/ej2/ej2-lists/styles/material.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.syncfusion.com/ej2/ej2-popups/styles/material.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.syncfusion.com/ej2/ej2-splitbuttons/styles/material.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.syncfusion.com/ej2/ej2-navigations/styles/material.css" rel="stylesheet" type="text/css" />
+  <!-- Essential JS 2 Rich Text Editor material theme -->
+  <link href="https://cdn.syncfusion.com/ej2/ej2-richtexteditor/styles/material.css" rel="stylesheet" type="text/css" />
+
+  <!-- Essential JS 2 Rich Text Editor's dependent script -->
+  <script src="https://cdn.syncfusion.com/ej2/ej2-base/dist/global/ej2-base.min.js" type="text/javascript"></script>
+  <script src="https://cdn.syncfusion.com/ej2/ej2-buttons/dist/global/ej2-buttons.min.js" type="text/javascript"></script>
+  <script src="https://cdn.syncfusion.com/ej2/ej2-inputs/dist/global/ej2-inputs.min.js" type="text/javascript"></script>
+  <script src="https://cdn.syncfusion.com/ej2/ej2-lists/dist/global/ej2-lists.min.js" type="text/javascript"></script>
+  <script src="https://cdn.syncfusion.com/ej2/ej2-popups/dist/global/ej2-popups.min.js" type="text/javascript"></script>
+  <script src="https://cdn.syncfusion.com/ej2/ej2-splitbuttons/dist/global/ej2-splitbuttons.min.js" type="text/javascript"></script>
+  <script src="https://cdn.syncfusion.com/ej2/ej2-navigations/dist/global/ej2-navigations.min.js" type="text/javascript"></script>
+  <!-- Essential JS 2 Rich Text Editor's global script -->
+  <script src="https://cdn.syncfusion.com/ej2/ej2-richtexteditor/dist/global/ej2-richtexteditor.min.js" type="text/javascript"></script>
+
+
+</head>
+<body>
+  {% extends "main_header.html" %}
+  {% block content %}
+<br>
+  <p class="page-title">Inquiries</p>
+<br>
+
+ 
+    <div style="position: fixed;bottom:10px;left:10px;padding:10px 0;margin:10px auto;width:300px;height:auto;z-index:1000;">
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          
+          {% for message in messages %}
+          <div style="font-size:18px;background-color: #fff;color: black;padding: 15px 30px;margin:5px 0;box-shadow:1px 1px 3px grey,-1px -1px 3px grey;border-radius:30px;" id="div_{{loop.index}}"> 
+          <p style="float: right;"><i style="cursor:pointer" class="fas fa-times" onclick="document.getElementById('div_{{loop.index}}').style.display='none';"></i></p>
+          <p>{{ message }}</p>
+          </div>
+        
+          {% endfor %}
+      
+      
+      {% endif %}
+  
+      {% endwith %}
+    </div>
+        
+        
+    
+    <div class="main-container">
+
+        
+        <div class="left-container">
+        <div style="margin: 5px;">
+            <ul style="list-style: none;" class="ul_class">
+                <li class="class_li">
+                    <a href="#" data-filter="one" class="poll_filter_link" style="text-decoration: none;color:black;">All Inquiries</a>
+                </li>
+                <li class="class_li">
+                    <a href="#" data-filter="two" class="poll_filter_link" style="text-decoration: none;color:black;">Responsed By Me</a>
+                </li>
+               
+                
+            </ul>
+           
+            
+            
+       
+        </div>
+        </div>
+        <div class="right-container">
+            <div class="filter one">
+               
+              
+                           {%if l_unsolved_association_inquiries == 0 %}
+                                    <center><h1>No Inquiries Found.</h1></center>
+                           {% else %}
+                           <div class="my_groups_container">
+            
+                                        {% for i in unsolved_association_inquiries %}
+                                        <div class="blog-card" style="padding: 10px;display:block;">
+                                          <p style="padding: 0;margin:0;float:right !important;text-align: right !important;"><span style="color: gray;"><i class="far fa-user"></i> {{i[1] | title}} {{i[2] | title}}</span></p>
+                                          <br>
+                                          <div style="display: flex;">
+                                                <div style="width: 50%;">
+                                                        <h1 style="margin: 0;padding:0;text-align:left;max-height:95px !important;overflow:hidden;" title="{{i[5]}}">{{i[5]}}</h1>
+                                                   
+                                                        <p style="padding: 0 5px;margin: 0;max-height:60px !important;overflow:hidden;" title="{{i[5]}}">{{i[6]}}</p>
+                                                </div>
+                                                <div>
+                                                      <table style="width:100%;" border="0">
+                                                        <tr>
+                                                          <td style="border: none;background: white !important;text-align: left;">
+                                                            <i class="far fa-envelope"></i> {{i[3]}}
+                                                          </td>
+                                                          
+                                                        </tr>
+                                                        <tr>
+                                                          <td style="border: none;background: white !important;text-align: left;">
+                                                            &nbsp;&nbsp;&nbsp;<i class="fas fa-phone-alt"></i>&nbsp;&nbsp;&nbsp;+{{i[4]}}
+                                                          </td>
+                                                        </tr>
+                                                      </table>
+                                                </div>
+                                               
+                                              </div>
+                                          
+                                              <div>
+                                                <table style="width: 100%;background-color: white;">
+                                                  <tr>
+                                                    <td style="color: gray;border: none;text-align: left;">
+                                                      <i class="far fa-clock"></i>&nbsp;{{i[9].strftime('%d/%m/%Y @ %I:%M:%S %p')}}
+                                                    </td>
+                                                    <td style="border: none;text-align: right;">
+                                                      <a href="#" style="padding: 5px;color: #3f51b5;" data-inquiryid="{{i[0]}}">REPLY</a>&nbsp;&nbsp;&nbsp;
+                                                      <a href="#" style="padding: 5px;color: #3f51b5;" data-inquiryid="{{i[0]}}" onclick="deleteInquiry(this);">DELETE</a>
+                                                    </td>
+                                                  </tr>
+                                                </table>
+                                                
+                                             
+                                            </div>
+                                      </div>
+                                        {% endfor %}
+                              </div>
+                           {% endif %}
+
+
+                            
+                
+              
+
+            </div>
+            
+            
+              
+
+              
+
+        </div>
+    </div>
+    
+  
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnLxRX_-6gZtde1HNsXQwn2Wr2_hIXBnM&libraries=places&callback=initMap" async defer></script> -->
+    <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+    <script src="{{url_for('static',filename='js/sweetalert2.all.min.js')}}"></script>
+    <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+    <!-- <script src="../static/js/jquery.min.js"></script> -->
+    <!-- <script src="../static/js/font-awesome.js"></script> -->
+<script>
+
+  
+    function deleteInquiry(caller)
+    {
+      var inquiry_id = $(caller).attr('data-inquiryid');
+      $.ajax({
+        url:'',
+        method: "POST",
+        dataType: "TEXT",
+        data: {
+            mode: 1,
+            inquiry_id : inquiry_id
+        },
+        success: function(response)
+        {
+            var obj = JSON.parse(response);
+            console.log(obj.msg);  
+            if(obj.res == 1)
+            {
+                window.location.reload();
+            }
+            else {
+              Swal.fire({
+                icon: 'error',
+                title: obj.msg,
+              });
+            }
+        }
+    });
+  
+    }
+  
+
+    function previewFile() {
+        var preview = document.querySelector('.event-img');
+        var file    = document.querySelector('input[type=file]').files[0];
+        var reader  = new FileReader();
+      
+        reader.onloadend = function () {
+          preview.src = reader.result;
+        }
+      
+        if (file) {
+          reader.readAsDataURL(file);
+        } else {
+          preview.src = "https://via.placeholder.com/1920X620";
+        }
+      }
+
+
+  </script>
+
+  <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+  <script>
+    $('#chooseFile').bind('change', function () {
+        var filename = $("#chooseFile").val();
+        if (/^\s*$/.test(filename)) {
+          $(".file-upload").removeClass('active');
+          $("#noFile").text("No file chosen..."); 
+        }
+        else {
+          $(".file-upload").addClass('active');
+          $("#noFile").text(filename.replace("C:\\fakepath\\", "")); 
+        }
+      });
+      
+  $(document).ready(function()
+  {
+  $('.poll_filter_link').click(function(){
+  var name=$(this).attr("data-filter");
+  if(name == "all")
+  {
+      $(".filter").show("2000");
+  }
+  else {
+      $(".filter").not("."+name).hide("2000");
+  
+      $(".filter").filter("."+name).show("2000");
+  }
+  });
+  document.getElementsByClassName('poll_filter_link')[0].click();
+  
+  });
+
+  $(document).ready(function() {
+    $('#example').DataTable( {
+        "scrollY": 350,
+        "scrollX": true
+    } );
+    $('#example2').DataTable( {
+      "scrollY": 350,
+      "scrollX": true
+  } );
+} );
+  
+
+
+var RichTextEditor = new ej.richtexteditor.RichTextEditor(
+  {
+   toolbarSettings: {
+       type: 'Expand'
+   },
+   pasteCleanupSettings: {
+       prompt: true,
+       plainText: false,
+       keepFormat: false,
+       deniedTags: ['a'],
+       deniedAttrs: ['class', 'title', 'id'],
+       allowedStyleProps: ['color', 'margin', 'font-size']
+   }
+  }
+);
+// Render initialized Rich Text Editor.
+var defaultRTE = new ej.richtexteditor.RichTextEditor({toolbarSettings: {
+   items: ['Bold', 'Italic', 'Underline', 'StrikeThrough',
+   'FontName', 'FontSize', 'FontColor', 'BackgroundColor',
+   'LowerCase', 'UpperCase', '|',
+   'Formats', 'Alignments', 'OrderedList', 'UnorderedList',
+   'Outdent', 'Indent', '|',
+   'CreateLink', '|', 'ClearFormat', 'Print',
+   'SourceCode', '|', 'Undo', 'Redo']
+},
+insertImageSettings: {
+saveUrl: 'http://localhost:5000/association_broadcast_ajax',
+path: 'https://media.publit.io/file/'
+},
+height: "500px",
+});
+
+// render initialized Rich Text Editor
+defaultRTE.appendTo('#defaultRTE');
+  </script>
+
+  {% endblock %}
+</body>
+</html>

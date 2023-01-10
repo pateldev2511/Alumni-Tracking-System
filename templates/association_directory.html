@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/final_aag_logo.png') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/alumni_signup.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/main_header.css') }}">
+  
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/about.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.css') }}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/sweetalert2.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/association_college_applications.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/association_create_blog_post.css')}}">
+  <script src="https://kit.fontawesome.com/a25e25945a.js" crossorigin="anonymous"></script>
+  <title> Directory | Alumni Association Of Goa </title>
+ 
+
+  <style>
+
+    .main-container {
+        position: relative;
+        width: 80%;
+    }
+
+    .profile-1-container,.profile-2-container,.profile-3-container,.profile-4-container,.profile-5-container {
+        text-align: center;
+        background-color: #fff;
+        margin: 0 0 20px 0;
+        min-height: 200px;
+        box-sizing: border-box;
+        box-shadow: rgba(0,0,0,0.14) 0px 2px 2px 0px,rgba(0,0,0,0.2) 0px 3px 1px -2px,rgba(0,0,0,0.12) 0px 1px 5px 0px;
+        border-radius: 2px;
+        padding: 10px 10px 20px 10px;
+
+    }
+    .profile-img-container {
+        position: relative;
+        padding: 5px;
+        overflow: hidden !important;
+    }
+    .main-profile-img {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+    }
+    .profile-name {
+        font-size: 40px;
+    }
+    .profile-2-container {
+        padding:0;
+    }
+    .profile-side-header {
+        font-size: 16px;
+        line-height: 18px;
+        text-decoration: none solid rgba(0,0,0,0.54);
+        word-spacing: 0;
+        min-height: 50px;
+        overflow: hidden;
+        text-align: left;
+        padding: 9px 0;
+        color: gray;
+
+       
+    }
+    .contact-info,.skill-info,.network-info,.personal-info {
+        margin: 20px;
+        padding: 10px;
+        text-align: left;
+    }
+
+
+
+    .right-profile-1-container,.right-profile-2-container,.right-profile-3-container,.right-profile-4-container,.right-profile-5-container {
+        text-align: center;
+        background-color: #fff;
+        margin: 0 0 20px 0;
+        min-height: 100px;
+        box-sizing: border-box;
+        box-shadow: rgba(0,0,0,0.14) 0px 2px 2px 0px,rgba(0,0,0,0.2) 0px 3px 1px -2px,rgba(0,0,0,0.12) 0px 1px 5px 0px;
+        border-radius: 2px;
+        padding: 10px 10px 20px 10px;
+
+    }
+    .right-profile-side-header {
+        font-size: 16px;
+        line-height: 18px;
+        text-decoration: none solid rgba(0,0,0,0.54);
+        word-spacing: 0;
+        min-height: 50px;
+        overflow: hidden;
+        text-align: left;
+        padding: 9px 0;
+        color: gray;
+
+       
+    }
+   
+
+    .college_container {
+        position: relative;
+        width: 100%;
+        margin: 0 auto 50px auto;
+        display: grid;
+        grid-template-columns: auto auto auto; 
+        column-gap: 9px;
+
+    }
+    .college_con {
+        margin: 10px;
+    }
+
+
+    
+/* Fund Rasing Card CSS*/
+.snip1268 {
+    font-family: 'Raleway', Arial, sans-serif;
+    position: relative;
+    overflow: hidden;
+    margin: 25px 10px;
+    min-width: 220px;
+    max-width: 310px;
+    width: 100%;
+    color: #333333;
+    text-align: center;
+    background-color: #ffffff;
+    line-height: 1.6em;
+    border-radius: 25px;
+    border: 1px solid black;
+    max-height: 500px;
+  }
+  .snip1268:hover {
+    box-shadow: 1px 1px 5px black;
+  }
+  .snip1268 * {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all 0.6s ease;
+    transition: all 0.6s ease;
+  }
+  .snip1268 .image {
+    position: relative;
+  }
+  .snip1268 img {
+    max-width: 100%;
+    vertical-align: top;
+    -webkit-transition: opacity 0.35s;
+    transition: opacity 0.35s;
+    min-height: 150px;
+    max-height: 150px;
+  }
+  .snip1268 .icons,
+  .snip1268 .add-to-cart {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    opacity: 0;
+  }
+  .snip1268 .icons {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+    top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .snip1268 h2 {
+    font-size: 20px;
+  }
+  .snip1268 .icons a {
+    width: 32.5%;
+    background: #ffffff;
+  }
+  .snip1268 .icons a:hover {
+    background: #000000;
+  }
+  .snip1268 .icons a:hover i {
+    color: #ffffff;
+    opacity: 1;
+  }
+  .snip1268 .icons i {
+    line-height: 46px;
+    font-size: 20px;
+    color: #000000;
+    text-align: center;
+    opacity: 0.7;
+    margin: 0;
+  }
+  .snip1268 .add-to-cart {
+    position: absolute;
+    bottom: 20px;
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+    font-size: 0.8em;
+    color: #000000;
+    line-height: 46px;
+    letter-spacing: 1.5px;
+    background-color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .snip1268 .add-to-cart:hover {
+    background: #000000;
+    color: #ffffff;
+  }
+  .snip1268 figcaption {
+    padding: 20px 20px 30px;
+  }
+  .snip1268 h2,
+  .snip1268 p {
+
+    margin: 0;
+    text-align: center;
+  }
+  .snip1268 h2 {
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .snip1268 p {
+    margin-bottom: 15px;
+    font-size: 0.85em;
+    font-weight: 500;
+  }
+  .snip1268 .price {
+    font-size: 1.3em;
+    opacity: 0.5;
+    font-weight: 700;
+    text-align: right;
+  }
+  .snip1268:hover img,
+  .snip1268.hover img {
+    opacity: 0.8;
+  }
+  .snip1268:hover .icons,
+  .snip1268.hover .icons,
+  .snip1268:hover .add-to-cart,
+  .snip1268.hover .add-to-cart {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+
+
+   /* Tags */
+
+   #tags{
+    /* -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px; */
+    /* box-shadow: 1px 1px 4px #CCC inset; */
+    padding: 10px;
+    width: 100%;
+    /* background: #fafafa; */
+    margin: auto;
+  }
+  
+  #tag-typer{
+    outline: none;
+    border: none;
+    padding: 6px;
+    margin: 3px;
+    margin-right: -25px;
+    width: 100px;
+    background-color: transparent;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .tag{
+    display: inline-block;
+    background: #3f51b5;
+    color: #FFF;
+    padding: 5px 10px;
+    margin:2px 2px 2px 20px;
+    font: normal 16px sans-serif;
+    position: relative;
+    cursor: default;
+    box-shadow:1px 1px 0 rgba(0,0,0,.2);
+    -webkit-transform-origin:0% 50%;
+    -webkit-animation: swing 1s;
+    -o-animation: swing 1s;
+    animation: swing 1s ;
+  }
+  
+  .tag:before{
+    content: "";
+    position: absolute;
+    width: 0;
+    background: inherit;
+    height: 10px;
+    border: 10px solid #fafafa;
+    border-right-color: transparent;
+    -webkit-border-radius: 10px 0 0 10px;
+    -moz-border-radius:10px 0 0 10px;
+    border-radius:10px 0 0 10px;
+    left: -20px;
+    top: 0;
+  }
+  
+  .tag:after{
+    content: "";
+    width: 6px;
+    height: 6px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background: #FFF;
+    position: absolute;
+    left: -3px;
+    top: 12px;
+    box-shadow:inset 1px 1px 0 #CCC;
+  }
+  
+  .tag .close{
+    position: absolute;
+    background: inherit;
+    left: -4px;
+    z-index: 3;
+    visibility: hidden;
+  }
+  
+  .tag:hover .close{
+    visibility: visible;
+    
+  }
+  
+  .close:hover {
+    color: rgba(0,0,0,.5);
+  }
+  
+  
+  .colors {
+    list-style:none;
+  }
+  .colors li{
+    display: inline-block;
+    width:15px;
+    height: 15px;
+  }
+  
+  /* Chrome, Safari, Opera */
+  @-webkit-keyframes swing
+  {
+    0%   {-webkit-transform: rotate(100deg)}
+    25%  {-webkit-transform: rotate(-25deg)}
+    50%  {-webkit-transform: rotate(15deg)}
+    100% {-webkit-transform: rotate(0deg)}
+  }
+  
+  
+  @keyframes swing
+  {
+    0%   {-webkit-transform: rotate(-200)}
+    25%  {-webkit-transform: rotate(-70)}
+    50%  {-webkit-transform: rotate(-185)}
+    100% {-webkit-transform: rotate(-180)}
+  }
+
+
+  
+  </style>
+</head>
+<body>
+  {% extends "main_header.html" %}
+
+  {% block content %}
+  <div id="loader_container">
+    <div id="loader">
+    <img src="{{url_for('static',filename='assets/loading.gif')}}">
+    </div>
+  </div>
+
+  <div style="position: fixed;bottom:10px;left:10px;padding:10px 0;margin:10px auto;width:300px;height:auto;z-index:1000;">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        
+        {% for message in messages %}
+        <div style="font-size:18px;background-color: #fff;color: black;padding: 15px 30px;margin:5px 0;box-shadow:1px 1px 3px grey,-1px -1px 3px grey;border-radius:30px;" id="div_{{loop.index}}"> 
+        <p style="float: right;"><i style="cursor:pointer" class="fas fa-times" onclick="document.getElementById('div_{{loop.index}}').style.display='none';"></i></p>
+        <p>{{ message }}</p>
+        </div>
+      
+        {% endfor %}
+    
+    
+    {% endif %}
+
+    {% endwith %}
+  </div>
+  
+  <div class="main-container">
+    <h1 style="text-align: center;" class="page-title">Directory</h1>
+
+    <div class="profile-4-container">
+        <div class="profile-side-header">
+            <table style="width: 100%;" border="0">
+                <tr>
+                    <td style="border: none !important;width:60%;text-align: left;" id="box-header">
+                        <i class="fas fa-university" style="color: #3f51b5;"></i>&nbsp;&nbsp;&nbsp;College / University
+                    </td>
+                    <td style="border:none !important;width:40%;text-align: right;">
+                    </td>
+                </tr>
+            </table>
+            
+        </div>
+        <div style="width:100%;height:1px;background-color: rgba(0,0,0,0.08);"></div>
+        <div class="personal-info">
+            <div id="select_container">
+                <div id="selected_college" style="float: left;">
+                </div>
+                <div id="selected_classof" style="float: left;">
+
+                </div>
+          
+                <div id="selected_degree">
+                   
+                </div>
+            </div>
+            <br>
+            <div class="college_container" id="college_container">
+             
+               
+                {% if l_college_list != 0 %}
+                        {% for i in college_list %}
+                            <div class="college_con" id="college_con" data-collegeid="{{i[0]}}" data-collegename="{{i[1]}}" data-collegemembers="{{i[2]}}" style="padding: 20px;text-align: center;box-shadow: 1px 1px 3px gray,-1px -1px 3px gray;border-radius: 20px;cursor: pointer;" onclick="college_Click(this);">
+                                <div class="college_c">
+                                        <p style="font-size: 25px;padding:0 0 5px 0;">{{i[1]}}</p>
+                                        <p  style="color: gray;"><span class="college_members_count">{{i[2]}}</span> Members</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                {% endif %}
+
+            </div>
+            
+
+        </div>
+    </div>
+
+    </div>
+  
+    <!-- <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script> -->
+
+  <script src="{{url_for('static',filename='js/jquery-3.4.1.min.js') }}"></script>
+  <script src="{{url_for('static',filename='js/sweetalert2.all.min.js')}}"></script>
+  <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+<script>
+    $(document).ready( function() {
+        $("#tag-typer").keypress( function(event) {
+          var key = event.which;
+          if (key == 13 || key == 44){
+           event.preventDefault();
+           var tag = $(this).val();
+            if(tag.length > 0){
+              $("<span class='tag' style='display:none'><span class='close'>&times;</span>"+tag+" </span>").insertBefore(this).fadeIn(100);
+              $(this).val("");
+              document.getElementById('post_tag_value').value += ","+tag;
+            }
+          }
+        });
+        
+        $("#tags").on("click", ".close", function() {
+          $(this).parent("span").fadeOut(100);
+        });
+        
+        $(".colors li").click(function() {
+          var c = $(this).css("background-color");
+          $(".tag").css("background-color",c);
+          $("#title").css("color",c);
+        });
+        
+      });
+  </script>
+
+  <script>
+  
+
+
+
+    var college_id = 0;
+    var college_name = "";
+    var total_college_members = 0;
+    var class_of = 0;
+    var degree = "";
+    var org_content = document.getElementById('college_container').innerHTML;
+    function college_Click(x)
+    {
+        college_id = $(x).attr('data-collegeid');
+        college_name = $(x).attr('data-collegename');
+        total_college_members = $(x).attr('data-collegemembers');
+
+        $.ajax({
+            url:'',
+            method: "POST",
+            dataType: "TEXT",
+            data: {
+                mode : 1,
+                college_id : college_id,
+                college_name : college_name,
+                total_college_members : total_college_members
+            },
+            success: function(response)
+            {
+                var obj = JSON.parse(response);
+                        
+                if(obj.res == 1)
+                {
+                    document.getElementById('college_container').innerHTML = obj.msg;   
+                    document.getElementById('box-header').innerHTML = '<i class="fas fa-university" style="color: #3f51b5;"></i>&nbsp;&nbsp;&nbsp;Batch';
+                    document.getElementById('selected_college').innerHTML = '<a style="color: #3f51b5;" id="top_box_link"><span class="tag"><span class="close id="college_x" data-collegeid="'+college_id+'" data-passoutyear="'+class_of+'" data-collegename="'+college_name+'" data-collegemembers="'+total_college_members+'" onclick="removeDegree();removeClassOf();removeCollege();">×</span>'+college_name+'</span></a>';
+                    document.getElementById('selected_college').style.display = "block";
+                }
+                else {
+                  Swal.fire({
+                    icon: 'error',
+                    title: obj.msg,
+                  });
+                }
+            }
+        });
+    
+
+    }
+
+
+    function classof_Click(x)
+    {
+        college_id = $(x).attr('data-collegeid');
+        college_name = $(x).attr('data-collegename');
+        total_college_members = $(x).attr('data-collegemembers');
+        class_of = $(x).attr('data-passoutyear');
+        $.ajax({
+            url:'',
+            method: "POST",
+            dataType: "TEXT",
+            data: {
+                mode : 2,
+                college_id : college_id,
+                college_name : college_name,
+                class_of : class_of,
+                total_college_members : total_college_members
+            },
+            success: function(response)
+            {
+                var obj = JSON.parse(response);
+                        
+                if(obj.res == 1)
+                {
+                    document.getElementById('college_container').innerHTML = obj.msg;   
+                    document.getElementById('box-header').innerHTML = '<i class="fas fa-university" style="color: #3f51b5;"></i>&nbsp;&nbsp;&nbsp;Degree';
+                    
+                    document.getElementById('selected_classof').innerHTML = '<a style="color: #3f51b5;" id="top_box_link"><span class="tag"><span class="close id="college_x" data-collegeid="'+college_id+'" data-passoutyear="'+class_of+'" data-collegename="'+college_name+'" data-collegemembers="'+total_college_members+'" onclick="removeDegree();college_Click(this);removeClassOf();">×</span>Class Of '+class_of+'</span></a>';
+                    document.getElementById('selected_classof').style.display = "block";
+                }
+                else {
+                  Swal.fire({
+                    icon: 'error',
+                    title: obj.msg,
+                  });
+                }
+            }
+        });
+    
+
+    }
+
+
+    function degree_Click(x)
+    {
+        college_id = $(x).attr('data-collegeid');
+        college_name = $(x).attr('data-collegename');
+        total_college_members = $(x).attr('data-collegemembers');
+        class_of = $(x).attr('data-passoutyear');
+        degree = $(x).attr('data-degree');
+        $.ajax({
+            url:'',
+            method: "POST",
+            dataType: "TEXT",
+            data: {
+                mode : 3,
+                college_id : college_id,
+                college_name : college_name,
+                class_of : class_of,
+                degree : degree,
+                total_college_members : total_college_members
+            },
+            success: function(response)
+            {
+                var obj = JSON.parse(response);
+                        
+                if(obj.res == 1)
+                {
+                    document.getElementById('college_container').style.gridTemplateColumns = "auto auto auto auto";
+                    document.getElementById('college_container').innerHTML = obj.msg;   
+                    document.getElementById('box-header').innerHTML = '<i class="fas fa-university" style="color: #3f51b5;"></i>&nbsp;&nbsp;&nbsp;Students';
+                //    <div id="selected_college" style="float: left;">
+                   //     <a  href="javascript:void(0)" style="color: #3f51b5;" id="top_box_link"><span class="tag"><span class="close" id="college_x">×</span>Goa University</span></a>
+                  // </div>
+                //   <div id="selected_classof" style="float: left;"><a  href="javascript:void(0)" style="color: #3f51b5;" id="top_box_link"><span class="tag"><span class="close" id="college_x">×</span>Class Of 2021</span></a></div>
+             
+                  // <div id="selected_degree"><a  href="javascript:void(0)" style="color: #3f51b5;" id="top_box_link"><span class="tag"><span class="close" id="college_x">×</span>Bachelor Of Technology (BTech)</span></a></div>
+                    document.getElementById('selected_degree').innerHTML = '<a style="color: #3f51b5;" id="top_box_link"><span class="tag"><span class="close id="college_x" data-collegeid="'+college_id+'" data-passoutyear="'+class_of+'" data-collegename="'+college_name+'" data-collegemembers="'+total_college_members+'" onclick="classof_Click(this);removeDegree();">×</span>'+degree+'</span></a>';
+                    document.getElementById('selected_degree').style.display = "block";
+                }
+                else {
+                  Swal.fire({
+                    icon: 'error',
+                    title: obj.msg,
+                  });
+                }
+            }
+        });
+    
+
+    }
+
+
+
+    function removeDegree()
+    {
+        document.getElementById('selected_degree').innerHTML = "";   
+    }
+    function removeClassOf()
+    {
+        document.getElementById('selected_classof').innerHTML = "";
+
+    }
+
+    function removeCollege()
+    {
+        document.getElementById('selected_college').innerHTML = "";
+        document.getElementById('college_container').innerHTML = org_content;
+
+    }
+
+
+  </script>
+
+
+
+
+  {% endblock %}
+</body>
+</html>

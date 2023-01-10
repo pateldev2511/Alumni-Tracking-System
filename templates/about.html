@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/final_aag_logo.png') }}" type="image/x-icon">
+ 
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/main_header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/about.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.css') }}">
+  <title>About | Alumni Association Of Goa</title>
+  
+</head>
+<body>
+  {% extends "main_header.html" %}
+  {% block content %}
+
+    <div class="about-main-container">
+        <div class="about-container">
+            <h1>About Alumni Association Of Goa</h1>
+            <p id="first">
+                The Alumni Association Of Goa Formly Known As AAG is an initiative by Directorate of Higher Education, Goa remained as the alma mater to generations of students all over the State. The Directorate of Higher Education was established in the year 1996. The Directorate of Higher Education is looking after the administrative matters, disbursement of salary and non-salary grants relating to Seven Government Colleges, Twenty-Six Non-Government Aided Colleges and the Goa University. The DHE has always been fortunate to see its alumni gratefully acknowledging their alma mater’s role in moulding their future. It is the deep sense of belonging, gratitude and commitment on the part of these former students and teachers that resulted in the formation of the Alumni Association of Goa (AAG).
+            </p> <br>
+            <p style="text-indent: 50px;">AAG has a strong alumni association, with members from all walks of life. Eminent personalities from all walks of life are members of the alumni association. The Association intends to gather the support of the alumni to develop and sustain strong ties with each other and with the DHE. The alumni association promotes interaction among alumni in an area and provides newcomers with valuable social and professional contacts. Membership also provides a way for alumni to help each other as well as prospective students, current students, and young alumni who seek guidance in pursuing their education and in starting their careers.</p>
+        </div>
+        <div class="about-container-d-flex" style="">
+            <div class="about-msg-left">
+                    <img src="../static/assets/man.png" alt="">
+            </div>
+            <div class="about-msg-right">
+                <h1>Message from Director</h1>
+                <p>Dear Alumni,</p> <br><br>
+                <p>As president of the Alumni Association, it's my great pleasure to welcome you into the  Alumni Association of Goa, which is the community of students, alumni, faculty and friends. We hope to get to know you over the next few years as you take advantage of the programs and services offered by the Association.</p>
+        <br><br>
+        <p>The alumni’s of Goa are spread out across the world, holding positions of eminence. I would like to appeal to them to partake in the activities of the Alumni Association, as I am sure that the alumni can play a significant role in institution-building.</p>
+        <br><br>
+        <p>AAG has been established to foster, renew and promote activities which have as their purpose the enrichment of both the lives of its members and the students of constituent DHE College. Alumni Association provides an excellent platform for networking of the entire distinguished alumnus. Annual Alumni Meet is one such event, which attracts attendance of a large number of alumni, distinguished faculty and guests from all parts of the country as well as abroad. </p>
+        <br><br>
+        <p> On behalf of the Alumni association, we seek your support and look forward to your participation in the creation of a longstanding legacy of which we can all be proud.
+        <br><br>
+        Dr. Max William <br><br>
+        President, AAG
+                    </p>
+            </div>
+           
+        </div>
+        <div class="about-container">
+            <h1>Vision & Mission</h1>
+            <p style="text-indent: 50px;">
+                To permeate higher and quality education with value added technology programs, providing all facilities in terms of technology and platforms for all round development with societal awareness and nurture the youth with international competencies and exemplary level of employability even under highly competitive environment so that they are innovative adaptable and capable of handling problems faced by our country and world at large. </p><br>
+            <p style="text-indent: 50px;">To mobilize the resources and equip the institution with men and materials of excellence to provide knowledge and develop technologies in the various disciplines. To provide the diverse platforms of sports, technical, cocurricular and extracurricular activities for the overall development of student with ethical attitude. To prepare the students to sustain the impact of education for social needs encompassing industry, educational institutions and public service. To collaborate with students of different educational backgrounds for the technical and overall upliftment of students for continuing learning and entrepreneurship.</p>
+        </div>
+        <div class="about-container">
+            <h1>Goals & Values</h1>
+            <p>With respect for each other and our rich traditions, the AAG embraces its core values: </p>
+            <ul style="margin-left: 40px;">
+                <li>
+                Community</li>
+                <p>Strengthen and develop community connections and engagement through collaborations, research, service, and participation.
+                Support a positive and inclusive college climate by advancing equity, open communication, dynamic engagement and respect.</p>
+                <li>Diversity/Intercultural Awareness</li>
+                <p>Advance and support opportunities to become culturally competent citizens with a focus on social justice.</p>
+                <li>International/Global</li>
+                <p>Support the development of global citizens who understand the complexities of living in a globally interconnected world.</p>
+                <li>Research</li>
+                <p>Advance excellence in research that builds upon our shared values as expressed through the CEHSP mission and vision.</p>
+                <li>Student Success</li>
+                <p>Prepare and equip students to be critically reflective learners and practitioners [through efficient and effective processes]; programs and curriculum optimize efficiency and effective practices.</p>
+                <li>Sustainability</li>
+                <p>Model and prepare students to critically evaluate sustainable practices to enhance economic, environmental, physical and social, and professional needs.</p>
+            </ul>
+            
+        </div>
+
+    </div>
+
+  {% endblock %}
+</body>
+</html>

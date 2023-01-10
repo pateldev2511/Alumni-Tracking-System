@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/final_aag_logo.png') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/alumni_signup.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/main_header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/about.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.css') }}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/sweetalert2.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/association_college_applications.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/association_create_blog_post.css')}}">
+  <script src="https://kit.fontawesome.com/a25e25945a.js" crossorigin="anonymous"></script>
+  
+  <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-flat.css" />
+
+  <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css" />
+
+  <title> View Job | Alumni Association Of Goa </title>
+  <style>
+     
+  </style>
+
+
+  <style>
+    /* File Upload Button */
+.file-upload {
+	display: block;
+	text-align: center;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 12px;
+}
+
+.file-upload .file-select {
+	display: block;
+	border: 2px solid #dce4ec;
+	color: #34495e;
+	cursor: pointer;
+	height: 40px;
+	line-height: 40px;
+	text-align: left;
+	background: #FFFFFF;
+	overflow: hidden;
+	position: relative;
+}
+
+.file-upload .file-select .file-select-button {
+	background: #dce4ec;
+	padding: 0 10px;
+	display: inline-block;
+	height: 40px;
+	line-height: 40px;
+}
+
+.file-upload .file-select .file-select-name {
+	line-height: 40px;
+	display: inline-block;
+	padding: 0 10px;
+}
+
+.file-upload .file-select:hover {
+	border-color: #34495e;
+	transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	-webkit-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+}
+
+.file-upload .file-select:hover .file-select-button {
+	background: #34495e;
+	color: #FFFFFF;
+	transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	-webkit-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+}
+
+.file-upload.active .file-select {
+	border-color: #3fa46a;
+	transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	-webkit-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+}
+
+.file-upload.active .file-select .file-select-button {
+	background: #3fa46a;
+	color: #FFFFFF;
+	transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	-webkit-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+}
+
+.file-upload .file-select input[type=file] {
+	z-index: 100;
+	cursor: pointer;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+
+.file-upload .file-select.file-select-disabled {
+	opacity: 0.65;
+}
+
+.file-upload .file-select.file-select-disabled:hover {
+	cursor: default;
+	display: block;
+	border: 2px solid #dce4ec;
+	color: #34495e;
+	cursor: pointer;
+	height: 40px;
+	line-height: 40px;
+	margin-top: 5px;
+	text-align: left;
+	background: #FFFFFF;
+	overflow: hidden;
+	position: relative;
+}
+
+.file-upload .file-select.file-select-disabled:hover .file-select-button {
+	background: #dce4ec;
+	color: #666666;
+	padding: 0 10px;
+	display: inline-block;
+	height: 40px;
+	line-height: 40px;
+}
+
+.file-upload .file-select.file-select-disabled:hover .file-select-name {
+	line-height: 40px;
+	display: inline-block;
+	padding: 0 10px;
+}
+
+.main-container {
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+    
+    min-height: 500px;
+    display: flex;
+}
+.left-container {
+        width: 30%;
+        background-color: transparent !important;
+        padding: 10px;
+
+}
+.right-container {
+        width:70%;
+        background-color: transparent !important;
+        padding: 10px;
+}
+.profile-1-container,.profile-2-container,.profile-3-container,.profile-4-container,.profile-5-container {
+    text-align: center;
+    background-color: #fff;
+    margin: 0 0 20px 0;
+    min-height: 200px;
+    box-sizing: border-box;
+    box-shadow: rgba(0,0,0,0.14) 0px 2px 2px 0px,rgba(0,0,0,0.2) 0px 3px 1px -2px,rgba(0,0,0,0.12) 0px 1px 5px 0px;
+    border-radius: 8px;
+    padding: 10px 10px 20px 10px;
+
+}
+.profile-img-container {
+    position: relative;
+    padding: 5px;
+    overflow: hidden !important;
+}
+.main-profile-img {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+.profile-name {
+    font-size: 40px;
+}
+.profile-2-container {
+    padding:0;
+}
+.profile-side-header {
+    font-size: 16px;
+    line-height: 18px;
+    text-decoration: none solid rgba(0,0,0,0.54);
+    word-spacing: 0;
+    min-height: 50px;
+    overflow: hidden;
+    text-align: left;
+    padding: 9px 0;
+    color: gray;
+
+   
+}
+.contact-info,.skill-info,.network-info,.personal-info {
+    margin: 20px;
+    padding: 10px;
+    text-align: left;
+}
+
+
+
+.right-profile-1-container,.right-profile-2-container,.right-profile-3-container,.right-profile-4-container,.right-profile-5-container {
+    text-align: center;
+    background-color: #fff;
+    margin: 0 0 20px 0;
+    min-height: 100px;
+    box-sizing: border-box;
+    box-shadow: rgba(0,0,0,0.14) 0px 2px 2px 0px,rgba(0,0,0,0.2) 0px 3px 1px -2px,rgba(0,0,0,0.12) 0px 1px 5px 0px;
+    border-radius: 8px;
+    padding: 10px 10px 20px 10px;
+
+}
+.right-profile-side-header {
+    font-size: 16px;
+    line-height: 18px;
+    text-decoration: none solid rgba(0,0,0,0.54);
+    word-spacing: 0;
+    min-height: 50px;
+    overflow: hidden;
+    text-align: left;
+    padding: 9px 0;
+    color: gray;
+
+   
+}
+.edu-b {
+    padding: 10px;
+    margin: 5px;
+}
+.edu-b:hover {
+    background-color: #EEEEEE;
+}
+
+.profile-blog-container {
+    position: relative;
+    width: 100%;
+    margin: 10px auto;
+    display: grid;
+    grid-template-columns: auto auto auto; 
+}
+
+input {
+    border-radius: 0 !important;
+}
+
+.lin:hover {
+    background-color: #EEEEEE;
+}
+
+
+
+</style>
+
+</head>
+<body>
+  {% extends "main_header.html" %}
+
+  {% block content %}
+  <div id="loader_container">
+    <div id="loader">
+    <img src="{{url_for('static',filename='assets/loading.gif')}}">
+    </div>
+  </div>
+
+  <div style="position: fixed;bottom:10px;left:10px;padding:10px 0;margin:10px auto;width:300px;height:auto;z-index:1000;">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        
+        {% for message in messages %}
+        <div style="font-size:18px;background-color: #fff;color: black;padding: 15px 30px;margin:5px 0;box-shadow:1px 1px 3px grey,-1px -1px 3px grey;border-radius:30px;" id="div_{{loop.index}}"> 
+        <p style="float: right;"><i style="cursor:pointer" class="fas fa-times" onclick="document.getElementById('div_{{loop.index}}').style.display='none';"></i></p>
+        <p>{{ message }}</p>
+        </div>
+      
+        {% endfor %}
+    
+    
+    {% endif %}
+
+    {% endwith %}
+  </div>
+  
+  <div class="main-container" style="display: flex;">
+        <div class="left-container">
+            <div style="position: sticky;top:60px;">
+            <div class="profile-1-container" style="padding: 25px;">
+                <h2 style="text-align: left;"><i class="far fa-clipboard"></i> Job Information</h2>
+                <br>
+                <hr>
+                <div style="text-align: left;padding: 5px;">
+                <a href="#basic" style="color: black;text-decoration: none;">
+                    <div style="padding: 20px;" class="lin">
+                                <p>Basic</p>
+                    </div>
+                </a>
+                
+                <a href="#description" style="color: black;text-decoration: none;">
+                    <div style="padding: 20px;" class="lin">
+                                <p>Description</p>
+                    </div>
+                </a>
+            
+                <a href="#contact" style="color: black;text-decoration: none;">
+                    <div style="padding: 20px;" class="lin">
+                                <p>Contact</p>
+                    </div>
+                </a>
+              
+                <a href="#share" style="color: black;text-decoration: none;">
+                    <div style="padding: 20px;" class="lin">
+                                <p>Share</p>
+                    </div>
+                </a>
+            
+            </div>
+            </div>
+
+            <div class="profile-1-container" style="padding: 25px;">
+                <h2 style="text-align: left;"><i class="fas fa-file-import"></i> Apply Now</h2>
+                <br>
+                <hr>
+                <br><br>
+                {% if isAllowedToApply == "YES" and isloggedIn == "YES" %}
+
+                        {% if isOverdue == "YES" %}
+                        <br>
+                        <div style="text-align: center !important;color: gray;">Job Application Deadline Is Exceeded.</div>
+                       
+                        {% else %}
+                                {% if isAlreadyApplied == "YES" %}
+                                <br>
+                                <div style="text-align: center !important;color: gray;">You Have Already Applied For This Job.</div>
+                               
+                                {% else %}
+                        <form method="POST" class="con1" enctype="multipart/form-data">
+
+                            <div style="text-align: center !important;font-weight: bold;">Upload Your Resume</div>
+                                        <br>
+                                       
+                                        <div class="file-upload" style="width: 100%;">
+                                            <div class="file-select">
+                                              <div class="file-select-button" id="fileName">Choose File</div>
+                                              <div class="file-select-name" id="noFile">No file chosen...</div> 
+                                              <input type="file" name="resume-file" id="chooseFile" accept="application/pdf">
+                                            </div>
+                                          </div>
+                                          <br>
+            
+                                          <center><button type="submit" class="button ripple" type="submit" style="position: relative;">APPLY NOW</button></center>
+                                          
+                            </form>
+                                {% endif %}
+            
+                        {% endif %}
+               
+
+                {% else %}
+                <br>
+                <div style="text-align: center !important;color: gray;">You Are Not Allowed To Apply For This Job.</div>
+                {% endif %}
+            </div>
+        </div>
+            
+        </div>
+        <div class="right-container">
+            <div class="right-profile-1-container" id="basic">
+                <div class="right-profile-side-header">
+                    <table style="width: 100%;" border="0">
+                        <tr>
+                            <td style="border: none !important;width:60%;text-align: left;">
+                                <i class="fas fa-info" style="color: #3f51b5;"></i>&nbsp;&nbsp;&nbsp;Basic Information
+                            </td>
+                           
+                        </tr>
+                       
+                    </table>
+                </div>
+                <div style="width:100%;height:1px;background-color: rgba(0,0,0,0.08);"></div>
+                <table style="width: 80%;padding:10px;margin:0 auto;border:none;">
+                    <tr>
+                        <td style="text-align: left;padding:20px;font-weight: bold;border:none;">
+                            <i class="far fa-building"></i>  Company Name
+                            <br><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: gray;">{{job_details[0][2]}}</span>
+
+                        </td>
+                        
+                            
+                            <td style="text-align: left;padding:20px;font-weight: bold;border:none;">
+                                <i class="fas fa-sort-amount-up-alt"></i>&nbsp;&nbsp;&nbsp; Designation
+                                <br><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: gray;">{{job_details[0][4]}}.</span>
+    
+                            </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;padding:20px;font-weight: bold;border:none;background-color: white;">
+                            <i class="fas fa-rupee-sign"></i> Salary
+                            <br><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: gray;">{{job_details[0][5]}}</span>
+
+                        </td>
+                        
+                            
+                            <td style="text-align: left;padding:20px;font-weight: bold;border:none;background-color: white;">
+                                <i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;&nbsp; Location
+                                <br><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: gray;">{{job_details[0][6]}}</span>
+    
+                            </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;padding:20px;font-weight: bold;border:none;background-color: white;">
+                            <i class="far fa-clock"></i>  Posted On
+                            <br><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: gray;">{{job_details[0][11].strftime('%d/%m/%Y')}}</span>
+
+                        </td>
+                        
+                            
+                            <td style="text-align: left;padding:20px;font-weight: bold;border:none;background-color: white;">
+                                <i class="far fa-calendar"></i>&nbsp;&nbsp;&nbsp; Application Deadline
+                                <br><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: gray;">{{job_details[0][7].strftime('%d/%m/%Y')}}</span>
+    
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: left;padding:20px;font-weight: bold;border:none;background-color: white;">
+                            <i class="fas fa-filter"></i> Specific Requirement
+                            <br><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: gray;">
+                                    {% if job_details[0][8] | length == 0 %}
+
+                                        NO
+                                    {% else %}
+                                    {{job_details[0][8]}}
+                                    {% endif %}
+                            </span>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="right-profile-1-container" id="description">
+                <div class="right-profile-side-header">
+                    <table style="width: 100%;" border="0">
+                        <tr>
+                            <td style="border: none !important;width:60%;text-align: left;">
+                                <i class="fas fa-info" style="color: #3f51b5;"></i>&nbsp;&nbsp;&nbsp;Job Description
+                            </td>
+                           
+                        </tr>
+                       
+                    </table>
+                </div>
+                <div style="width:100%;height:1px;background-color: rgba(0,0,0,0.08);"></div>
+                <div id="job_desc" style="padding: 10px;" style="text-align: left;">
+
+                </div>
+            </div>
+            <div class="right-profile-1-container" id="contact">
+                <div class="right-profile-side-header">
+                    <table style="width: 100%;" border="0">
+                        <tr>
+                            <td style="border: none !important;width:60%;text-align: left;">
+                                <i class="fas fa-user-shield" style="color: #3f51b5;"></i>&nbsp;&nbsp;&nbsp;Recruiter Information
+                            </td>
+                           
+                        </tr>
+                       
+                    </table>
+                </div>
+                <div style="width:100%;height:1px;background-color: rgba(0,0,0,0.08);"></div>
+                <table style="width: 100%;padding:20px;" border="0" class="edu-b">
+                    <tr>
+                        <td style="border: none !important;text-align: left;width:10%;">
+                            <a href="../../../alumni/profile/{{alumni_profile[0][0]}}"><img src="../../../static/assets/slider_img1.jpg" style="width:80px;height:80px;border-radius:50%;" alt=""></a>
+                        </td>
+                        <td style="border: none !important;text-align: left;">
+                            <a href="../../../alumni/profile/{{alumni_profile[0][0]}}"><b>{{alumni_profile[0][1] | title}} {{alumni_profile[0][2] | title}}</b></a>
+                            <p style="padding: 5px 0 0 0;color: gray;">{{alumni_profile[0][7] }}</p>
+                            <p style="padding: 5px 0;color: gray;">Class Of {{alumni_profile[0][11] }}</p>
+                        </td>
+                       
+                    </tr>
+                    
+                </table>
+            </div>
+            <div class="right-profile-1-container" id="share">
+                <div class="right-profile-side-header">
+                    <table style="width: 100%;" border="0">
+                        <tr>
+                            <td style="border: none !important;width:60%;text-align: left;">
+                                <i class="fas fa-share-alt" style="color: #3f51b5;"></i>&nbsp;&nbsp;&nbsp;Share
+                            </td>
+                           
+                        </tr>
+                       
+                    </table>
+                </div>
+                <div style="width:100%;height:1px;background-color: rgba(0,0,0,0.08);"></div>
+
+                <br>
+                <p style="color: gray;text-align: left;padding:10px;">Spread the opportunity to help others which brings closer to reaching their goals.</p>
+
+                  <div id="share"></div>
+
+                  <br>
+              
+            </div>
+        </div>
+        
+    </form>
+</div>
+  
+
+    <input type="hidden" id="job_desc_value" value="{{job_details[0][3]}}">
+    <!-- <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script> -->
+<script>
+    document.getElementById("job_desc").innerHTML = document.getElementById('job_desc_value').value;
+
+
+
+</script>
+  <script src="{{url_for('static',filename='js/jquery-3.4.1.min.js') }}"></script>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js"></script>
+  <script>
+
+    $('#chooseFile').bind('change', function () {
+        var filename = $("#chooseFile").val();
+        if (/^\s*$/.test(filename)) {
+          $(".file-upload").removeClass('active');
+          $("#noFile").text("No file chosen..."); 
+        }
+        else {
+          var validExts = new Array(".pdf");
+        var fileExt = filename;
+        fileExt = fileExt.substring(fileExt.lastIndexOf('.'));
+        if (validExts.indexOf(fileExt) < 0) {
+          alert("Invalid file selected, valid files are of " +
+                  validExts.toString() + " types.");
+            filename.value = "";
+          }
+          else {
+            $(".file-upload").addClass('active');
+            $("#noFile").text(filename.replace("C:\\fakepath\\", "")); 
+          }
+        }
+        
+      
+      });
+
+
+    $("#share").jsSocials({
+      shares: ["email", "twitter", "facebook", "linkedin", "pinterest", "whatsapp"]
+  });
+  </script>
+
+
+  {% endblock %}
+</body>
+</html>

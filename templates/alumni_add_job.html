@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/final_aag_logo.png') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/alumni_signup.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/main_header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/about.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.css') }}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/sweetalert2.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/association_college_applications.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/association_create_blog_post.css')}}">
+  <script src="https://kit.fontawesome.com/a25e25945a.js" crossorigin="anonymous"></script>
+  <title> Post Job | Alumni Association Of Goa </title>
+  <style>
+     
+  </style>
+
+  <!-- <script src='https://cdn.tiny.cloud/1/t80l09l1e3m2paqocy8sqdfk7tnswgwyc47nr0jjbmvibdp2/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script> -->
+  <link href="https://cdn.syncfusion.com/ej2/ej2-base/styles/material.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.syncfusion.com/ej2/ej2-buttons/styles/material.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.syncfusion.com/ej2/ej2-inputs/styles/material.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.syncfusion.com/ej2/ej2-lists/styles/material.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.syncfusion.com/ej2/ej2-popups/styles/material.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.syncfusion.com/ej2/ej2-splitbuttons/styles/material.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.syncfusion.com/ej2/ej2-navigations/styles/material.css" rel="stylesheet" type="text/css" />
+  <!-- Essential JS 2 Rich Text Editor material theme -->
+  <link href="https://cdn.syncfusion.com/ej2/ej2-richtexteditor/styles/material.css" rel="stylesheet" type="text/css" />
+
+  <!-- Essential JS 2 Rich Text Editor's dependent script -->
+  <script src="https://cdn.syncfusion.com/ej2/ej2-base/dist/global/ej2-base.min.js" type="text/javascript"></script>
+  <script src="https://cdn.syncfusion.com/ej2/ej2-buttons/dist/global/ej2-buttons.min.js" type="text/javascript"></script>
+  <script src="https://cdn.syncfusion.com/ej2/ej2-inputs/dist/global/ej2-inputs.min.js" type="text/javascript"></script>
+  <script src="https://cdn.syncfusion.com/ej2/ej2-lists/dist/global/ej2-lists.min.js" type="text/javascript"></script>
+  <script src="https://cdn.syncfusion.com/ej2/ej2-popups/dist/global/ej2-popups.min.js" type="text/javascript"></script>
+  <script src="https://cdn.syncfusion.com/ej2/ej2-splitbuttons/dist/global/ej2-splitbuttons.min.js" type="text/javascript"></script>
+  <script src="https://cdn.syncfusion.com/ej2/ej2-navigations/dist/global/ej2-navigations.min.js" type="text/javascript"></script>
+  <!-- Essential JS 2 Rich Text Editor's global script -->
+  <script src="https://cdn.syncfusion.com/ej2/ej2-richtexteditor/dist/global/ej2-richtexteditor.min.js" type="text/javascript"></script>
+<style>
+    /* File Upload Button */
+.file-upload {
+	display: block;
+	text-align: center;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 12px;
+}
+
+.file-upload .file-select {
+	display: block;
+	border: 2px solid #dce4ec;
+	color: #34495e;
+	cursor: pointer;
+	height: 40px;
+	line-height: 40px;
+	text-align: left;
+	background: #FFFFFF;
+	overflow: hidden;
+	position: relative;
+}
+
+.file-upload .file-select .file-select-button {
+	background: #dce4ec;
+	padding: 0 10px;
+	display: inline-block;
+	height: 40px;
+	line-height: 40px;
+}
+
+.file-upload .file-select .file-select-name {
+	line-height: 40px;
+	display: inline-block;
+	padding: 0 10px;
+}
+
+.file-upload .file-select:hover {
+	border-color: #34495e;
+	transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	-webkit-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+}
+
+.file-upload .file-select:hover .file-select-button {
+	background: #34495e;
+	color: #FFFFFF;
+	transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	-webkit-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+}
+
+.file-upload.active .file-select {
+	border-color: #3fa46a;
+	transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	-webkit-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+}
+
+.file-upload.active .file-select .file-select-button {
+	background: #3fa46a;
+	color: #FFFFFF;
+	transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	-webkit-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+}
+
+.file-upload .file-select input[type=file] {
+	z-index: 100;
+	cursor: pointer;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+
+.file-upload .file-select.file-select-disabled {
+	opacity: 0.65;
+}
+
+.file-upload .file-select.file-select-disabled:hover {
+	cursor: default;
+	display: block;
+	border: 2px solid #dce4ec;
+	color: #34495e;
+	cursor: pointer;
+	height: 40px;
+	line-height: 40px;
+	margin-top: 5px;
+	text-align: left;
+	background: #FFFFFF;
+	overflow: hidden;
+	position: relative;
+}
+
+.file-upload .file-select.file-select-disabled:hover .file-select-button {
+	background: #dce4ec;
+	color: #666666;
+	padding: 0 10px;
+	display: inline-block;
+	height: 40px;
+	line-height: 40px;
+}
+
+.file-upload .file-select.file-select-disabled:hover .file-select-name {
+	line-height: 40px;
+	display: inline-block;
+	padding: 0 10px;
+}
+
+</style>
+</head>
+<body>
+  {% extends "main_header.html" %}
+
+  {% block content %}
+  <div id="loader_container">
+    <div id="loader">
+    <img src="{{url_for('static',filename='assets/loading.gif')}}">
+    </div>
+  </div>
+
+  <div style="position: fixed;bottom:10px;left:10px;padding:10px 0;margin:10px auto;width:300px;height:auto;z-index:1000;">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        
+        {% for message in messages %}
+        <div style="font-size:18px;background-color: #fff;color: black;padding: 15px 30px;margin:5px 0;box-shadow:1px 1px 3px grey,-1px -1px 3px grey;border-radius:30px;" id="div_{{loop.index}}"> 
+        <p style="float: right;"><i style="cursor:pointer" class="fas fa-times" onclick="document.getElementById('div_{{loop.index}}').style.display='none';"></i></p>
+        <p>{{ message }}</p>
+        </div>
+      
+        {% endfor %}
+    
+    
+    {% endif %}
+
+    {% endwith %}
+  </div>
+  
+  <div class="main-container">
+    <h1 style="text-align: center;" class="page-title">Add New Job</h1>
+    <form method="POST" class="con1" enctype="multipart/form-data">
+      <div class="con" style="width: 100%;">
+        
+        <div class="left-container" style="margin-right:10px;height:600px !important;">
+            
+            <div style="height:720px !important;margin:10px 0;padding: 0 0px 5px 0px;box-shadow: 1px 1px 3px gray,-1px -1px 3px gray;width:100%;padding:10px 5px;border-radius: 10px;">
+                <div style="padding: 10px;margin:10px;font-size: 20px;">Job Information</div>
+              <br>
+          <div class="floating-input" style="width: 100%;margin:0 50px;">
+            <select required id='job_company_name' name="job_company_name" style="width: 90% !important;border-radius: 0;" type="text" class="form-1-field">
+                {% for i in profile_work_details %}
+                    {% if i[3] == session['job_company_name'] %}
+                    <option style="color: black;" value="{{i[3]}}" selected>{{i[3]}}</option>
+                    {% else %}
+                    <option style="color: black;" value="{{i[3]}}">{{i[3]}}</option>
+                    {% endif %}
+                {% endfor %}
+                </select>
+            <label>Company</label>
+          </div>
+          <div class="floating-input" style="width: 90% !important;margin:0 auto !important;height:400px !important;">
+            <textarea id="defaultRTE" name="job_desc" style="max-height: 500px;" placeholder="Write Something About The Job Which You Are Going To Post..">{{session['job_desc']}}
+            </textarea>
+          <!-- <textarea required id="post_desc" name="post_desc" class="form-1-field" style="width: 80% !important;height:400px !important;"></textarea> -->
+          </div>
+          <br><br><br><br>    <br><br><br><br>
+          <center><button type="button" class="button ripple" type="button" style="position: relative;" onclick="document.getElementById('job_btn').click();">POST A JOB</button></center>
+
+
+        
+            </div>
+        </div>
+
+        <div class="right-container">
+          <div style="margin:10px 0;padding: 0 0px 5px 0px;box-shadow: 1px 1px 3px gray,-1px -1px 3px gray;width:100%;padding:10px 5px;border-radius: 10px;">
+            <div style="padding: 10px;margin:10px 0;font-size: 20px;">Job Details</div>
+          
+          <div>
+            <div class="floating-input" style="width: 90%;margin:0 auto;">
+              <input required id='job_designation' name="job_designation" style="width: 90% !important;border-radius: 0;" type="text" class="form-1-field" value="{{ session['job_designation'] }}" />
+              <label>Job Designation</label>
+            </div>
+              <br>
+            <div class="floating-input" style="width: 90%;margin:0 auto;">
+              <input required id='job_salary' name="job_salary" style="width: 90% !important;border-radius: 0;" type="text" class="form-1-field" value="{{ session['job_salary'] }}" />
+              <label>Salary</label>
+            </div>
+              <br>
+            <div class="floating-input" style="width: 90%;margin:0 auto;position: relative;">
+              <input required id="map-search" name="job_location" style="width: 90% !important;border-radius: 0;" type="text" class="form-1-field" value="{{ session['job_location'] }}" placeholder=""/>
+              <!-- <span style="position:absolute;top:0px;left:10px;color: gray;font-size: 12px;">Job Location</span> -->
+              <label>Job Location</label>
+            </div>
+            <br>
+            <div class="floating-input" style="width: 90%;margin:0 auto;position: relative;">
+              <input required id="job_deadline" name="job_deadline" style="width: 90% !important;border-radius: 0;" type="text" class="form-1-field datedropper-init" data-dd-min-date="{{today_date}}" value="{{session['job_deadline']}}"/>
+              <span style="position:absolute;top:0px;left:10px;color: gray;font-size: 12px;">Deadline For Job Application</span>
+            </div>
+
+            <div class="floating-input" style="width: 90%;;">
+              <select required id='job_allowed_other_college' name="job_allowed_other_college" style="width: 90% !important;border-radius: 0;" type="text" class="form-1-field">
+                      {% if session['job_allowed_other_college'] == "YES" %}
+                          <option style="color: black;" value="YES" selected>YES</option>
+                      {% else %}
+                          <option style="color: black;" value="YES">YES</option>
+                      {% endif %}
+                      
+                      {% if session['job_allowed_other_college'] == "NO" %}
+                          <option style="color: black;" value="NO" selected>NO</option>
+                      {% else %}
+                          <option style="color: black;" value="NO">NO</option>
+                      {% endif %}
+                  
+                  </select>
+              <label>Allow Other College Alumni To Apply</label>
+            </div>
+            
+
+        </div>
+        </div>
+
+        <div style="margin:10px 0;padding: 0 0px 5px 0px;box-shadow: 1px 1px 3px gray,-1px -1px 3px gray;width:100%;padding:10px 5px;border-radius: 10px;">
+          <div style="padding: 10px;margin:10px 0;font-size: 20px;">Special Requirements</div>
+        
+          <div class="floating-input" style="width: 90%;margin:0 auto;">
+            <textarea name="job_special_requirements" id="job_special_requirements" cols="50" rows="10" placeholder="Write Requirements For The Job (if any)..." style="outline: none;padding:10px;resize: none;">{{session['job_special_requirements']}}</textarea>
+          </div>
+
+      </div>
+
+      
+      
+ 
+
+        </div>
+        
+      
+      
+      </div>
+      <br><br><br><br>
+      <center><button type="submit" class="button ripple" type="button" style="position: relative;display:none;" id="job_btn">APPLY NOW</button></center>
+    </form>
+    </div>
+  
+    <label for=""><input type="text" class="latitude" style="display: none;"></label>
+    <label for=""><input type="text" class="longitude" style="display: none;"></label>
+    <label for=""><input type="text" class="reg-input-city" placeholder="City" style="display: none;"></label>
+    
+    <div id="map-canvas" style="display: none;"></div>
+   
+    
+    <!-- <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script> -->
+
+  <script src="{{url_for('static',filename='js/jquery-3.4.1.min.js') }}"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnLxRX_-6gZtde1HNsXQwn2Wr2_hIXBnM&libraries=places&callback=initialize"></script>
+
+  <script src="{{url_for('static',filename='js/javascript-2.js') }}"></script>
+  <script src="https://cdn.datedropper.com/get/oxf6a2xx1ncv584xg8yzucg2eopld5h6"></script>
+
+  <script src="{{url_for('static',filename='js/sweetalert2.all.min.js')}}"></script>
+  <script src="{{url_for('static',filename='js/association_create_event.js')}}"></script>
+  <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+
+<script>
+  // initialize Rich Text Editor component
+ var RichTextEditor = new ej.richtexteditor.RichTextEditor(
+     {
+      toolbarSettings: {
+          type: 'Expand'
+      },
+      pasteCleanupSettings: {
+          prompt: true,
+          plainText: false,
+          keepFormat: false,
+          deniedTags: ['a'],
+          deniedAttrs: ['class', 'title', 'id'],
+          allowedStyleProps: ['color', 'margin', 'font-size']
+      }
+     }
+ );
+  // Render initialized Rich Text Editor.
+  var defaultRTE = new ej.richtexteditor.RichTextEditor({toolbarSettings: {
+      items: ['Bold', 'Italic', 'Underline', 'StrikeThrough',
+      'FontName', 'FontSize', 'FontColor', 'BackgroundColor',
+      'LowerCase', 'UpperCase', '|',
+      'Formats', 'Alignments', 'OrderedList', 'UnorderedList',
+      'Outdent', 'Indent', '|',
+      'CreateLink', 'Image','CreateTable', '|', 'ClearFormat', 'Print',
+      'SourceCode', 'FullScreen', '|', 'Undo', 'Redo']
+},
+insertImageSettings: {
+  saveUrl: 'http://localhost:5000/uploadajax',
+  path: 'http://localhost:5000/static/uploads/association_blog_post_images/'
+},
+height: "500px",
+});
+
+// render initialized Rich Text Editor
+defaultRTE.appendTo('#defaultRTE');
+</script>
+
+
+  {% endblock %}
+</body>
+</html>

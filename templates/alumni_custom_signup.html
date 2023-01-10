@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/final_aag_logo.png') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/alumni_signup.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/main_header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.css') }}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/sweetalert2.min.css')}}">
+  <script src="{{url_for('static',filename='js/platform.js')}}" async defer></script>
+  <meta name="google-signin-client_id" content="375235053283-1hlbi0eqkv7qdrph33qcd0kdna0j4beg.apps.googleusercontent.com">
+  <title>Invitation For {{signedup_details[0][2]}} {{signedup_details[0][3]}}  | Alumni Association Of Goa.</title>
+ 
+
+  <script type="text/javascript">
+    var onloadCallback = function() {
+      widgetId1 = grecaptcha.render('html_element', {
+        'sitekey' : '6Le8MMsUAAAAABojhfaZf_CODZM13YJPo8oPzEUP'
+      });
+    };
+  </script>
+  <style>
+    #html_element {
+      margin-top: 0px;
+    }
+  </style>
+</head>
+<body>
+  {% extends "main_header.html" %}
+  {% block content %}
+  <!-- <div>{{colleges}}</div> -->
+  <div id="loader_container">
+    <div id="loader">
+    <img src="{{url_for('static',filename='assets/loading.gif')}}">
+    </div>
+  </div>
+
+  <div class="login-container">
+    
+    <div class="left-login">
+      <img src="{{url_for('static',filename='assets/signup_svg1.svg')}}" alt="">
+    </div>
+    <div class="right-login">
+      <form>
+        <h4>Alumni Sign Up</h4>
+        
+        <div class="main-form-container">
+            <div class="form-part-1" id="form-part-1">
+              <div class="form-outer-f-1"> 
+                <div class="form-inner-f-1">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="floating-input" style="">
+                        <input required id='first_name' type="text" style="width: 140px;position: relative;" value="{{signedup_details[0][2]}}" readonly/>
+                        <div style="position: relative;top:-40px;left:-43px;font-size:12px;color:gray;">First Name</div>
+                    </div> 
+                    <div class="floating-input">
+                        <input required id='last_name' type="text" style="width: 140px;position: relative;" value="{{signedup_details[0][3]}}"  readonly/>
+                        <div style="position: relative;top:-40px;left:-43px;font-size:12px;color:gray;">Last Name</div>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+              </div>
+              <div style="justify-content: center;width:100%;">
+                <div class="floating-input" style="margin: 0 auto;">
+                  <input required id='email' type="text" class="form-1-field" value="{{signedup_details[0][4]}}" readonly/>
+                  <div style="position: relative;top:-40px;left:0px !important;font-size:12px;color:gray;text-align:left;">Email</div>
+                </div>
+              </div>
+
+
+              <div class="form-outer-f-1" style="margin: 0 auto;"> 
+                <div class="form-inner-f-1" style="margin: 0 auto;padding:0;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="floating-input" style="">
+                        <input required id='country_code' type="text" style="width: 100px;position: relative;" value="+{{signedup_details[0][5]}}" readonly/>
+                        <div style="position: relative;top:-40px;left:-15px;font-size:12px;color:gray;">Country Code</div>
+
+                    </div> 
+                    <div class="floating-input">
+                        <input required id='mobile_number' type="text" style="width: 200px;position: relative;" value="{{signedup_details[0][6]}}" readonly/>
+                        <div style="position: relative;top:-40px;left:-60px;font-size:12px;color:gray;">Mobile Number</div>
+
+                    </div>
+                </div>
+              </div>
+                <div class="floating-input" style="margin-top: 0 !important;">
+                  <input required id='password' type="password" class="form-1-field" onfocus="document.getElementById('password_suggestion_box').style.display = 'block';" onblur="document.getElementById('password_suggestion_box').style.display='none';"/>
+                  <label for="password">Password</label>
+                </div>
+                <div class="floating-input">
+                  <input required id='c_password' type="password" class="form-1-field" />
+                  <label for="c_password">Confirm Password</label>
+                </div> 
+                  <div class="input-button">
+                    <button class="button ripple" type="button" id="mv-form-2-btn" onclick="next_btn('form-part-1','form-part-2');">NEXT</button>
+                  </div>
+                  <div id="password_suggestion_box" style="position:absolute;width:250px;text-align: left;top: 430px;left:440px;background-color: #0088ff;color: aliceblue;padding:15px;border-radius: 10px;transition:opacity 1s ease;display:none;">
+                    <li style="padding-bottom: 5px;">Atlease One UpperCase Letter.</li>
+                    <li style="padding-bottom: 5px;">Atlease One Digit.</li>
+                    <li style="padding-bottom: 5px;">Atlease One Special Character.</li>
+                    <li>Password Length 8 To 20.</li>
+                  </div>
+            </div>
+            <br>
+            <div class="form-part-2" id="form-part-2">
+                <div class="floating-input">
+                    <select required id='college' disabled="true">
+                      {% for i in colleges %}
+                        {% if college_id == i[0] %}
+                        <option value="{{i[0]}}" selected>{{i[1]}}</option>
+                        {% else %}
+                        <option value="{{i[0]}}">{{i[1]}}</option>
+
+                        {% endif %}
+                      {%endfor%}
+                      </select>
+                    <label for="email2" style="position: relative;top:-10px;left:0px !important;font-size:12px;color:gray;text-align:left;">College</label>
+                  </div>
+                  <br>
+                  <div class="floating-input">
+                    <select required id='degree'>
+                      </select>
+                    <label for="email2">Degree</label>
+                  </div>
+
+                  <div class="floating-input">
+                    <input required id='enrollment_no' type="number" class="form-1-field" />
+                    <label for="enrollment_no">Enrollment Number</label>
+                  </div>
+            
+                  <div class="form-outer-f-1" style="margin-top: -20px;"> 
+                    <div class="form-inner-f-1">
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="floating-input">
+                            <input required id='enter_year' type="number" style="width: 140px;position: relative;"/>
+                            <label for="enter_year">Entry Year</label>
+                        </div> 
+                        <div class="floating-input">
+                            <input required id='passout_year' type="number" style="width: 140px;position: relative;" />
+                            <label for="passout_year">Passout Year</label>
+                        </div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                  </div>
+
+                  <div class="floating-input" style="margin-top: -20px;">
+                    <div id="html_element"></div>
+                    
+                  </div>
+                  <div class="boxes" style="width: 300px;margin-top:-10px;margin-bottom:20px;">
+                    <input type="checkbox" id="box-1">
+                    <label for="box-1" style="padding-left: 35px;text-align: left;">I agree to the <a href="#"><b>Terms & Conditions</b></a> as well as the <a href="#"><b>Privacy Policy</b></a>.</label>
+                  
+                  </div>
+                  
+
+                  <div class="input-button" style="width:400px;display: flex;text-align: center;justify-content: center;">
+                    <button class="button ripple" type="button" onclick="prev_btn('form-part-2','form-part-1')">PREVIOUS</button> &nbsp;&nbsp;
+                    <button class="button ripple" type="button" onclick="signup();">SIGN UP</button>
+                    <!-- javascript:alert(grecaptcha.getResponse(widgetId1)); -->
+                  </div>
+            </div>
+            <div class="form-part-3" id="form-part-3">
+              
+                
+                  
+                  
+            </div>
+            <div class="form-part-4" id="form-part-4">
+                
+            </div>
+        </div>
+        
+        <br/>
+        <p>Already Have An Account ? <a href="#">Log In Here</a></p>
+      </form>
+      
+   
+    </div>
+
+  </div>
+  <input type="hidden" name="ver_c" id="ver_c" value="{{verification_code}}">
+  <input type="hidden" id='c_value' value="{{s_country}}">
+  <input type="hidden" id='college_id_value' value="{{college_id}}">
+<script src="{{ url_for('static',filename='js/jquery-3.4.1.min.js') }}"></script>
+
+<script>
+    var url = "alumni/custom/invitation/"+document.getElementById('ver_c').value;
+    var f_name = "";
+var l_name = "";
+var email = "";
+var country = "";
+var country_code = "";
+var mobile_no = "";
+var password = "";
+var c_password = "";
+function initialize_form() {
+  document.getElementById('form-part-1').style.display = "block";
+}
+
+initialize_form();
+function next_btn(x,y) {
+
+
+  if(x == "form-part-1" && y == "form-part-2")
+  {
+    // alert();
+    var regName = /^[a-zA-Z]+$/;
+    f_name = document.getElementById('first_name').value;
+    if(!regName.test(f_name)){
+      document.getElementById('first_name').focus();
+      Swal.fire({
+        icon: 'error',
+        title: 'Please Enter Valid First Name.',
+      });
+    }
+    else{
+      l_name = document.getElementById('last_name').value;
+      if(!regName.test(l_name)){
+        document.getElementById('last_name').focus();
+        Swal.fire({
+          icon: 'error',
+          title: 'Please Enter Valid Last Name.',
+        });
+      }
+      else{
+        var regName = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,6}$/i;
+        email = document.getElementById('email').value;
+        if(!regName.test(email)){
+          document.getElementById('email').focus();
+          Swal.fire({
+            icon: 'error',
+            title: 'Please Enter Valid Email Address.',
+          });
+        }
+        
+          else {
+            var regName = /^[0-9]{9,12}$/i;
+            mobile_no = document.getElementById('mobile_number').value;
+            if(!regName.test(mobile_no)){
+              document.getElementById('mobile_number').focus();
+              Swal.fire({
+                icon: 'error',
+                title: 'Please Enter Valid Mobile Number.',
+              });
+            }
+            else {
+              var regName = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,20}$/;
+              password = document.getElementById('password').value;
+              if(!regName.test(password)){
+                document.getElementById('password').focus();
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Please Enter Valid Passoword.',
+                });
+              }
+              else {
+                c_password = document.getElementById('c_password').value;
+                if(password != c_password)
+                {
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Both Password Doesn\'t Match.',
+                  });
+                }
+                else {
+                      document.getElementById(x).style.display = "none";
+                      document.getElementById(y).style.display = "block";
+                }
+              }
+            } 
+          }
+        }    
+      }  
+    }
+}
+
+//   first_name
+// last_name
+// email
+// country
+// country_code
+// mobile_number
+// password
+// c_password
+
+// mv-form-2-btn
+
+
+
+// college
+// degree
+// enrollment_no
+// enter_year
+// passout_year
+// grecaptcha.getResponse(widgetId1)
+// box-1
+
+function signup()
+{
+  var regName = /^[a-zA-Z]+$/;
+    var college = document.getElementById('college').value;
+    if(college == "" || college.length == 0){
+      document.getElementById('college').focus();
+      Swal.fire({
+        icon: 'error',
+        title: 'Please Select College.',
+      });
+    }
+    else {
+      var degree = document.getElementById('degree').value;
+      if(degree == "" || degree.length == 0){
+        document.getElementById('degree').focus();
+        Swal.fire({
+          icon: 'error',
+          title: 'Please Select Degree.',
+        });
+      }
+      else {
+        regName = /^[0-9]{6,15}$/;
+        var enrollment_no = document.getElementById('enrollment_no').value;
+        if(!regName.test(enrollment_no)){
+          document.getElementById('enrollment_no').focus();
+          Swal.fire({
+            icon: 'error',
+            title: 'Please Enter Valid Enrollment Nunber.',
+          });
+        }
+        else {
+
+          var d = new Date();
+          var year = d.getFullYear();
+          // alert(year);
+          regName = /^[0-9]{4}$/;
+          var e_year = document.getElementById('enter_year').value;
+          
+          if(e_year < 2000 || e_year > year)
+          {
+            document.getElementById('enter_year').focus();
+            Swal.fire({
+              icon: 'error',
+              title: 'Please Enter Valid Entry Year.',
+            });
+          }
+          else {
+            var p_year = document.getElementById('passout_year').value;
+            if(p_year < 2000 || p_year > (year+6))
+            {
+              document.getElementById('passout_year').focus();
+              Swal.fire({
+                icon: 'error',
+                title: 'Please Enter Valid Passout Year.',
+              });
+            }
+            else {
+                if(p_year < e_year)
+                {
+                  document.getElementById('passout_year').focus();
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Passout Year Must Be Less Than Entry Year.',
+                  });
+                }
+                else {
+                  var res = grecaptcha.getResponse(widgetId1);
+                  // var r = document.getElementById('recaptcha-anchor').
+                  if(res == "" || res.length == 0)
+                  {
+                    // document.getElementsByClassName('recaptcha-checkbox-border')[0].focus();
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Please Solve reCaptcha.',
+                  }); 
+                  }
+                  else {
+                    if(!document.getElementById('box-1').checked)
+                    {
+                      document.getElementById('box-1').focus();
+                      Swal.fire({
+                        icon: 'error',
+                        title: 'Please Accept Terms and Conditions as well as the Privacy Policy.',
+                      });
+                    }
+                    else {
+                      document.getElementById('loader_container').style.display = "block";
+                      if(document.getElementById('loader_container').style.display == "block")
+                      {
+
+                        var x = setInterval(function()
+                        {
+                            var ur = "/alumni/custom/verify/email/"+document.getElementById('ver_c').value;
+                
+                          var xmlhttp = new XMLHttpRequest();
+                          xmlhttp.open("GET", "?mode=1&password="+password+"&college="+college+"&degree="+degree+"&enrollment_number="+enrollment_no.toString()+"&entry_year="+e_year.toString()+"&passout_year="+p_year.toString(), false);
+                          xmlhttp.send(null);
+                          var res = xmlhttp.responseText;
+                          var obj = JSON.parse(res);
+                        
+                          if(obj.res == 1)
+                          {
+                            document.getElementById('loader_container').style.display = "none";
+                            Swal.fire({
+                                icon: 'success',
+                                title: obj.msg,
+                              });
+                              window.location = ur;
+                          }
+                          else {
+                            document.getElementById('loader_container').style.display = "none";
+                            Swal.fire({
+                              icon: 'error',
+                              title: obj.msg,
+                            });
+                          }
+                          clearInterval(x);
+                        },1000);
+                        
+                      }
+                    }
+                  }    
+                }
+            }
+          }
+        }
+      }
+    }
+}
+
+function prev_btn(x,y)
+{
+  document.getElementById(x).style.display = "none";
+  document.getElementById(y).style.display = "block";
+}
+
+
+function change_college(x)
+{
+    v = x;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", "/alumni/signup?mode=3&v=" +v, false);
+    xmlhttp.send(null);
+    var res = xmlhttp.responseText;
+    var obj = JSON.parse(res);
+    // alert(obj.degrees);
+    var code = "";
+    for (var i = 0; i < obj.degrees.length; i++) {
+      code += "<option value='" + obj.degrees[i] + "'>" + obj.degrees[i] + "</option>"
+    }
+    document.getElementById('degree').innerHTML = code;
+}
+change_college(document.getElementById('college_id_value').value);
+
+
+
+
+
+
+</script>
+  <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+  async defer>
+  
+</script>
+<script src="{{url_for('static',filename='js/sweetalert2.all.min.js')}}"></script>
+  {% endblock %}
+</body>
+</html>

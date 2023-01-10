@@ -1,0 +1,25 @@
+#loader_container {
+    display: none;
+}
+
+.event-container {
+    position: relative;
+    width: 80%;
+    margin: 20px auto;
+    
+}
+.main-form-container {
+    width: 80%;
+    padding: 20px;
+    position: relative;
+    margin: 0 auto;
+}
+.event-part-1 {
+    display: flex;
+}
+.event-start-date-time:hover {
+        background-color: none !important;
+}
+input[type="datetime"] {
+    all: unset;
+}

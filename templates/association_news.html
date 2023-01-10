@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/final_aag_logo.png') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/alumni_signup.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/main_header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/about.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.css') }}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/sweetalert2.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/association_college_applications.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/association_create_blog_post.css')}}">
+  <script src="https://kit.fontawesome.com/a25e25945a.js" crossorigin="anonymous"></script>
+  <title> News | Alumni Association Of Goa </title>
+  <style>
+     
+  </style>
+
+  <!-- <script src='https://cdn.tiny.cloud/1/t80l09l1e3m2paqocy8sqdfk7tnswgwyc47nr0jjbmvibdp2/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script> -->
+  <link href="https://cdn.syncfusion.com/ej2/ej2-base/styles/material.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.syncfusion.com/ej2/ej2-buttons/styles/material.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.syncfusion.com/ej2/ej2-inputs/styles/material.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.syncfusion.com/ej2/ej2-lists/styles/material.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.syncfusion.com/ej2/ej2-popups/styles/material.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.syncfusion.com/ej2/ej2-splitbuttons/styles/material.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.syncfusion.com/ej2/ej2-navigations/styles/material.css" rel="stylesheet" type="text/css" />
+  <!-- Essential JS 2 Rich Text Editor material theme -->
+  <link href="https://cdn.syncfusion.com/ej2/ej2-richtexteditor/styles/material.css" rel="stylesheet" type="text/css" />
+
+  <!-- Essential JS 2 Rich Text Editor's dependent script -->
+  <script src="https://cdn.syncfusion.com/ej2/ej2-base/dist/global/ej2-base.min.js" type="text/javascript"></script>
+  <script src="https://cdn.syncfusion.com/ej2/ej2-buttons/dist/global/ej2-buttons.min.js" type="text/javascript"></script>
+  <script src="https://cdn.syncfusion.com/ej2/ej2-inputs/dist/global/ej2-inputs.min.js" type="text/javascript"></script>
+  <script src="https://cdn.syncfusion.com/ej2/ej2-lists/dist/global/ej2-lists.min.js" type="text/javascript"></script>
+  <script src="https://cdn.syncfusion.com/ej2/ej2-popups/dist/global/ej2-popups.min.js" type="text/javascript"></script>
+  <script src="https://cdn.syncfusion.com/ej2/ej2-splitbuttons/dist/global/ej2-splitbuttons.min.js" type="text/javascript"></script>
+  <script src="https://cdn.syncfusion.com/ej2/ej2-navigations/dist/global/ej2-navigations.min.js" type="text/javascript"></script>
+  <!-- Essential JS 2 Rich Text Editor's global script -->
+  <script src="https://cdn.syncfusion.com/ej2/ej2-richtexteditor/dist/global/ej2-richtexteditor.min.js" type="text/javascript"></script>
+
+  <style>
+
+    .main-container {
+        position: relative;
+        width: 80%;
+    }
+  </style>
+</head>
+<body>
+  {% extends "main_header.html" %}
+
+  {% block content %}
+  <div id="loader_container">
+    <div id="loader">
+    <img src="{{url_for('static',filename='assets/loading.gif')}}">
+    </div>
+  </div>
+
+  <div style="position: fixed;bottom:10px;left:10px;padding:10px 0;margin:10px auto;width:300px;height:auto;z-index:1000;">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        
+        {% for message in messages %}
+        <div style="font-size:18px;background-color: #fff;color: black;padding: 15px 30px;margin:5px 0;box-shadow:1px 1px 3px grey,-1px -1px 3px grey;border-radius:30px;" id="div_{{loop.index}}"> 
+        <p style="float: right;"><i style="cursor:pointer" class="fas fa-times" onclick="document.getElementById('div_{{loop.index}}').style.display='none';"></i></p>
+        <p>{{ message }}</p>
+        </div>
+      
+        {% endfor %}
+    
+    
+    {% endif %}
+
+    {% endwith %}
+  </div>
+  
+  <div class="main-container">
+    <h1 style="text-align: center;" class="page-title">News</h1>
+    <form method="POST" class="con1" enctype="multipart/form-data">
+      <div class="con">
+        
+        <div class="left-container">
+          
+          <div class="floating-input" style="width: 100%;">
+            <input required id='news_title' name="news_title" style="width: 90% !important;border-radius: 0;" type="text" class="form-1-field" value="{{session['association_news_title']}}" />
+            <label>News Title</label>
+          </div>
+          <div class="floating-input" style="width: 90% !important;margin-left:0 !important;height:400px !important;">
+            <textarea id="defaultRTE" name="news_desc" style="max-height: 500px;">
+                {{session['association_news_description']}}
+            </textarea>
+          <!-- <textarea required id="post_desc" name="post_desc" class="form-1-field" style="width: 80% !important;height:400px !important;"></textarea> -->
+          </div>
+
+
+        
+          
+        </div>
+
+        <div class="right-container">
+          <div style="padding: 0 0px 5px 0px;box-shadow: 1px 1px 3px gray,-1px -1px 3px gray;width:100%;">
+            <div style="padding: 10px;margin:10px 0;background-color: #0088ff;font-size: 20px;color:white;">Featured News Image</div>
+          
+          <div>
+            <center><img src="https://via.placeholder.com/1920X628" width="300px" height="200px" style="padding:10px;justify-content:center;" class="event-img"></center>
+            <input type="file" name="news-file" id="news-file" style="display: none;" onchange="previewFile();">
+            <br>
+            <center><button class="button ripple" type="button" onclick="document.getElementById('news-file').click();">CHANGE</button></center>
+            <br>
+        </div>
+        </div>
+
+      
+      <div style="padding: 0 0px 5px 0px;box-shadow: 1px 1px 3px gray,-1px -1px 3px gray;width:100%;">
+        <div style="padding: 10px;margin:10px 0;background-color: #0088ff;font-size: 20px;color:white;">News Cateogory</div>
+        
+      
+      <div>
+        <input style="border:none !important;outline:none !important;border-radius:0;" class="prompt" type="text" name="post_categories">
+        <input type="hidden" name="post_category_value" id="post_category_value" value="">
+     
+    </div>
+    </div>
+
+        </div>
+        
+      
+      
+      </div>
+      <br><br><br><br><br><br><br><br>
+      <center><button type="submit" class="button ripple" type="button" style="position: relative;">MAKE A POST</button></center>
+    </form>
+    </div>
+  
+    <!-- <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script> -->
+
+  <script src="{{url_for('static',filename='js/jquery-3.4.1.min.js') }}"></script>
+  <script src="{{url_for('static',filename='js/sweetalert2.all.min.js')}}"></script>
+  <script src="{{url_for('static',filename='js/association_create_event.js')}}"></script>
+  <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+  <script>
+    $(document).ready( function() {
+        $("#tag-typer").keypress( function(event) {
+          var key = event.which;
+          if (key == 13 || key == 44){
+           event.preventDefault();
+           var tag = $(this).val();
+            if(tag.length > 0){
+              $("<span class='tag' style='display:none'><span class='close'>&times;</span>"+tag+" </span>").insertBefore(this).fadeIn(100);
+              $(this).val("");
+              document.getElementById('post_tag_value').value += ","+tag;
+            }
+          }
+        });
+        
+        $("#tags").on("click", ".close", function() {
+          $(this).parent("span").fadeOut(100);
+        });
+        
+        $(".colors li").click(function() {
+          var c = $(this).css("background-color");
+          $(".tag").css("background-color",c);
+          $("#title").css("color",c);
+        });
+        
+      });
+  </script>
+  <script>
+   
+    function previewFile() {
+      var preview = document.querySelector('.event-img');
+      var file    = document.querySelector('input[type=file]').files[0];
+      var reader  = new FileReader();
+    
+      reader.onloadend = function () {
+        preview.src = reader.result;
+      }
+    
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        preview.src = "https://via.placeholder.com/1920X628";
+      }
+    }
+    
+</script>
+
+<script>
+
+  var content = [
+        {id: 0, text: "All"},
+        {id: 1, text: "College"},
+        {id: 2, text: "Alumni"},
+        {id: 3, text: "Placement"},
+        {id: 4, text: "Achievement"},
+    ];
+    $(".prompt").select2({
+      data:content,
+      minimumInputLength: 0,
+      width: '100%',
+      multiple:true,
+      placeholder:"Enter News Categories...",
+
+  }).on('change', function (e) {
+    document.getElementById('post_category_value').value = "";
+    var x = jQuery('.prompt').select2('data');
+    console.log(x);
+
+    for(var i=0;i < x.length;i++)
+    {
+      if(i == x.length-1)
+      {
+        document.getElementById('post_category_value').value += x[i].text;
+      }
+      else {
+        document.getElementById('post_category_value').value += x[i].text + ",";
+      }
+      console.log(document.getElementById('post_category_value').value);
+    }
+});
+
+ function formatState (text) {
+
+       str ="";
+       str += "<p style='padding-left: 12px;'>"+ text.text+ "</p>,";
+       var $state = $(str);
+       
+       return $state;
+
+
+ };
+
+</script>
+
+<script>
+  // initialize Rich Text Editor component
+ var RichTextEditor = new ej.richtexteditor.RichTextEditor(
+     {
+      toolbarSettings: {
+          type: 'Expand'
+      },
+      pasteCleanupSettings: {
+          prompt: true,
+          plainText: false,
+          keepFormat: false,
+          deniedTags: ['a'],
+          deniedAttrs: ['class', 'title', 'id'],
+          allowedStyleProps: ['color', 'margin', 'font-size']
+      }
+     }
+ );
+  // Render initialized Rich Text Editor.
+  var defaultRTE = new ej.richtexteditor.RichTextEditor({toolbarSettings: {
+      items: ['Bold', 'Italic', 'Underline', 'StrikeThrough',
+      'FontName', 'FontSize', 'FontColor', 'BackgroundColor',
+      'LowerCase', 'UpperCase', '|',
+      'Formats', 'Alignments', 'OrderedList', 'UnorderedList',
+      'Outdent', 'Indent', '|',
+      'CreateLink', 'Image','CreateTable', '|', 'ClearFormat', 'Print',
+      'SourceCode', 'FullScreen', '|', 'Undo', 'Redo']
+},
+insertImageSettings: {
+  saveUrl: 'http://localhost:5000/upload_news_ajax',
+  path: 'http://localhost:5000/static/uploads/news/'
+},
+height: "500px",
+});
+
+// render initialized Rich Text Editor
+defaultRTE.appendTo('#defaultRTE');
+</script>
+
+
+  {% endblock %}
+</body>
+</html>

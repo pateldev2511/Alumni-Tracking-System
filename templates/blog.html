@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/final_aag_logo.png') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/main_header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.css') }}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/blog.css') }}">
+  <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
+<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css"> -->
+<script src="https://kit.fontawesome.com/a25e25945a.js" crossorigin="anonymous"></script>
+
+<!-- <script src="https://unpkg.com/swiper/js/swiper.js"></script>
+<script src="https://unpkg.com/swiper/js/swiper.min.js"></script> -->
+
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+  <title>Blog | Alumni Association Of Goa</title>
+  <style>
+      
+  </style>
+</head>
+<body>
+   
+  {% extends "main_header.html" %}
+  {% block content %}
+ 
+  <div style="position: relative;width:80%;margin:0 auto;display:flex;">
+    <div style="width:60%;">
+        <div class="blog-slider">
+            <div class="blog-slider__wrp swiper-wrapper">
+              {% if l_a_b_p == 0 %}
+                  <center><h1>No Blog Post Found.</h1></center>
+              {% else %}
+
+                {% for i in all_blog_posts %}
+                <div class="blog-slider__item swiper-slide">
+                  <div class="blog-slider__img">
+                    
+                    <img src="../{{i[2]}}" alt="" style="width: 100%;
+                    max-width: 400px;
+                    height: auto;">
+                  </div>
+                  <div class="blog-slider__content">
+                    <span class="blog-slider__code">{{i[8]}}</span>
+                    <div class="blog-slider__title">{{i[3]}}</div>
+                    <div class="blog-slider__text">{{i[4]}}</div>
+                    <a href="../association/blog/post/{{i[0]}}" class="blog-slider__button">READ MORE</a>
+                  </div>
+                </div>
+                {% endfor %}
+              
+              {% endif %}
+              
+              
+            </div>
+            <div class="blog-slider__pagination"></div>
+          </div>
+    </div>
+    <div style="width: 30%;">
+        <div id="newsletter">
+            <form action="" style="width: 100%;"> 
+              <div class="seal">
+                <i class="fa fa-envelope-o"></i>
+              </div>
+              <div class="title">
+                Newsletter
+              </div>
+              <label for="email">
+                Send us your email, we'll make sure you never miss a thing!
+              </label>
+              <input class="nl_input" type="text" placeholder="enter your email here" />
+              <input class="nl_input" type="submit" value="subscribe now" />
+            </form>
+          </div>
+          <div style="padding: 10px 20px;background-color: white;width:85%;margin:10px auto;">
+            <div class="title2">
+               Get Connected With Us
+              </div>
+              
+              <label class="label-text">
+                Follow Us On Following Platforms.
+              </label>
+            <ul class="social_ul">
+                <li class="social_li"><a class="social_a" href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                <li class="social_li"><a class="social_a" href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                <li class="social_li"><a class="social_a" href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                <li class="social_li"><a class="social_a" href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                <li class="social_li"><a class="social_a" href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+              </ul>
+          </div>
+          
+    </div>
+  </div> 
+<br>
+  <div class="wrapper">
+    <div class="main">
+      {% if l_a_b_p == 0 %}
+      <center><h1>No Blog Post Found.</h1></center>
+      {% else %}
+
+        {% for i in all_blog_posts %}
+                <div class="blog-card">
+                    <div class="meta">
+                      <div class="photo" style="background-image: url('../{{i[2]}}');background-position: left right;background-size: contain;background-repeat: no-repeat;"></div>
+                      <ul class="details">
+                        <li class="date">{{i[8]}}</li>     
+                      </ul>
+                    </div>
+                    <div class="description">
+                      <h1>{{i[3]}}</h1>
+                      <p>{{i[4]}} </p>
+                      
+                      <p class="read-more">
+                        
+                        <a href="../association/blog/post/{{i[0]}}">View More</a>
+                      </p>
+                    </div>
+                  </div>
+
+        {% endfor %}
+      {% endif %}
+                  
+           
+    </div>
+    <div class="sidebar">
+        <div>
+        <div data-tabs class="tabs">    
+            <div class="tab">
+                <input type="radio" name="tabgroup" id="tab-1">
+                <label for="tab-1">Recent Posts</label>
+                <div class="tab__content" id="event_details_tab">
+                  {% if l_a_b_p == 0 %}
+                      <center><h1>No Blog Post Found.</h1></center>
+                  {% else %}
+
+                    {% for i in all_blog_posts %}
+                    <a href="../association/blog/post/{{i[0]}}" style="text-decoration: none;color:black;">
+                    <div class="post_card">
+                        <div class="post_card_img_container" style="overflow: hidden !important;">
+                                <img class="post_card_img" src="../{{i[2]}}" style="
+                                max-width: 230px;
+                                max-height: 200px;overflow:hidden;" alt="">
+                        </div>
+                        <div class="post_card_details_container" style="padding: 0 10px;">
+                            <p class="post_card_blog_post_title">{{i[3]}} </p>
+                            <p>
+                                <i class="fas fa-calendar-week"></i>&nbsp; {{i[8]}}
+                            </p>
+                        </div>
+                    </div>
+                  </a>
+                    
+                    {% endfor %}
+                  
+                  {% endif %}
+
+                </div> 
+             </div>
+            <div class="tab">
+               <input type="radio" name="tabgroup" id="tab-2">
+               <label for="tab-2">Popular Posts</label>
+               <div class="tab__content" id="event_schedule_tab">
+                {% if l_t_p == 0 %}
+                <center><h1>No Blog Post Found.</h1></center>
+                {% else %}
+
+                  {% for i in trending_posts %}
+                  <a href="../association/blog/post/{{i[0]}}" style="text-decoration: none;color:black;">
+                <div class="post_card">
+                    <div class="post_card_img_container">
+                            <img class="post_card_img" src="../{{i[2]}}" alt="">
+                    </div>
+                    <div class="post_card_details_container">
+                        <p class="post_card_blog_post_title">{{i[3]}} </p>
+                        <p>
+                            <i class="fas fa-calendar-week"></i>&nbsp; {{i[8]}}
+                        </p>
+                    </div>
+                </div>
+                </a>
+
+                {% endfor %}
+                {% endif %}
+                
+               </div> 
+            </div>
+            
+         </div>
+         <div class="search_container">
+            <div id="newsletter2">
+                <form action="" style="width: 100%;"> 
+                  <div class="seal">
+                    <i class="fa fa-search"></i>
+                  </div>
+                  <div class="title">
+                    Search
+                  </div>
+                  <label for="email">
+                    Serch posts,tags,profiles here.
+                  </label>
+                  <input class="nl_input" type="text" placeholder="search here..." />
+                  <input class="nl_input" type="submit" value="search" />
+                </form>
+              </div>
+         </div>
+        </div>
+    </div>
+  </div>
+
+  <script src="../static/js/jquery-3.4.1.min.js"></script>
+  <script src="../static/js/blog.js"></script>
+<script>
+    document.getElementById('tab-1').click();
+    var swiper = new Swiper('.blog-slider', {
+        spaceBetween: 30,
+        effect: 'fade',
+        loop: true,
+        mousewheel: {
+          invert: false,
+        },
+        autoplay: {
+            delay: 5000,
+          },
+        // autoHeight: true,
+        pagination: {
+          el: '.blog-slider__pagination',
+          clickable: true,
+        }
+      });
+
+      (function($, document) {
+      
+          // get tallest tab__content element
+          let height = -1;
+    
+            $('.tab__content').each(function() {
+                height = height > $(this).outerHeight() ? height : $(this).outerHeight();
+             $(this).css('position', 'absolute');
+            });
+          
+          // set height of tabs + top offset
+            $('[data-tabs]').css('min-height', height + 40 + 'px');
+       
+    }(jQuery, document));
+    
+</script>
+  
+  {% endblock %}
+</body>
+</html>

@@ -1,0 +1,103 @@
+
+body {
+    background-color: #f3f3f3 !important;
+}
+@font-face {
+    font-family: "GoogleSans-Regular";
+    src: url(GoogleSans-Regular.ttf);
+  }
+.main-container {
+    position: relative;
+    width:70%;
+    margin: 0 auto;
+    top: -150px;
+    background-color: #FFFFFF;
+    font-family: "GoogleSans-Regular";
+}
+.event-profile {
+    position: relative;
+    padding: 20px;
+}
+.event-title {
+    text-align: center;
+}
+.main-down-container {
+    position: relative;
+    padding: 10px;
+    display: flex;
+    /* box-shadow: 2px 2px 1px black,-2px -2px 1px black; */
+    border-radius: 25px;
+
+}
+.left-container {
+    width:70%;
+    height: auto;
+    /* background-color: red; */
+    padding: 10px;
+    margin: 0 10px;
+    border: 1px solid #DADAC0;
+}
+
+.right-container {
+    width:30%;
+    height: auto;
+    /* background-color: yellow; */
+    border: 1px solid #DADAC0;
+    padding: 10px;
+    margin: 0 10px;
+}
+
+
+/* Tabs */
+
+
+.tabs {
+	clear: both;
+	position: relative;   
+   /* max-width: 650px; */
+   margin: 0 auto;
+   /* you can either manually set a min-height here or do it via JS ---> */
+}
+
+.tab {
+	float: left;
+}
+
+.tab label {
+	margin-right: 20px;
+	position: relative;
+	top: 0;
+	cursor: pointer;
+    color: #333;
+    padding: 30px 20px 10px 20px !important;
+    margin : 30px 0px 20px 0 !important;
+   /* text-transform: uppercase; */
+}
+
+.tab [type=radio] {
+    display: none;   
+    
+}
+
+.tab__content {
+   position: relative;
+	top: 40px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+    transition: opacity .2s cubic-bezier(.42,0,.34,1.01);
+    padding: 10px;
+	opacity: 0;
+}
+
+[type=radio]:checked ~ label {
+    padding-bottom: 5px;
+	border-bottom: 2px solid #1d1d1d;
+	color: #1d1d1d;
+	z-index: 2;
+}
+
+[type=radio]:checked ~ label ~ .tab__content {
+	z-index: 1;
+	opacity: 1;
+}

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="../static/assets/final_aag_logo.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="../static/css/lightslider.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <link rel="stylesheet" href="../static/css/index.css">
+  <link rel="stylesheet" href="../static/css/main_header.css">
+  <title>Alumni Association Of GOA</title>
+
+</head>
+<body>
+  {% extends "main_header.html" %}
+  
+  {% block content %}
+
+  <div class="main-container">
+    <div class="main-container-1">
+      <ul id="slider-container" class="main-slider-container">
+        <li>
+          <img class="slider-img" src="../static/assets/slider_img1.jpg">
+        </li>
+        <li>
+          <img class="slider-img" src="../static/assets/slider_img2.jpg">
+        </li>
+        <li>
+          <img class="slider-img" src="../static/assets/slider_img3.jpg">
+        </li>
+        <li>
+          <img class="slider-img" src="../static/assets/slider_img4.jpg">
+        </li>
+        <li>
+          <img class="slider-img" src="../static/assets/slider_img5.jpg">
+        </li>
+        <li>
+          <img class="slider-img" src="../static/assets/slider_img6.jpg">
+        </li>
+      </ul>
+    </div>
+    <div class="main-container-2">
+      <figure class="tabBlock">
+        <ul class="tabBlock-tabs">
+          <li class="tabBlock-tab is-active">Recent News</li>
+          <li class="tabBlock-tab">Notices</li>
+        </ul>
+        <div class="tabBlock-content">
+          <div class="tabBlock-pane">
+              <div class="news-container">
+                  <div class="news-icon-container">
+                    <img src="../static/assets/news-img-1.jpg" alt="" srcset="">
+                  </div>
+                  <div class="news-title">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque praesentium fugiat ut? Officiis dolorum ipsum adipisci, est dolor iste voluptas a nostrum excepturi. Harum fuga ipsum esse, quidem nisi numquam.
+                  </div>
+              </div>
+              <div class="news-container">
+                <div class="news-icon-container">
+                  <img src="../static/assets/news-img-2.jpg" alt="" srcset="">
+                </div>
+                <div class="news-title">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque praesentium fugiat ut? Officiis dolorum ipsum adipisci, est dolor iste voluptas a nostrum excepturi. Harum fuga ipsum esse, quidem nisi numquam.
+                </div>
+            </div>
+            <div class="news-container">
+              <div class="news-icon-container">
+                <img src="../static/assets/news-img-3.jpg" alt="" srcset="">
+              </div>
+              <div class="news-title">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque praesentium fugiat ut? Officiis dolorum ipsum adipisci, est dolor iste voluptas a nostrum excepturi. Harum fuga ipsum esse, quidem nisi numquam.
+              </div>
+          </div>
+          </div>
+          <div class="tabBlock-pane">
+            <div class="news-container">
+              <div class="news-icon-container">
+                <img src="../static/assets/news-img-1.jpg" alt="" srcset="">
+              </div>
+              <div class="news-title">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque praesentium fugiat ut? Officiis dolorum ipsum adipisci, est dolor iste voluptas a nostrum excepturi. Harum fuga ipsum esse, quidem nisi numquam.
+              </div>
+          </div>
+          <div class="news-container">
+            <div class="news-icon-container">
+              <img src="../static/assets/news-img-2.jpg" alt="" srcset="">
+            </div>
+            <div class="news-title">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque praesentium fugiat ut? Officiis dolorum ipsum adipisci, est dolor iste voluptas a nostrum excepturi. Harum fuga ipsum esse, quidem nisi numquam.
+            </div>
+        </div>
+        <div class="news-container">
+          <div class="news-icon-container">
+            <img src="../static/assets/news-img-3.jpg" alt="" srcset="">
+          </div>
+          <div class="news-title">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque praesentium fugiat ut? Officiis dolorum ipsum adipisci, est dolor iste voluptas a nostrum excepturi. Harum fuga ipsum esse, quidem nisi numquam.
+          </div>
+      </div>
+          </div>
+        </div>
+      </figure>
+      
+    </div>
+
+  </div>
+  <div class="events-container">
+    <div class="block-title">
+      Events
+    </div>
+    {% if l_events == 0 %}
+        <center><h1 style="color: gray;">No Events Found.</Em></h1></center>
+    {% else %}
+    <ul class="events-slider">
+          {% for i in events %}
+              {% if loop.index % 2 == 0 %}
+                  <li>
+                    <div class="first hero">
+                      <img class="hero-profile-img" src="../{{i[3]}}" alt="">
+                      <div class="hero-description-bk"></div>
+                     
+                      <div class="hero-description">
+                        <p>{{i[2]}}</p>
+                      </div>
+                      <div  class="hero-date">
+                        <p>{{i[6].strftime('%d/%m/%Y')}}</p>
+                      </div>
+                      <div class="hero-btn">
+                        <a href="association/view/event/{{i[0]}}" style="text-decoration: none;">VIEW</a>
+                      </div>
+                    </div>
+                  </li>
+          {% else %}
+              <li>
+                <div class="second hero">
+                  <img class="hero-profile-img" src="../{{i[3]}}" alt="">
+                  <div class="hero-description-bk"></div>
+                 
+                  <div class="hero-description">
+                    <p>{{i[2]}}</p>
+                  </div>
+                  <div  class="hero-date">
+                    <p>{{i[6].strftime('%d/%m/%Y')}}</p>
+                  </div>
+                  <div class="hero-btn">
+                    <a href="association/view/event/{{i[0]}}" style="text-decoration: none;">VIEW</a>
+                  </div>
+                </div>
+              </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+
+
+
+  </div> 
+  <div class="notable-alumni-container">
+    <div class="block-title">
+      Notable Alumni
+    </div>
+    <ul class="notable-alumni-slider">
+    <li>
+      <figure class="snip1515">
+        <div class="profile-image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample47.jpg" alt="sample47" /></div>
+        <figcaption>
+          <h3>Fleece Marigold</h3>
+          <h4>Founder</h4>
+          <p>Which is worse, that everyone has his price, or that the price is always so low.</p>
+          <div class="icons"><a href="#"><i class="ion-social-reddit"></i></a>
+            <a href="#"> <i class="ion-social-twitter"></i></a>
+            <a href="#"> <i class="ion-social-vimeo"></i></a>
+          </div>
+        </figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure class="snip1515">
+        <div class="profile-image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample83.jpg" alt="sample83" /></div>
+        <figcaption>
+          <h3>Norman Gordon</h3>
+          <h4>Web Designer</h4>
+          <p>I'm killing time while I wait for life to shower me with meaning and happiness.</p>
+          <div class="icons"><a href="#"><i class="ion-social-reddit"></i></a>
+            <a href="#"> <i class="ion-social-twitter"></i></a>
+            <a href="#"> <i class="ion-social-vimeo"></i></a>
+          </div>
+        </figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure class="snip1515">
+        <div class="profile-image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample70.jpg" alt="sample70" /></div>
+        <figcaption>
+          <h3>Ruby Von Rails</h3>
+          <h4>Public Relations</h4>
+          <p>The only skills I have the patience to learn are those that have no real application in life. </p>
+          <div class="icons"><a href="#"><i class="ion-social-reddit"></i></a>
+            <a href="#"> <i class="ion-social-twitter"></i></a>
+            <a href="#"> <i class="ion-social-vimeo"></i></a>
+          </div>
+        </figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure class="snip1515">
+        <div class="profile-image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample47.jpg" alt="sample47" /></div>
+        <figcaption>
+          <h3>Fleece Marigold</h3>
+          <h4>Founder</h4>
+          <p>Which is worse, that everyone has his price, or that the price is always so low.</p>
+          <div class="icons"><a href="#"><i class="ion-social-reddit"></i></a>
+            <a href="#"> <i class="ion-social-twitter"></i></a>
+            <a href="#"> <i class="ion-social-vimeo"></i></a>
+          </div>
+        </figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure class="snip1515">
+        <div class="profile-image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample83.jpg" alt="sample83" /></div>
+        <figcaption>
+          <h3>Norman Gordon</h3>
+          <h4>Web Designer</h4>
+          <p>I'm killing time while I wait for life to shower me with meaning and happiness.</p>
+          <div class="icons"><a href="#"><i class="ion-social-reddit"></i></a>
+            <a href="#"> <i class="ion-social-twitter"></i></a>
+            <a href="#"> <i class="ion-social-vimeo"></i></a>
+          </div>
+        </figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure class="snip1515">
+        <div class="profile-image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample70.jpg" alt="sample70" /></div>
+        <figcaption>
+          <h3>Ruby Von Rails</h3>
+          <h4>Public Relations</h4>
+          <p>The only skills I have the patience to learn are those that have no real application in life. </p>
+          <div class="icons"><a href="#"><i class="ion-social-reddit"></i></a>
+            <a href="#"> <i class="ion-social-twitter"></i></a>
+            <a href="#"> <i class="ion-social-vimeo"></i></a>
+          </div>
+        </figcaption>
+      </figure>
+    </li>
+    </ul>
+
+
+
+
+  </div>
+
+  <div class="fund-raising-container">
+    <div class="block-title">
+      Fund Raising Projects
+    </div>
+    {% if l_fund_raising_projects == 0 %}
+    <center><h1 style="color: gray;">No Projects Found.</Em></h1></center>
+    {% else %}
+    <ul class="fund-raising-slider">
+      {% for i in fund_raising_projects %}
+      <li>
+        <figure class="snip1268">
+          <div class="image">
+            <img src="../{{i[6]}}" alt="sq-sample4" style="height: 200px;"/>
+            <a href="{{i[16]}}" class="add-to-cart">VIEW MORE</a>
+          </div>
+          <figcaption>
+            <h2 style="max-height:50px;">{{i[4]}}</h2>
+            <p>{{i[3]}}</p>
+            <div class="price">₹ {{i[8]}} </div>
+          </figcaption>
+        </figure>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+<div class="success-stories-c">
+  <div class="success-stories-container">
+    <div class="block-title">
+      Success Stories
+    </div>
+
+    <section id="testim" class="testim">
+      <!--         <div class="testim-cover"> -->
+                  <div class="wrap">
+      
+                      <span id="right-arrow" class="arrow right fa fa-chevron-right"></span>
+                      <span id="left-arrow" class="arrow left fa fa-chevron-left "></span>
+                      <ul id="testim-dots" class="dots">
+                          <li class="dot active"></li><!--
+                          --><li class="dot"></li><!--
+                          --><li class="dot"></li><!--
+                          --><li class="dot"></li><!--
+                          --><li class="dot"></li>
+                      </ul>
+                      <div id="testim-content" class="cont">
+                          
+                          <div class="active">
+                              <div class="img"><img src="https://image.ibb.co/hgy1M7/5a6f718346a28820008b4611_750_562.jpg" alt=""></div>
+                              <h2>Lorem P. Ipsum</h2>
+                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>                    
+                          </div>
+      
+                          <div>
+                              <div class="img"><img src="https://image.ibb.co/cNP817/pexels_photo_220453.jpg" alt=""></div>
+                              <h2>Mr. Lorem Ipsum</h2>
+                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>                    
+                          </div>
+      
+                          <div>
+                              <div class="img"><img src="https://image.ibb.co/iN3qES/pexels_photo_324658.jpg" alt=""></div>
+                              <h2>Lorem Ipsum</h2>
+                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>                    
+                          </div>
+      
+                          <div>
+                              <div class="img"><img src="https://image.ibb.co/kL6AES/Top_SA_Nicky_Oppenheimer.jpg" alt=""></div>
+                              <h2>Lorem De Ipsum</h2>
+                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>                    
+                          </div>
+      
+                          <div>
+                              <div class="img"><img src="https://image.ibb.co/gUPag7/image.jpg" alt=""></div>
+                              <h2>Ms. Lorem R. Ipsum</h2>
+                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>                    
+                          </div>
+      
+                      </div>
+      
+                  </div>
+      <!--         </div> -->
+          </section>
+      
+      <script src="https://use.fontawesome.com/1744f3f671.js"></script>
+      
+  </div>
+</div>
+
+<div class="around-the-world-container">
+  <div>
+
+  </div>
+  <div class="atw-right-container">
+    <div class="block-title">Around The World</div>
+    <div class="city-statics-container">
+      <!-- <i class="fas fa-map-marker-alt"></i> -->
+
+        <div class="ats-sub">
+            <div>
+              <h1>1129</h1>
+              <i class="fas fa-map-marker-alt"></i> <br>Panji
+            </div>
+            <div>
+              <h1>721</h1>
+              <i class="fas fa-map-marker-alt"></i><br>Mumbai 
+            </div>
+        </div>
+
+        
+        <div class="ats-sub">
+          <div>
+            <h1>573</h1>
+            <i class="fas fa-map-marker-alt"></i><br>Hydrabad
+          </div>
+          <div>
+            <h1>1317</h1>
+            <i class="fas fa-map-marker-alt"></i><br>Chennai 
+          </div>
+      </div>
+      <div class="explore-on-map-container">
+        <button class="explore-on-map-btn">Explore On Map</button>
+      </div>
+
+    </div>
+   
+  </div>
+</div>
+
+<script src="../static/js/jquery-3.4.1.min.js"></script>
+
+<script src="../static/js/lightslider.js"></script>
+<script src="../static/js/index.js"></script>
+
+      {% endblock %}
+      
+ 
+</body>
+</html>

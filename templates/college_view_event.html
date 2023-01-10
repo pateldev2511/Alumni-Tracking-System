@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/final_aag_logo.png') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/alumni_signup.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/main_header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/about.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.css') }}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/sweetalert2.min.css')}}">
+  <script src="https://kit.fontawesome.com/a25e25945a.js" crossorigin="anonymous"></script>
+
+  <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-flat.css" />
+
+  <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css" />
+
+  <title> {{event_details[0][2]}} - Event | Alumni Association Of Goa. </title>
+  <style>
+     
+      .main-container {
+          position: relative;
+          min-height: 500px;
+        margin: 0 auto;
+        width: 80%;
+      }
+
+      /* cOUNTDOWN TIMEER */
+      li {
+        display: inline-block;
+        font-size: 20px;
+        list-style-type: none;
+        padding: 10px;
+        text-transform: uppercase;
+        text-align: center;
+      }
+      
+      li span {
+        display: block;
+        font-size: 30px;
+        padding: 5px;
+      }
+      
+      
+      
+      
+  </style>
+
+</head>
+<body>
+    <!-- javascript:alert(grecaptcha.getResponse(widgetId1)); -->
+  {% extends "main_header.html" %}
+  {% block content %}
+
+
+  <div id="loader_container">
+    <div id="loader">
+    <img src="{{url_for('static',filename='assets/loading.gif')}}">
+    </div>
+  </div>
+
+  <div style="position: fixed;bottom:10px;left:10px;padding:10px 0;margin:10px auto;width:300px;height:auto;z-index:1000;">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        
+        {% for message in messages %}
+        <div style="font-size:18px;background-color: #fff;color: black;padding: 15px 30px;margin:5px 0;box-shadow:1px 1px 3px grey,-1px -1px 3px grey;border-radius:30px;" id="div_{{loop.index}}"> 
+        <p style="float: right;"><i style="cursor:pointer" class="fas fa-times" onclick="document.getElementById('div_{{loop.index}}').style.display='none';"></i></p>
+        <p>{{ message }}</p>
+        </div>
+      
+        {% endfor %}
+    
+    
+    {% endif %}
+
+    {% endwith %}
+  </div>
+
+  <div class="main-container">
+
+      <div class="main-header-portion" style="position:relative;width: 100%;border-top-left-radius:8px;border-top-right-radius: 8px;margin:10px 0 0 0;">
+          <img src="../../../{{event_details[0][3]}}" style="width:100%;height:450px;margin:0 auto;border-top-left-radius:8px;border-top-right-radius: 8px;" alt="">
+
+          <div style="position: absolute;bottom:2px;left:0px;z-index:1000;color:white;background-color: rgba(0, 0, 0, 0.5);width:100%;">
+              <div>
+                  <h1 style="padding: 20px;font-size:50px;line-height: 60px;">{{event_details[0][2]}}</h1>
+              </div>
+          </div>
+      </div>
+      <div id="project_statics_container" style="width:100%;background-color: #fff;box-shadow: 1px 1px 3px gray;border-bottom-left-radius:8px;border-bottom-right-radius: 8px;">
+        
+          <div style="padding: 10px;" style="width: 100%;" id="p_s_c">         
+              {% if isEventStarted == "YES" %}
+              <br>
+                        <center><h3>Times Up ! You Can't Book Tickets Now.</h3></center>
+                        <br>
+                {% else %}
+
+                <table style="width:100%;">
+                    <tr >
+                        <td style="width: 33.33%;">
+                              <div style="padding: 10px;">
+                                <p id="percentage-raised" style="font-weight: bold;padding:10px;font-size: 20px;"><i class="fas fa-rupee-sign"></i> {{event_details[0][8]}}</p>
+                                <p style="padding: 10px;color: gray;font-weight: 400;">No. Of Tickets Available : <span>{{event_details[0][9]}}</span></p>
+                        </td>
+                        <td style="width: 33.33%;">
+    
+                            <ul>
+                                <li><span id="days"></span>days</li>
+                                <li><span id="hours"></span>Hours</li>
+                                <li><span id="minutes"></span>Minutes</li>
+                                <li><span id="seconds"></span>Seconds</li>
+                              </ul>
+                           
+                        </td>
+                        <td style="width: 33.33%;justify-content: center;text-align: center;">
+    
+                          <!-- {{isAllowedForCollege}}
+                          {{isAllowedForAssociation}}
+                          {{isPersonDonate}}
+                          {{my_college}}
+                          {{d_e}}
+                          {{d_m_n}}
+                          {{logged_in_type}} -->
+                          <form action="../../../../college/event/payment/callback" method="POST"  style="display:none;">
+                            <script id="rp_gateway"
+                                src="https://checkout.razorpay.com/v1/checkout.js"
+                                data-key="rzp_test_dSw0oiTYzkIoDn"
+                                data-amount="{{payment_amount_inr}}"
+                                data-name="{{event_details[0][2]}}"
+                                data-description="Alumni Association Of Goa Event Ticket Booking"
+                                data-image="../../../{{event_details[0][3]}}"
+                                data-netbanking="true"
+                                data-description="Payment For Alumni Fund Raising Project."
+                                data-prefill.name=""
+                                data-prefill.email="{{d_e}}"
+                                data-prefill.contact="{{d_m_n}}"
+                                data-notes.shopping_order_id="{{order_id}}">
+                            </script>
+                            <input type="hidden" name="shopping_order_id" value="{{order_id}}">
+                        </form>
+                    
+                            {% if isAllowedOtherCollege == "YES" %}
+                           
+                                    {% if login_type == "ALUMNI" %}
+                                                    
+                                            <button class="button ripple" type="button" id="mv-form-2-btn" style="padding: 10px 20px;border-radius: 30px;font-size:20px;height: auto;" onclick="document.getElementsByClassName('razorpay-payment-button')[0].click();">BOOK NOW</button>
+    
+                                    {% else %}
+                                            You Are Not Allowed To Book Ticket.
+                                    {% endif %}
+                            {% else %}
+                                        
+                                    {% if login_type == "ALUMNI" %}
+                                                     
+                                            {% if isAlumniAllowed == "YES" %}
+                                                <button class="button ripple" type="button" id="mv-form-2-btn" style="padding: 10px 20px;border-radius: 30px;font-size:20px;height: auto;" onclick="document.getElementsByClassName('razorpay-payment-button')[0].click();">BOOK NOW</button>
+    
+                                            {% else %}  
+                                            You Are Not Allowed To Book Ticket.
+    
+                                            {% endif %}
+    
+                                    {% else %}
+                                    You Are Not Allowed To Book Ticket.
+    
+                                    {% endif %}
+                            {% endif %}
+                  
+                                    
+                              
+                        </td>
+                    </tr>
+                </table>
+                {% endif %}
+        </div>
+        
+    </div>
+    <div class="bottom-desc-container" style="width:100%;margin:20px 0;position: relative;display: flex;">
+      <div style="width: 71%;margin-right: 1%;">
+      
+      
+      <div style="background-color: #fff;box-shadow: 1px 1px 3px gray;border-radius: 8px;padding:10px;margin: 10px 0;" id="event_content">
+       
+      
+      
+
+      </div>
+
+      </div>
+      <div style="width: 25%;">
+        
+              
+                <div style="margin-left:20px;background-color: #fff;box-shadow: 1px 1px 3px gray;border-radius: 8px;padding:20px;width:100%;margin:10px 0;">
+                  <h3>Event Details</h3>
+                  <table>
+                    <tr>
+                      <td style="padding: 10px;"><img src="{{ url_for('static',filename='assets/event_start.svg') }}" alt="" style="width: 40px;height:40px;"></td>
+                      <td><p>{{event_details[0][6].strftime("%d/%m/%Y , %I:%M %p")}}</p></td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 10px;"><img src="{{ url_for('static',filename='assets/event_end.svg') }}" alt="" style="width: 40px;height:40px;"></td>
+                      <td><p>{{event_details[0][7].strftime("%d/%m/%Y , %I:%M %p")}}</p></td>
+                    <tr>
+                      <td style="padding: 10px;"><img src="{{ url_for('static',filename='assets/event_location.svg') }}" alt="" style="width: 40px;height:40px;"></td>
+                      <td>{{event_details[0][5]}}</td>
+                    </tr>
+                    </table>
+              </div>
+           
+               
+
+
+
+          <div style="margin-left:20px;background-color: #fff;box-shadow: 1px 1px 3px gray;border-radius: 8px;padding:20px;width:100%;margin:10px 0;">
+            <h3>Sharing is Caring !</h3> <br>
+                <p style="color: gray;">Spreading the word around helps us reach more people that inch us closer to reaching our goals.</p>
+                <p style="padding-top: 10px;">
+                  <div id="share"></div>
+
+                </p>
+          </div>
+      </div>
+  </div>
+  </div>
+  <input type="hidden" id="event_desc_value" value="{{event_details[0][4]}}">
+  <script src="{{url_for('static',filename='js/jquery-3.4.1.min.js') }}"></script>
+<script>
+  document.getElementById('event_content').innerHTML = document.getElementById('event_desc_value').value;
+  const second = 1000,
+      minute = second * 60,
+      hour = minute * 60,
+      day = hour * 24;
+
+let countDown = new Date('{{event_details[0][6].strftime("%Y-%m-%d %H:%M:%S")}}').getTime(),
+    x = setInterval(function() {    
+
+      let now = new Date().getTime(),
+          distance = countDown - now;
+
+      document.getElementById('days').innerText = Math.floor(distance / (day)),
+        document.getElementById('hours').innerText = Math.floor((distance % (day)) / (hour)),
+        document.getElementById('minutes').innerText = Math.floor((distance % (hour)) / (minute)),
+        document.getElementById('seconds').innerText = Math.floor((distance % (minute)) / second);
+
+     //do something later when date is reached
+      if (distance <= 0) {
+        clearInterval(x);
+        document.getElementById('p_s_c').innerHTML = "<br><center><h3>Times Up ! You Can't Book Tickets Now.</h3></center><br>";
+      } 
+
+    }, second)
+</script>
+  <script src="{{url_for('static',filename='js/sweetalert2.all.min.js')}}"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js"></script>
+<script>
+  $("#share").jsSocials({
+    shares: ["email", "twitter", "facebook", "linkedin", "pinterest", "whatsapp"]
+});
+</script>
+
+  {% endblock %}
+</body>
+</html>

@@ -1,0 +1,540 @@
+{% if 'association_login_id' in session %}
+<style>
+  .active-menu-item {
+    color: wheat !important;background: black !important;border-bottom: 3px solid orange;font-weight: 200;
+    text-decoration: none;
+    padding: 20px 15px 20px 15px ;
+    font-size: 14px;
+    display: block;
+    
+    text-align: center;
+  }
+  .level-0-li-active:after {
+    content: '';
+    display: block;
+    height: 3px;
+    width: 0;
+    background: transparent;
+    transition: all .5s ease;
+  }
+  .submenu-1-active {
+    background: #0088ff !important;
+    color: #fff !important;
+  }
+</style>
+
+
+<div class="header">
+  <div class="logo-container">
+    <img src="{{ url_for('static',filename='assets/final_aag_logo.png') }}">
+  </div>
+  <div class='menu-container'>
+    <nav>
+      <a id="resp-menu" class="responsive-menu" href="#"><i class="fa fa-reorder"></i> Menu</a>    
+         <ul class="menu">
+         <li class='level-0-li'><a href="{{ url_for('index') }}">HOME</a></li>
+        
+         <li {% if request.endpoint == "association_home" %} class="level-0-li-active" {% else %} class="level-0-li" {% endif %}><a  href="{{url_for('association_home')}}" {% if request.endpoint == "association_home" %} class="active-menu-item" {% endif %}>DASHBOARD</a></li>
+       
+         <li {% if request.endpoint == "association_college_applications" %} class="level-0-li-active" {% else %} class="level-0-li" {% endif %}><a  href="{{url_for('association_college_applications')}}" {% if request.endpoint == "association_college_applications" %} class="active-menu-item" {% endif %}>APPLICATIONS</a></li>
+
+        <li class='level-0-li'><a  href="{{url_for('association_search')}}" {% if request.endpoint == "association_directory" %} class="level-0-li-active" {% else %} class="level-0-li" {% endif %}>SEARCH</a>
+        <ul class="sub-menu">
+            <li><a href="{{url_for('association_directory')}}" {% if request.endpoint == "association_directory" %} class="submenu-1-active" {% else %} {% endif %}>Search Directory</a></li>
+            <li><a href="javascript:void(0)" >Search Map</a>
+              <ul>
+                <li><a href="/association/view_colleges">Colleges</a></li>
+                <li><a href="/association/view_alumni">Alumni</a></li>
+              </ul>
+            </li>
+         </ul>
+        </li>
+        <li class='level-0-li'><a href="javascript:void(0)" {% if request.endpoint == "association_create_event" %} class="active-menu-item" {% endif %}>EVENTS</a>
+          <ul class="sub-menu">
+            <li><a href="/association/create-event"  {% if request.endpoint == "association_create_event" %} class="submenu-1-active" {% else %} {% endif %}>Create An Event</a></li>
+            <li><a href="#">All Events</a></li>
+
+          </ul>
+        </li>
+        <li class='level-0-li'><a  href="#" {% if request.endpoint == "association_fund_raising_projects_applications" or request.endpoint == "association_special_interest_groups" or request.endpoint == "association_inquiry" %} class="active-menu-item" {% endif %}>SERVICES</a>
+          <ul class="sub-menu">
+            <li><a href="{{ url_for('association_fund_raising_projects_applications') }}" {% if request.endpoint == "association_fund_raising_projects_applications" %} class="submenu-1-active" {% else %} {% endif %}>Fund Raising Projects</a></li>
+            
+            <li><a href="{{url_for('association_special_interest_groups')}}" {% if request.endpoint == "association_special_interest_groups" %} class="submenu-1-active" {% else %} {% endif %}>Special Interest Groups (SIG)</a></li>
+
+            <li><a href="{{url_for('association_inquiry')}}" {% if request.endpoint == "association_inquiry" %} class="submenu-1-active" {% else %} {% endif %}>Inquiries</a></li>
+            <!-- <li><a href="#">Feedbacks</a></li> -->
+          </ul>
+        </li>
+        <li class='level-0-li'><a href="#" {% if request.endpoint == "association_create_blog_post" or request.endpoint == "association_news" or request.endpoint == "association_poll" or request.endpoint == "association_discussion" or request.endpoint == "association_magazines" or request.endpoint == "association_broadcast" %} class="active-menu-item" {% endif %}>MORE</a>
+          <ul class="sub-menu">
+            <li><a href="{{ url_for('association_create_blog_post') }}" {% if request.endpoint == "association_create_blog_post" %} class="submenu-1-active" {% else %} {% endif %} >Blog</a></li>
+            <li><a href="{{ url_for('association_news') }}" {% if request.endpoint == "association_news" %} class="submenu-1-active" {% else %} {% endif %} >News</a></li>
+            <li><a href="{{ url_for('association_poll') }}" {% if request.endpoint == "association_poll" %} class="submenu-1-active" {% else %} {% endif %}>Polls</a></li>
+            <li><a href="{{url_for('association_discussion')}}" {% if request.endpoint == "association_discussion" %} class="submenu-1-active" {% else %} {% endif %}>Discussions</a></li>
+            <li><a href="{{url_for('association_magazines')}}" {% if request.endpoint == "association_magazines" %} class="submenu-1-active" {% else %} {% endif %} >Magazines</a></li>
+            <li><a href="{{url_for('association_broadcast')}}" {% if request.endpoint == "association_broadcast" %} class="submenu-1-active" {% else %} {% endif %}>Broadcast</a></li>
+          </ul>
+        </li>
+        <li class='level-0-li'><a  href="{{url_for('association_chat')}}" {% if request.endpoint == "association_chat" %} class="active-menu-item" {% endif %}>CHAT</a></li>
+        <li class='level-0-li'><a  href="{{url_for('association_profile')}}" {% if request.endpoint == "association_profile" %} class="active-menu-item" {% endif %}>PROFILE</a></li>
+        <li class='level-0-li'><a  href="{{url_for('association_logout')}}" {% if request.endpoint == "association_logout" %} class="active-menu-item" {% endif %}>LOG OUT</a></li>
+        </ul>
+        </nav>
+  </div>
+</div>
+
+
+{% elif 'college_login_id' in session %}
+<div class="header">
+  <div class="logo-container">
+    <img src="{{ url_for('static',filename='assets/final_aag_logo.png') }}">
+  </div>
+  <div class='menu-container'>
+    <nav>
+      <a id="resp-menu" class="responsive-menu" href="#"><i class="fa fa-reorder"></i> Menu</a>    
+         <ul class="menu">
+         <li class='level-0-li'><a href="/">HOME</a>
+         <!-- <ul class="sub-menu">
+         <li><a href="#">Sub-Menu 1</a></li>
+         <li><a href="#">Sub-Menu 2</a></li>
+         <li><a href="#">Sub-Menu 3</a></li>
+         <li><a href="#">Sub-Menu 4</a></li>
+         <li><a href="#">Sub-Menu 5</a></li>   
+         </ul> -->
+         </li>
+         <li class='level-0-li'><a  href="{{url_for('college_home')}}">DASHBOARD</a></li>
+        <li class='level-0-li'><a  href="{{url_for('college_alumni_applications')}}">APPLICATIONS</a></li>
+        <li class='level-0-li'><a  href="{{url_for('college_add_alumni')}}">ADD</a></li>
+
+        
+        <li class='level-0-li'><a  href="#">SEARCH</a>
+        <ul class="sub-menu">
+            <li><a href="{{url_for('association_directory')}}">Search Directory</a></li>
+            <li><a href="#">Search Map</a>
+              <ul>
+                <li><a href="/association/view_colleges">Colleges</a></li>
+                <li><a href="/association/view_alumni">Alumni</a></li>
+            </ul>
+            </li>
+            <!-- <li><a href="#">Special Interest Groups(SIG)</a> -->
+            <!-- <ul>
+              <li><a href="#">Sub Sub-Menu 1</a></li>
+              <li><a href="#">Sub Sub-Menu 2</a></li>
+              <li><a href="#">Sub Sub-Menu 3</a></li>
+              <li><a href="#">Sub Sub-Menu 4</a></li>
+              <li><a href="#">Sub Sub-Menu 5</a></li>	
+            </ul> -->
+            </li>
+            <!-- <li><a href="#">By Map</a></li>
+            <li><a href="#">By Resources</a></li>
+            <li><a href="/student-coordinators/">Student Co-ordinators</a></li>
+            <li><a href="/sponsors">Our Sponsors</a></li>
+            <li><a href="#">Chapters</a></li> -->
+         </ul>
+        </li>
+        <li class='level-0-li'><a  href="#">EVENTS</a>
+          <ul class="sub-menu">
+            <li><a href="{{url_for('college_create_event')}}">Create An Event</a></li>
+            <li><a href="#">All Events</a></li>
+            <li><a href="#">Upcoming Events</a></li>
+            <li><a href="#">Past Events</a></li>
+          </ul>
+        </li>
+        <li class='level-0-li'><a  href="#">SERVICES</a>
+          <ul class="sub-menu">
+            <li><a href="javascript:void(0)">Fund Raising Projects</a>
+                  <ul class="sub-menu">
+                    <li><a href="{{url_for('college_fund_raising_project')}}">Add Project</a></li>
+                    <li><a href="{{ url_for('college_fund_raising_projects_alumni_applications') }}">View Applications</a></li>
+                  </ul>
+            </li>
+            
+            <li><a href="{{url_for('college_alumni_recruiters_applications')}}">Alumni Recruiters</a></li>
+
+            <li><a href="{{url_for('association_special_interest_groups')}}">Special Interest Groups (SIG)</a></li>
+            <li><a href="{{url_for('association_inquiry')}}">Inquiries</a></li>
+            <li><a href="#">Feedbacks</a></li>
+          </ul>
+        </li>
+        <li class='level-0-li'><a  href="#">MORE</a>
+          <ul class="sub-menu">
+            <li><a href="{{ url_for('association_create_blog_post') }}">Blog</a></li>
+            <li><a href="{{ url_for('association_news') }}">News</a></li>
+            <li><a href="{{ url_for('association_poll') }}">Polls</a></li>
+            <li><a href="{{url_for('association_discussion')}}">Discussions</a></li>
+            <li><a href="{{url_for('association_magazines')}}">Magazines</a></li>
+            <li><a href="{{url_for('association_broadcast')}}">Broadcast</a></li>
+          </ul>
+        </li>
+        <li class='level-0-li'><a  href="{{url_for('association_chat')}}">CHAT</a></li>
+        <li class='level-0-li'><a  href="{{url_for('college_profile')}}">PROFILE</a></li>
+        <li class='level-0-li'><a  href="{{url_for('college_logout')}}">LOG OUT</a></li>
+        </ul>
+        </nav>
+  </div>
+</div>
+
+
+{% elif 'alumni_login_id' in session %}
+<div class="header">
+  <div class="logo-container">
+    <img src="{{ url_for('static',filename='assets/final_aag_logo.png') }}">
+  </div>
+  <div class='menu-container'>
+    <nav>
+      <a id="resp-menu" class="responsive-menu" href="#"><i class="fa fa-reorder"></i> Menu</a>    
+         <ul class="menu">
+         <li class='level-0-li'><a href="/">HOME</a>
+         <!-- <ul class="sub-menu">
+         <li><a href="#">Sub-Menu 1</a></li>
+         <li><a href="#">Sub-Menu 2</a></li>
+         <li><a href="#">Sub-Menu 3</a></li>
+         <li><a href="#">Sub-Menu 4</a></li>
+         <li><a href="#">Sub-Menu 5</a></li>   
+         </ul> -->
+         </li>
+         <li class='level-0-li'><a  href="{{url_for('alumni_home')}}">DASHBOARD</a></li>
+        <li class='level-0-li'><a  href="{{url_for('college_alumni_applications')}}">APPLICATIONS</a></li>
+        <li class='level-0-li'><a  href="{{url_for('college_add_alumni')}}">ADD</a></li>
+
+        
+        <li class='level-0-li'><a  href="#">SEARCH</a>
+        <ul class="sub-menu">
+            <li><a href="{{url_for('association_directory')}}">Search Directory</a></li>
+            <li><a href="#">Search Map</a>
+              <ul>
+                <li><a href="/association/view_colleges">Colleges</a></li>
+                <li><a href="/association/view_alumni">Alumni</a></li>
+            </ul>
+            </li>
+            <!-- <li><a href="#">Special Interest Groups(SIG)</a> -->
+            <!-- <ul>
+              <li><a href="#">Sub Sub-Menu 1</a></li>
+              <li><a href="#">Sub Sub-Menu 2</a></li>
+              <li><a href="#">Sub Sub-Menu 3</a></li>
+              <li><a href="#">Sub Sub-Menu 4</a></li>
+              <li><a href="#">Sub Sub-Menu 5</a></li>	
+            </ul> -->
+            </li>
+            <!-- <li><a href="#">By Map</a></li>
+            <li><a href="#">By Resources</a></li>
+            <li><a href="/student-coordinators/">Student Co-ordinators</a></li>
+            <li><a href="/sponsors">Our Sponsors</a></li>
+            <li><a href="#">Chapters</a></li> -->
+         </ul>
+        </li>
+        <li class='level-0-li'><a  href="#">EVENTS</a>
+          <ul class="sub-menu">
+            <li><a href="/association/create-event">Create An Event</a></li>
+            <li><a href="#">All Events</a></li>
+            <li><a href="#">Upcoming Events</a></li>
+            <li><a href="#">Past Events</a></li>
+          </ul>
+        </li>
+        <li class='level-0-li'><a  href="#">CAREERS</a>
+          <ul class="sub-menu">
+            <li><a href="{{ url_for('alumni_jobs') }}">Jobs</a>
+              {% if isAlumniAllowedForJobPost == 1 %}
+                  <ul class="sub-menu">
+                    <li><a href="{{url_for('alumni_add_job')}}">Add</a></li>
+                    
+                    <li><a href="{{url_for('alumni_jobs_statistics')}}">Statistics</a></li>
+
+                  </ul>
+              {% endif %}
+            </li>
+            <li><a href="{{ url_for('alumni_internships') }}">Internships</a>
+              {% if isAlumniAllowedForJobPost == 1 %}
+              <ul class="sub-menu">
+                <li><a href="{{url_for('alumni_add_internship')}}">Add</a></li>
+                
+                <li><a href="{{url_for('alumni_internship_statistics')}}">Statistics</a></li>
+
+              </ul>
+          {% endif %}
+            </li>
+            <li><a href="/mentorships">Mentorships</a></li>
+          </ul>
+        </li>
+        <li class='level-0-li'><a  href="#">SERVICES</a>
+          <ul class="sub-menu">
+            <li><a href="{{ url_for('alumni_fund_raising_project') }}">Fund Raising Projects</a></li>
+            <li><a href="{{url_for('association_special_interest_groups')}}">Special Interest Groups (SIG)</a></li>
+            <li><a href="{{url_for('association_inquiry')}}">Inquiries</a></li>
+            <li><a href="#">Feedbacks</a></li>
+          </ul>
+        </li>
+        <li class='level-0-li'><a  href="#">MORE</a>
+          <ul class="sub-menu">
+            <li><a href="{{ url_for('association_create_blog_post') }}">Blog</a></li>
+            <li><a href="{{ url_for('association_news') }}">News</a></li>
+            <li><a href="{{ url_for('association_poll') }}">Polls</a></li>
+            <li><a href="{{url_for('association_discussion')}}">Discussions</a></li>
+            <li><a href="{{url_for('association_magazines')}}">Magazines</a></li>
+            <li><a href="{{url_for('association_broadcast')}}">Broadcast</a></li>
+          </ul>
+        </li>
+        <li class='level-0-li'><a  href="{{url_for('association_chat')}}">CHAT</a></li>
+        <li class='level-0-li'><a  href="{{url_for('alumni_profile')}}">PROFILE</a></li>
+        <li class='level-0-li'><a  href="{{url_for('alumni_logout')}}">LOG OUT</a></li>
+        </ul>
+        </nav>
+  </div>
+</div>
+<script>
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+        console.log("Logged Out From Google Account.");
+    });
+    auth2.disconnect();
+  }
+</script>
+
+
+{% elif 'super_admin_login_id' in session %}
+<div class="header">
+  <div class="logo-container">
+    <img src="{{ url_for('static',filename='assets/final_aag_logo.png') }}">
+  </div>
+  <div class='menu-container'>
+    <nav>
+      <a id="resp-menu" class="responsive-menu" href="#"><i class="fa fa-reorder"></i> Menu</a>    
+         <ul class="menu">
+         <!-- <ul class="sub-menu">
+         <li><a href="#">Sub-Menu 1</a></li>
+         <li><a href="#">Sub-Menu 2</a></li>
+         <li><a href="#">Sub-Menu 3</a></li>
+         <li><a href="#">Sub-Menu 4</a></li>
+         <li><a href="#">Sub-Menu 5</a></li>   
+         </ul> -->
+         </li>
+        <li class='level-0-li'><a  href="{{url_for('college_alumni_applications')}}">APPLICATIONS</a></li>
+        </li>
+    
+        <li class='level-0-li'><a  href="{{url_for('super_admin_logout')}}">LOG OUT</a></li>
+        </ul>
+        </nav>
+  </div>
+</div>
+
+
+{% else %}
+<style>
+  .active-menu-item {
+    color: wheat !important;background: black !important;border-bottom: 3px solid orange;font-weight: 200;
+    text-decoration: none;
+    padding: 20px 15px 20px 15px ;
+    font-size: 14px;
+    display: block;
+    
+    text-align: center;
+  }
+  .level-0-li-active:after {
+    content: '';
+    display: block;
+    height: 3px;
+    width: 0;
+    background: transparent;
+    transition: all .5s ease;
+  }
+  .submenu-1-active {
+    background: #0088ff !important;
+    color: #fff !important;
+  }
+</style>
+<div class="header">
+  <div class="logo-container">
+    <img src="{{ url_for('static',filename='assets/final_aag_logo.png') }}">
+  </div>
+  <div class='menu-container'>
+    <nav>
+      <a id="resp-menu" class="responsive-menu" href="#"><i class="fa fa-reorder"></i> Menu</a>    
+         <ul class="menu">
+         <li {% if request.endpoint == "index" %} class="level-0-li-active" {% else %} class="level-0-li" {% endif %}><a href="{{url_for('index')}}" {% if request.endpoint == "index" %} class="active-menu-item" {% endif %}>HOME</a>
+         <!-- <ul class="sub-menu">
+         <li><a href="#">Sub-Menu 1</a></li>
+         <li><a href="#">Sub-Menu 2</a></li>
+         <li><a href="#">Sub-Menu 3</a></li>
+         <li><a href="#">Sub-Menu 4</a></li>
+         <li><a href="#">Sub-Menu 5</a></li>   
+         </ul> -->
+         </li>
+        <li {% if request.endpoint == "about" %} class="level-0-li-active" {% else %} class="level-0-li" {% endif %}><a  href="{{url_for('about')}}" {% if request.endpoint == "about" %} class="active-menu-item" {% endif %}>ABOUT</a></li>
+        <li><a  href="javascript:void(0)" {% if request.endpoint == "special_interest_groups" or request.endpoint == "student_coordinators" %} class="active-menu-item" {% endif %}>DIRECTORY</a>
+        <ul class="sub-menu">
+            <li><a href="#">Search Alumni</a></li>
+            <!-- <li><a href="#">Search Faculty</a> -->
+            <!-- <ul>
+              <li><a href="#">Sub Sub-Menu 1</a></li>
+              <li><a href="#">Sub Sub-Menu 2</a></li>
+              <li><a href="#">Sub Sub-Menu 3</a></li>
+              <li><a href="#">Sub Sub-Menu 4</a></li>
+              <li><a href="#">Sub Sub-Menu 5</a></li>	
+            </ul> -->
+            </li>
+            <li><a href="{{url_for('special_interest_groups')}}" {% if request.endpoint == "special_interest_groups" %} class="submenu-1-active" {% else %} {% endif %}>Special Interest Groups(SIG)</a>
+            <!-- <ul>
+              <li><a href="#">Sub Sub-Menu 1</a></li>
+              <li><a href="#">Sub Sub-Menu 2</a></li>
+              <li><a href="#">Sub Sub-Menu 3</a></li>
+              <li><a href="#">Sub Sub-Menu 4</a></li>
+              <li><a href="#">Sub Sub-Menu 5</a></li>	
+            </ul> -->
+            </li>
+            <li><a href="#">By Map</a></li>
+            <!-- <li><a href="#">By Resources</a></li> -->
+            <li><a href="/student-coordinators/" {% if request.endpoint == "student_coordinators" %} class="submenu-1-active" {% else %} {% endif %}>Student Co-Ordinators</a></li>
+            <!-- <li><a href="/sponsors">Our Sponsors</a></li> -->
+
+         </ul>
+        </li>
+        <li class='level-0-li'><a  href="#"  {% if request.endpoint == "jobs" or request.endpoint == "internships" or request.endpoint == "mentorships" %} class="active-menu-item" {% endif %}>CAREERS</a>
+          <ul class="sub-menu">
+            <li><a href="{{url_for('jobs')}}" {% if request.endpoint == "jobs" %} class="submenu-1-active" {% else %} {% endif %}>Jobs</a></li>
+            <li><a href="{{url_for('internships')}}" {% if request.endpoint == "internships" %} class="submenu-1-active" {% else %} {% endif %}>Internships</a></li>
+            <li><a href="{{url_for('mentorships')}}" {% if request.endpoint == "mentorships" %} class="submenu-1-active" {% else %} {% endif %}>Mentorships</a></li>
+          </ul>
+        </li>
+        <li class='level-0-li'><a  href="javascript:void(0)" {% if request.endpoint == "events" or request.endpoint == "calender" %} class="active-menu-item" {% endif %}>EVENTS</a>
+          <ul class="sub-menu">
+            <li><a href="{{url_for('events')}}" {% if request.endpoint == "events" %} class="submenu-1-active" {% else %} {% endif %}>All Events</a></li>
+            <li><a href="{{url_for('calendar')}}" {% if request.endpoint == "calendar" %} class="submenu-1-active" {% else %} {% endif %}>Alumni Event Calendar</a></li>
+            <!-- <li><a href="/chapters">Chapters</a></li> -->
+          </ul>
+        </li>
+        <li class='level-0-li'><a  href="javascript:void(0)" {% if request.endpoint == "blog" or request.endpoint == "news" or request.endpoint == "alumni_awardees" or request.endpoint == "success_stories" or request.endpoint == "magazines" or request.endpoint == "faq" %} class="active-menu-item" {% endif %}>MORE</a>
+          <ul class="sub-menu">
+            <!-- <li><a href="#">Alumni Services</a>
+              <ul>
+                <li><a href="#">Transcript</a></li>
+                <li><a href="#">Letter Of Recommendation</a></li>
+                <li><a href="#">Degree Request</a></li>
+                <li><a href="#">Business Promotion</a></li>
+                <li><a href="#">Campus Visit</a></li>	
+            </ul>
+            </li> -->
+            <li><a href="{{url_for('blog')}}" {% if request.endpoint == "blog" %} class="submenu-1-active" {% else %} {% endif %}>Our Blog</a></li>
+            <li><a href="/news" {% if request.endpoint == "news" %} class="submenu-1-active" {% else %} {% endif %}>News & Updates</a></li>
+            <li><a href="/alumni_awardees" {% if request.endpoint == "alumni_awardees" %} class="submenu-1-active" {% else %} {% endif %}>Alumni Awardees</a></li>
+            <li><a href="/success_stories" {% if request.endpoint == "success_stories" %} class="submenu-1-active" {% else %} {% endif %}>Success Stories</a></li>
+            <!-- <li><a href="#">Alumni Store</a></li> -->
+            <li><a href="/magazines" {% if request.endpoint == "magazines" %} class="submenu-1-active" {% else %} {% endif %}>Alumni Magazine</a></li>
+            <li><a href="/volunteer_opportunities" {% if request.endpoint == "volunteer_opportunities" %} class="submenu-1-active" {% else %} {% endif %}>Volunteer Opportunities</a></li>
+            <li><a href="/faq" {% if request.endpoint == "faq" %} class="submenu-1-active" {% else %} {% endif %}>FAQ</a></li>
+          </ul>
+        </li>
+        <li class='level-0-li'><a  href="javascript:void(0)"  {% if request.endpoint == "alumni_signup" or request.endpoint == "college_signup" or request.endpoint == "association_signup" %} class="active-menu-item" {% endif %}>SIGN UP</a>
+          <ul class="sub-menu">
+            <li><a href="/alumni/signup" {% if request.endpoint == "alumni_signup" %} class="submenu-1-active" {% else %} {% endif %}>Alumni</a></li>
+            <li><a href="/college/signup" {% if request.endpoint == "college_signup" %} class="submenu-1-active" {% else %} {% endif %}>College</a></li>
+            <li><a href="/association/signup" {% if request.endpoint == "association_signup" %} class="submenu-1-active" {% else %} {% endif %}>Association</a></li>
+          </ul>
+        </li>
+        <li class='level-0-li'><a href="javascript:void(0)"  {% if request.endpoint == "alumni_login" or request.endpoint == "college_login" or request.endpoint == "association_login" %} class="active-menu-item" {% endif %}>LOG IN</a>
+          <ul class="sub-menu">
+            <li><a href="http://localhost:5000/alumni/login" {% if request.endpoint == "alumni_login" %} class="submenu-1-active" {% else %} {% endif %}>Alumni</a></li>
+            <li><a href="http://localhost:5000/college/login" {% if request.endpoint == "college_login" %} class="submenu-1-active" {% else %} {% endif %}>College</a></li>
+            <li><a href="http://localhost:5000/association/login" {% if request.endpoint == "association_login" %} class="submenu-1-active" {% else %} {% endif %}>Association</a></li>
+          </ul>
+        </li>
+        </ul>
+        </nav>
+  </div>
+</div>
+
+{% endif %}
+
+  {% block content %}
+
+  {% endblock %}
+
+<div class="footer-container">
+  <div class="main-footer-container">
+    <div class="quick-links-container">
+        <div style="border-bottom: 2px solid orange;padding:0 10px 5px 0px;margin:0 0 10px 0;"><h3>Quick Links</h3></div>
+        <p><a href="/" style="text-decoration: none;color: white;">Home</a></p>
+        <p><a href="/about" style="text-decoration: none;color: white;">About</a></p>
+        <p><a href="/events" style="text-decoration: none;color: white;">Events</a></p>
+        <p><a href="/jobs" style="text-decoration: none;color: white;">Jobs</a></p>
+        <p><a href="/inquiry" style="text-decoration: none;color: white;">Inquiry</a></p>
+        <p><a href="/alumni/signup" style="text-decoration: none;color: white;">Sign Up</a></p>
+        <p><a href="/alumni/login" style="text-decoration: none;color: white;">Log In</a></p>
+    </div>
+    <div class="quick-links-container">
+      <div style="border-bottom: 2px solid orange;padding:0 10px 5px 0px;margin:0 0 10px 0;"><h3>Social Updates</h3></div>
+      <a class="twitter-timeline" data-width="300" data-height="350" data-theme="dark" href="https://twitter.com/Goa_edu?ref_src=twsrc%5Etfw">Tweets by Goa_edu</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </div>
+  <div class="quick-links-container">
+    <div style="border-bottom: 2px solid orange;padding:0 10px 5px 0px;margin:0 0 10px 0;"><h3>Our Blog</h3></div>
+      {% if l_footer_blog_posts == 0 %}
+          <center><p>No Blog Posts Found.</p></center>
+      {% else %}
+      <br>
+            {% for i in footer_blog_posts %}
+            <a href="http://localhost:5000/{{i[0]}}" style="text-decoration: none;color:white;">
+            <div class="blog-post-container" style="cursor: pointer;">
+              <div class="blog-post-image">
+                <img src="http://localhost:5000/static/{{i[1]}}" style="width: 100px;">
+              </div>
+              <div class="blog-post-title bpt" style="left: 25px;top:10px;">
+                {{i[2]}}
+              </div>
+            </div>
+          </a>
+            <br>
+            {% endfor %}
+      {% endif %}
+      
+      
+</div>
+<div class="quick-links-container">
+  <div style="border-bottom: 2px solid orange;padding:0 10px 5px 0px;margin:0 0 10px 0;"><h3>Connect With Us</h3></div>
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3844.2647725942425!2d73.82682081528498!3d15.523930457942257!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbfc06d6a7a4fe7%3A0x1caa509329c3ea48!2sDirectorate%20of%20Higher%20Education!5e0!3m2!1sen!2sin!4v1583553523033!5m2!1sen!2sin" width="400" height="200" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+  <br>
+  <br>
+  <div style="text-align: center;font-size:20px;width:100%;margin:0;padding:0;">
+    
+    <i class="far fa-envelope"></i> alumni.association.goa@gmail.com <br> <br>
+    <i class="fas fa-phone"></i> 0832-2416023
+  </div>
+  <br> <br>
+  <div style="text-align: center;">
+    <i class="fab fa-facebook-f"></i> 
+    <i class="fab fa-twitter"></i>
+    <i class="fab fa-google-plus-g"></i>
+    <i class="fab fa-linkedin"></i>
+  </div>
+</div>
+  </div>
+  <div style="text-align: center;">
+    <div id="google_translate_element" style="color: white;margin:5px 0;"></div>
+  </div>
+  <div class="footer-text">
+    Copyright &copy; 2020 | Alumni Association Of GOA.
+  </div>
+</div>
+<style>
+  .goog-te-combo {
+    color: black;
+  }
+  .goog-te-combo option {
+    color: black;
+  }
+</style>
+<!-- <script src="../static/js/jquery-3.4.1.min.js"></script> -->
+
+<script async>(function(w, d) { w.CollectId = "5e684828a961d65ed62e0fe9"; var h = d.head || d.getElementsByTagName("head")[0]; var s = d.createElement("script"); s.setAttribute("type", "text/javascript"); s.setAttribute("src", "https://collectcdn.com/launcher.js"); h.appendChild(s); })(window, document);</script>
+
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>

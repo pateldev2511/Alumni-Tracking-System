@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/final_aag_logo.png') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/alumni_signup.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/main_header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/about.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.css') }}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/sweetalert2.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/association_college_applications.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/association_create_blog_post.css')}}">
+  <script src="https://kit.fontawesome.com/a25e25945a.js" crossorigin="anonymous"></script>
+  <title> Profile - Education | Alumni Association Of Goa </title>
+  <style>
+     body {
+         background-color: #F5F5F5 !important;
+     }
+
+
+    .main-container {
+        position: relative;
+        width: 80%;
+        margin: 0 auto;
+        top: -200px;
+        min-height: 500px;
+        display: flex;
+    }
+    .left-container {
+            width: 30%;
+            background-color: transparent !important;
+            padding: 10px;
+
+    }
+    .right-container {
+            width:70%;
+            background-color: transparent !important;
+            padding: 10px;
+    }
+    .profile-1-container,.profile-2-container,.profile-3-container,.profile-4-container,.profile-5-container {
+        text-align: center;
+        background-color: #fff;
+        margin: 0 0 20px 0;
+        min-height: 200px;
+        box-sizing: border-box;
+        box-shadow: rgba(0,0,0,0.14) 0px 2px 2px 0px,rgba(0,0,0,0.2) 0px 3px 1px -2px,rgba(0,0,0,0.12) 0px 1px 5px 0px;
+        border-radius: 2px;
+        padding: 10px 10px 20px 10px;
+
+    }
+    .profile-img-container {
+        position: relative;
+        padding: 5px;
+        overflow: hidden !important;
+    }
+    .main-profile-img {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+    }
+    .profile-name {
+        font-size: 40px;
+    }
+    .profile-2-container {
+        padding:0;
+    }
+    .profile-side-header {
+        font-size: 16px;
+        line-height: 18px;
+        text-decoration: none solid rgba(0,0,0,0.54);
+        word-spacing: 0;
+        min-height: 50px;
+        overflow: hidden;
+        text-align: left;
+        padding: 9px 0;
+        color: gray;
+
+       
+    }
+    .contact-info,.skill-info,.network-info,.personal-info {
+        margin: 20px;
+        padding: 10px;
+        text-align: left;
+    }
+
+
+
+    .right-profile-1-container,.right-profile-2-container,.right-profile-3-container,.right-profile-4-container,.right-profile-5-container {
+        text-align: center;
+        background-color: #fff;
+        margin: 0 0 20px 0;
+        min-height: 100px;
+        box-sizing: border-box;
+        box-shadow: rgba(0,0,0,0.14) 0px 2px 2px 0px,rgba(0,0,0,0.2) 0px 3px 1px -2px,rgba(0,0,0,0.12) 0px 1px 5px 0px;
+        border-radius: 2px;
+        padding: 10px 10px 20px 10px;
+
+    }
+    .right-profile-side-header {
+        font-size: 16px;
+        line-height: 18px;
+        text-decoration: none solid rgba(0,0,0,0.54);
+        word-spacing: 0;
+        min-height: 50px;
+        overflow: hidden;
+        text-align: left;
+        padding: 9px 0;
+        color: gray;
+
+       
+    }
+    .edu-b {
+        padding: 10px;
+        margin: 5px;
+    }
+    .edu-b:hover {
+        background-color: #EEEEEE;
+    }
+   
+    .profile-blog-container {
+        position: relative;
+        width: 100%;
+        margin: 10px auto;
+        display: grid;
+        grid-template-columns: auto auto auto; 
+    }
+    
+    input {
+        border-radius: 0 !important;
+    }
+    input[type="date"]
+    {
+        all: unset;
+    }
+  </style>
+
+</head>
+<body>
+  {% extends "main_header.html" %}
+
+  {% block content %}
+  <div id="loader_container">
+    <div id="loader">
+    <img src="{{url_for('static',filename='assets/loading.gif')}}">
+    </div>
+  </div>
+
+  <div style="position: fixed;bottom:10px;left:10px;padding:10px 0;margin:10px auto;width:300px;height:auto;z-index:1000;">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        
+        {% for message in messages %}
+        <div style="font-size:18px;background-color: #fff;color: black;padding: 15px 30px;margin:5px 0;box-shadow:1px 1px 3px grey,-1px -1px 3px grey;border-radius:30px;" id="div_{{loop.index}}"> 
+        <p style="float: right;"><i style="cursor:pointer" class="fas fa-times" onclick="document.getElementById('div_{{loop.index}}').style.display='none';"></i></p>
+        <p>{{ message }}</p>
+        </div>
+      
+        {% endfor %}
+    
+    
+    {% endif %}
+
+    {% endwith %}
+  </div>
+  
+
+
+
+  <div id="particles-js" style="  position: relative;
+  width: 100%;
+  height: 300px;
+  background-color: #000000;
+  background-image: url('');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;"></div>
+
+  <div class="main-container">
+
+    <div class="basic_info_con" id="basic_info_con" style="background-color: white;padding:10px;width:800px;margin:0 auto;box-sizing: border-box;
+    box-shadow: rgba(0,0,0,0.14) 0px 2px 2px 0px,rgba(0,0,0,0.2) 0px 3px 1px -2px,rgba(0,0,0,0.12) 0px 1px 5px 0px;
+    border-radius: 2px;
+    ">
+        <h1 style="text-align: center;">Education Details</h1>
+        <br><br>
+        
+        <form style="margin:0 auto;justify-content: center;" method="POST">
+            <div style="display:flex;width:800px;justify-content: center;">
+                <div style="width:800px;justify-content: center;">
+                    <div class="floating-input" style="width :650px;">
+                        <input required  id="institute_name" name='institute_name' style="width:100%;" type="text" value="{{profile_education_details[0][2]}}"/>
+                        <label>Name Of Institute</label>
+                    </div> 
+                   
+                </div>
+            </div>
+            
+            <div style="display:flex;justify-content: center;">
+                <div style="display: flex;width:500px;justify-content: center;">
+                    <div class="floating-input" style="width:auto">
+                        <select required id='starting_year' name='starting_year'>
+                          {% for i in range(1960,2021) %}
+                                {% if i == profile_education_details[0][3] %}
+                                    <option value="{{i}}" selected>{{i}}</option>
+                                {% else %}
+                                <option value="{{i}}">{{i}}</option>
+                                {% endif %}
+                          {% endfor %}
+                          
+                        </select>
+                        <label>Starting Year</label>
+                    </div> 
+                    <div class="floating-input" style="width:auto">
+                        <select required id='graduation_year' name='graduation_year'>
+                          {% for i in range(1960,2021) %}
+                          {% if i == profile_education_details[0][4] %}
+                                <option value="{{i}}" selected>{{i}}</option>
+                            {% else %}
+                            <option value="{{i}}">{{i}}</option>
+                            {% endif %}
+                          {% endfor %}
+                          
+                        </select>
+                        <label>Graduation Year</label>
+                    </div> 
+                </div>
+            </div>
+
+
+            <div style="display:flex;justify-content: center;">
+                <div style="display: flex;width:500px;justify-content: center;">
+                    <div class="floating-input" style="width:auto">
+                        <input required  id="degree" name='degree' type="text" value="{{profile_education_details[0][5]}}">
+                        <label style="position: relative !important;">Degree</label>
+                    </div> 
+                    <div class="floating-input">
+                        <input required id="department" name='department' type="text" value="{{profile_education_details[0][6]}}">
+                        <label style="position: relative !important;">Department/ Specialization</label>
+                    </div>
+                </div>
+            </div>
+            
+            <br><br>
+        
+      
+              <div style="text-align: center;">                   
+                <button class="button ripple" type="submit">UPDATE</button>&nbsp;&nbsp;&nbsp;<button class="button ripple" type="button" onclick="deleteEducation({{profile_education_details[0][0]}});">DELETE</button>
+              </div>
+          
+            <input type="hidden" id="mode" name="mode" value="4">
+            
+        </form>
+       </div>
+
+       
+   </div>
+   <!-- <label for="">Address: <input  class="controls" type="text" placeholder="Search Box" size="104"></label><br> -->
+   <label for=""><input type="text" class="latitude" style="display: none;"></label>
+   <label for=""><input type="text" class="longitude" style="display: none;"></label>
+   <label for=""><input type="text" class="reg-input-city" placeholder="City" style="display: none;"></label>
+   
+   <div id="map-canvas" style="display: none;"></div>
+   
+   
+
+    <!-- <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script> -->
+
+  <script src="{{url_for('static',filename='js/jquery-3.4.1.min.js') }}"></script>
+  <script src="{{url_for('static',filename='js/javascript.js') }}"></script>
+
+
+<script>
+    function deleteEducation(x)
+    {
+        $.ajax({
+            url:'',
+            method: "POST",
+            dataType: "TEXT",
+            data: {
+                mode: 2,
+                id : x
+            },
+            success: function(response)
+            {
+                var obj = JSON.parse(response);
+                        
+                if(obj.res == 1)
+                {
+                    
+                    Swal.fire({
+                        icon: 'success',
+                        title: obj.msg,
+                      });
+                    window.location = "../../../../alumni/profile/";
+                }
+                else {
+                  Swal.fire({
+                    icon: 'error',
+                    title: obj.msg,
+                  });
+                }
+            }
+        });
+    }
+</script>
+
+  <script src="{{url_for('static',filename='js/particles.js') }}"></script>
+    <script src="{{url_for('static',filename='js/app.js') }}"></script>
+  <script src="{{url_for('static',filename='js/sweetalert2.all.min.js')}}"></script>
+
+  <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+   
+
+    
+
+  {% endblock %}
+</body>
+</html>

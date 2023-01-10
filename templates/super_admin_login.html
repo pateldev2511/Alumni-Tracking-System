@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/final_aag_logo.png') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/association_login.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/main_header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.css') }}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+
+  <script src="{{url_for('static',filename='js/platform.js')}}" async defer></script>
+  <meta name="google-signin-client_id" content="375235053283-1hlbi0eqkv7qdrph33qcd0kdna0j4beg.apps.googleusercontent.com">
+  <title>Log In | Super Admin</title>
+  <style>
+    .google-login-container {
+      position: relative;
+      width: 80%;
+      left: 100px;
+      margin: 20px auto 10px auto;
+      display: flex;
+      text-align: center;
+    }
+    .g-signin2 {
+      border: none;
+      outline: none;
+      
+    }
+    .g-signin2:hover {
+      box-shadow: none;
+    }
+    a {
+      color: #0088ff;
+      text-decoration: none;
+    }
+    
+/* Loader CSS */
+#loader_container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: auto;
+  background-color: rgba(255,255,255, 0.5);
+  z-index: 9999 !important;
+  display: none;
+}
+
+#loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+  </style>
+</head>
+<body>
+
+  <div id="loader_container">
+    <div id="loader">
+    <img src="{{url_for('static',filename='assets/loading.gif')}}">
+    </div>
+  </div>
+
+  <div style="position: fixed;bottom:10px;left:10px;padding:10px 0;margin:10px auto;width:300px;height:auto;z-index:1000;">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        
+        {% for message in messages %}
+        <div style="font-size:18px;background-color: #fff;color: black;padding: 15px 30px;margin:5px 0;box-shadow:1px 1px 3px grey,-1px -1px 3px grey;border-radius:30px;" id="div_{{loop.index}}"> 
+        <p style="float: right;"><i style="cursor:pointer" class="fas fa-times" onclick="document.getElementById('div_{{loop.index}}').style.display='none';"></i></p>
+        <p>{{ message }}</p>
+        </div>
+      
+        {% endfor %}
+    
+    
+    {% endif %}
+
+    {% endwith %}
+  </div>
+
+  {% extends "main_header.html" %}
+  {% block content %}
+  <div class="login-container">
+    <div class="left-login">
+      <img src="{{url_for('static',filename='assets/login_svg3.svg')}}" alt="">
+    </div>
+    <div class="right-login">
+      <form>
+        <h4>Super Admin Log In</h4>
+      
+         <div class="floating-input">
+          <input required id='email' name='email' type="text" />
+          <label for="email">Email</label>
+        </div>
+      
+        <div class="floating-input">
+          <input required id='password' name='password' type="password" />
+          <label for="password">Password</label>
+        </div>
+        <div class="floating-input" style="display: flex;">
+            <span id="captcha" style="width:60%;"> </span>
+           <div class="floating-input" style="float: left;width:40%;overflow:hidden;margin: 8px 0 0 0;">
+              <input required id='cpatchaTextBox' type="text" style="position:relative;margin:0;padding:0;letter-spacing: 3px;" maxlength="6" />
+              <label for="cpatchaTextBox" style="">Captcha</label>
+            </div>
+        </div>
+        <div class="input-button">
+          <button class="button ripple" type="button" onclick="validateCaptcha();">LOG IN</button>
+        </div>
+        <br/>
+
+      </form>
+    </div>
+  </div>
+<script>
+    var code;
+    function createCaptcha() {
+      //clear the contents of captcha div first 
+      document.getElementById('captcha').innerHTML = "";
+      var charsArray =
+      "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      var lengthOtp = 6;
+      var captcha = [];
+      for (var i = 0; i < lengthOtp; i++) {
+        //below code will not allow Repetition of Characters
+        var index = Math.floor(Math.random() * charsArray.length + 1); //get the next character from the array
+        if (captcha.indexOf(charsArray[index]) == -1)
+          captcha.push(charsArray[index]);
+        else i--;
+      }
+      var canv = document.createElement("canvas");
+      canv.id = "captcha";
+      canv.width = 100;
+      canv.height = 50;
+      
+      var ctx = canv.getContext("2d");
+      ctx.font = "25px Georgia";
+      ctx.strokeText(captcha.join(""), 0, 30);
+      //storing captcha so that can validate you can save it somewhere else according to your specific requirements
+      code = captcha.join("");
+      document.getElementById("captcha").appendChild(canv); // adds the canvas to the body element
+    }
+    function validateCaptcha() {
+      event.preventDefault();
+      debugger
+    
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+    
+      if(email.length == 0 || email == "")
+      {
+        Swal.fire({
+          icon: 'error',
+          title: 'Please Enter Email.',
+        });
+      }
+      else {
+        if(password.length == 0 || password == "")
+        {
+          Swal.fire({
+            icon: 'error',
+            title: 'Please Enter Password.',
+          });
+        }
+        else {
+          if (document.getElementById("cpatchaTextBox").value == code) {
+        
+            document.getElementById('loader_container').style.display = "block";
+                              if(document.getElementById('loader_container').style.display == "block")
+                              {
+        
+                                var x = setInterval(function()
+                                {
+                                  var xmlhttp = new XMLHttpRequest();
+                                  xmlhttp.open("GET", "/super-admin/login?mode=1&email=" +email+"&password="+password, false);
+                                  xmlhttp.send(null);
+                                  var res = xmlhttp.responseText;
+                                  var obj = JSON.parse(res);
+                                
+                                  if(obj.res == 1)
+                                  {
+                                    document.getElementById('loader_container').style.display = "none";
+                                    window.location = "/super-admin/home";
+                                  }
+                                  else {
+                                    document.getElementById('loader_container').style.display = "none";
+                                    Swal.fire({
+                                      icon: 'error',
+                                      title: obj.msg,
+                                    });
+                                  }
+                                  clearInterval(x);
+                                },1000);
+                                
+                              }
+          }else{
+            Swal.fire({
+              icon: 'error',
+              title: 'Invalid Captcha\nPlease Try Again.',
+            });
+            createCaptcha();
+          }
+        }
+      }
+    }
+    
+    
+    createCaptcha();
+</script>
+<!-- <script src="{{url_for('static',filename='js/association_login.js')}}"></script> -->
+<script src="{{url_for('static',filename='js/sweetalert2.all.min.js')}}"></script>
+  {% endblock %}
+</body>
+</html>

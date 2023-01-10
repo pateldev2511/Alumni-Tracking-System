@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta charset='utf-8'>
+<head>
+	<title>Student Co-ordinators | Alumni Association Of Goa</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/main_header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/all.css') }}">
+
+    <style>
+        .main-c{
+                position: relative;
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+                width: 80%;
+                margin: 0 auto;
+              
+
+            } 
+        .title{
+                padding: 20px !important;
+        }
+        .tableout{
+                font-size: 30px;
+                justify-content: center;
+                margin: 0 auto;
+        }
+        .tablein{
+                font-size: 12px;
+                
+                margin: 20px;
+                background-color: white;
+                box-shadow: 1px 1px 5px black,-1px -1px 5px black;
+                border-radius: 15px;
+                padding: 10px;
+        }
+        .tablein:hover {
+            transform: scale(1.02);
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+        .name{
+                padding: 10px;
+                font-size: 18px;
+                background-color: white;
+        }
+        p {
+            margin:8px 0;
+            padding: 0;
+        }
+        .page-title {
+            text-align: center;
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+     </style>
+
+</head>
+<body>
+	{% extends "main_header.html" %}
+    {% block content %}
+    <div class="main-c">
+        <p class="page-title">Student Co-ordinators</p>
+    <table class="tableout" border="0" align="center">
+        <tr>
+            <div class="title"><td colspan="3" align="center">Event Conduct Team</td></div>
+        </tr>
+        <tr>
+            <td>
+            <table class="tablein" border="0">
+                <tr><td>
+                <div align="center"><img src="{{url_for('static',filename='assets/man.png')}}" width="200" height="200"></div>
+            
+                <div class="name" align="center">Max William</div>
+            
+                <div class="name" align="center">
+                    <p>B.Tech CSE (2017-2021)</p>
+                    <p>School of Computer Science & Engg. (CSE)</p>
+                    <p>kalyan35.662000@gmail.com</p>
+                    <p>9059876620</p>
+                </div>
+                </td></tr>
+            </table>
+            </td>
+            <td>
+            <table class="tablein" border="0">
+                <tr><td>
+                <div align="center"><img src="{{url_for('static',filename='assets/man.png')}}" width="200" height="200"></div>
+                  
+                <div class="name" align="center">NAME</div>
+                  
+                <div class="name" align="center">
+                    <p>B.Tech CSE (2017-2021)</p>
+                    <p>School of Computer Science & Engg. (CSE)</p>
+                    <p>kalyan35.662000@gmail.com</p>
+                    <p>9059876620</p>
+                </div>
+                </td></tr>
+            </table>
+            </td>
+            <td>
+            <table class="tablein" border="0">
+                <tr><td>
+                <div align="center"><img src="{{url_for('static',filename='assets/man.png')}}" width="200" height="200"></div>
+                  
+                <div class="name" align="center">NAME</div>
+                  
+                <div class="name" align="center">
+                    <p>B.Tech CSE (2017-2021)</p>
+                    <p>School of Computer Science & Engg. (CSE)</p>
+                    <p>kalyan35.662000@gmail.com</p>
+                    <p>9059876620</p>
+                </div>
+                </td></tr>
+            </table>
+            </td>
+        </tr>
+    </table>
+    
+    <!--   2   -->
+    
+    <table class="tableout" border="0" align="center">
+        <tr>
+            <div class="title"><td colspan="2" align="center">Web Team </td></div>
+        </tr>
+        <tr>
+            <td>
+            <table class="tablein" border="0">
+                <tr><td>
+                <div align="center"><img src="{{url_for('static',filename='assets/man.png')}}" width="200" height="200"></div>
+                
+                <div class="name" align="center">NAME</div>
+                
+                <div class="name" align="center">
+                    <p>B.Tech CSE (2017-2021)</p>
+                    <p>School of Computer Science & Engg. (CSE)</p>
+                    <p>kalyan35.662000@gmail.com</p>
+                    <p>9059876620</p>
+                </div>
+                </td></tr>
+            </table>
+            </td>
+            <td>
+            <table class="tablein" border="0">
+                <tr><td>
+                <div align="center"><img src="{{url_for('static',filename='assets/man.png')}}" width="200" height="200"></div>
+                  
+                <div class="name" align="center">NAME</div>
+                  
+                <div class="name" align="center">
+                    <p>B.Tech CSE (2017-2021)</p>
+                    <p>School of Computer Science & Engg. (CSE)</p>
+                    <p>kalyan35.662000@gmail.com</p>
+                    <p>9059876620</p>
+                </div>
+                </td></tr>
+            </table>
+            </td>
+        </tr>
+    </table>
+    
+    <!--   3   -->
+    
+    <table class="tableout" border="0" align="center">
+        <tr>
+            <div class="title"><td colspan="3" align="center">Content/Designer Team </td></div>
+        </tr>
+        <tr>
+            <td>
+            <table class="tablein" border="0">
+                <tr><td>
+                <div align="center"><img src="{{url_for('static',filename='assets/man.png')}}" width="200" height="200"></div>
+                  
+                <div class="name" align="center">NAME</div>
+                  
+                <div class="name" align="center">
+                    <p>B.Tech CSE (2017-2021)</p>
+                    <p>School of Computer Science & Engg. (CSE)</p>
+                    <p>kalyan35.662000@gmail.com</p>
+                    <p>9059876620</p>
+                </div>
+                </td></tr>
+            </table>
+            </td>
+            <td>
+            <table class="tablein" border="0">
+                <tr><td>
+                <div align="center"><img src="{{url_for('static',filename='assets/man.png')}}" width="200" height="200"></div>
+                  
+                <div class="name" align="center">NAME</div>
+                  
+                <div class="name" align="center">
+                    <p>B.Tech CSE (2017-2021)</p>
+                    <p>School of Computer Science & Engg. (CSE)</p>
+                    <p>kalyan35.662000@gmail.com</p>
+                    <p>9059876620</p>
+                </div>
+                </td></tr>
+            </table>
+            </td>
+            <td>
+            <table class="tablein" border="0">
+                <tr><td>
+                <div align="center"><img src="{{url_for('static',filename='assets/man.png')}}" width="200" height="200"></div>
+                  
+                <div class="name" align="center">NAME</div>
+                  
+                <div class="name" align="center">
+                    <p>B.Tech CSE (2017-2021)</p>
+                    <p>School of Computer Science & Engg. (CSE)</p>
+                    <p>kalyan35.662000@gmail.com</p>
+                    <p>9059876620</p>
+                </div>
+                </td></tr>
+            </table>
+            </td>
+        </tr>
+    </table>
+       
+    <!--   4   -->
+    
+    <table class="tableout" border="0" align="center">
+        <tr>
+            <div class="title"><td colspan="4" align="center">Communication & Public Relation Team </td></div>
+        </tr>
+        <tr>
+            <td>
+            <table class="tablein" border="0">
+                <tr><td>
+                <div align="center"><img src="{{url_for('static',filename='assets/man.png')}}" width="200" height="200"></div>
+                  
+                <div class="name" align="center">NAME</div>
+                  
+                <div class="name" align="center">
+                    <p>B.Tech CSE (2017-2021)</p>
+                    <p>School of Computer Science & Engg. (CSE)</p>
+                    <p>kalyan35.662000@gmail.com</p>
+                    <p>9059876620</p>
+                </div>
+                </td></tr>
+            </table>
+            </td>
+            <td>
+            <table class="tablein" border="0">
+                <tr><td>
+                <div align="center"><img src="{{url_for('static',filename='assets/man.png')}}" width="200" height="200"></div>
+                  
+                <div class="name" align="center">NAME</div>
+                  
+                <div class="name" align="center">
+                    <p>B.Tech CSE (2017-2021)</p>
+                    <p>School of Computer Science & Engg. (CSE)</p>
+                    <p>kalyan35.662000@gmail.com</p>
+                    <p>9059876620</p>
+                </div>
+                </td></tr>
+            </table>
+            </td>
+            <td>
+            <table class="tablein" border="0">
+                <tr><td>
+                <div align="center"><img src="{{url_for('static',filename='assets/man.png')}}" width="200" height="200"></div>
+                  
+                <div class="name" align="center">NAME</div>
+                  
+                <div class="name" align="center">
+                    <p>B.Tech CSE (2017-2021)</p>
+                    <p>School of Computer Science & Engg. (CSE)</p>
+                    <p>kalyan35.662000@gmail.com</p>
+                    <p>9059876620</p>
+                </div>
+                </td></tr>
+            </table>
+            </td>
+            <td>
+            <table class="tablein" border="0">
+                <tr><td>
+                <div align="center"><img src="{{url_for('static',filename='assets/man.png')}}" width="200" height="200"></div>
+                  
+                <div class="name" align="center">NAME</div>
+                  
+                <div class="name" align="center">
+                    <p>B.Tech CSE (2017-2021)</p>
+                    <p>School of Computer Science & Engg. (CSE)</p>
+                    <p>kalyan35.662000@gmail.com</p>
+                    <p>9059876620</p>
+                </div>
+                </td></tr>
+            </table>
+            </td>
+        </tr>
+    </table>
+    </div>
+
+	{% endblock %}
+
+</body>
+</html>
